@@ -1,4 +1,4 @@
-import { getEpisodes, getMovie } from "@/api/client"
+import { getMovie } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"

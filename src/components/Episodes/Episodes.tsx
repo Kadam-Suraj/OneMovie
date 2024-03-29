@@ -1,4 +1,4 @@
-import { getEpHD, getEpUHD, getEpisodes } from "@/api/client"
+import { getEpHD, getEpUHD } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Button } from "../ui/button"
