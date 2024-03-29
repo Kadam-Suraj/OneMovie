@@ -8,7 +8,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header></Header>
+        <div className="md:px-10 md:pt-5">
+          <Header></Header>
+        </div>
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path='/movies' element={<Category />} />

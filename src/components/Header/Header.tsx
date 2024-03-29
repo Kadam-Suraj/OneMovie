@@ -31,7 +31,7 @@ const Header = () => {
     // console.log(search)
 
     return (
-        <header className="sticky z-10 bg-white dark:bg-black backdrop-blur bg-opacity-30 border-b lg:border-b-0 lg:border-x border-slate-300 border-x- dark:bg-opacity-30 lg:rounded-full items-center grid lg:grid-cols-3 grid-cols-3 gap-2 px-5 py-2 top-0 pt-3 lg:top-5 left-0 right-0 mx-auto max-w-[1536px]">
+        <header className="sticky z-10 bg-white dark:bg-black backdrop-blur bg-opacity-30 border-b md:border-b-0 md:border-x border-slate-300 border-x- dark:bg-opacity-30 md:rounded-full items-center grid grid-cols-3 gap-2 px-5 py-2 top-0 pt-3 md:top-5 left-0 right-0 mx-auto max-w-[1536px]">
                 <Link to={"/"}>
                     <img className="dark:invert-0 invert select-none" src={logo} width={40} alt="logo" />
                 </Link>
@@ -42,7 +42,7 @@ const Header = () => {
                 </nav>
             <nav className="relative flex gap-2 items-center justify-end">
                 <BiSearch onClick={openSearch} className={`${search ? "hidden" : "block"} hidden text-2xl cursor-pointer`} id="search"  />
-                <div className={`${search ? "block" : "hidden"} absolute top-14 right-0 flex items-center gap-5`}  id="search">
+                <div className={`${search ? "block" : "hidden"} hidden absolute top-14 right-0 items-center gap-5`}  id="search">
                     <Input className="w-44" type="text" placeholder="Search content"></Input>
                     <Button>Search</Button>
                 </div>
