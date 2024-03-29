@@ -1,4 +1,4 @@
-import { getMovie } from "@/api/client"
+import { getMovie, getScreenshots } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
@@ -8,16 +8,22 @@ import Episodes from "../Episodes/Episodes"
 
 const Info = () => {
     const [data, setData] = useState([])
+    const [screenshot, setScreenshot] = useState([])
     const { info } = useParams()
+
 
     useEffect(() => {
         (async () => {
             const data = (await getMovie())
             setData(data)
+            const screenshot = (await getScreenshots(info))
+            setScreenshot(screenshot)
         })()
     }, [])
 
-    
+    console.log(data)
+
+
     // console.log(episodes)
     return (
         <div className="m-auto max-w-[1536px] my-20 p-5">
@@ -59,8 +65,22 @@ const Info = () => {
                     </div>
                 }
             })}
-            <div>
-                <Episodes slug={info}></Episodes>
+            <div className="my-10 flex flex-col gap-10">
+                <h2><span className="font-semibold text-xl">ScreenShots:</span><br />Must See Before Downloading . . .</h2>
+                <div className="flex flex-col gap-2 items-center">
+                    {screenshot.map((item, idx) => {
+                        if (item) {
+                            return <img key={idx} src={item} alt={`screenshot`} className="w-10/12 md:w-1/2" />
+                        }
+                        return <h1 key={idx}>ScreenShots Unavailable</h1>
+                    })}
+                </div>
+            </div>
+            <div>{data.map((item, idx) => {
+                if (item.episodes) {
+                    return <Episodes key={idx} slug={info}></Episodes>
+                }
+            })}
             </div>
         </div>
     )

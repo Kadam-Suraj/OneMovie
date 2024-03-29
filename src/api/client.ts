@@ -11,8 +11,21 @@ export const client = createClient({
 
 const builder = imageUrlBuilder(client)
 
-export function urlFor(source) {
+export function urlFor(source: any) {
     return builder.image(source)
+}
+export async function getScreenshots(source: any) {
+    const Images = await client.fetch(`*[_type == "movie" && slug.current == "${source}"]{gallery}`)
+    // console.log(Images)
+    let Screenshot = []
+    Images.map((item: any) => {
+        const image =  item.gallery.map((item: any) => {
+            return [urlFor(item).url()]
+        })
+        Screenshot = [...image]
+        // console.log(Screenshot)
+    })
+    return Screenshot
 }
 
 export async function getMovie() {
