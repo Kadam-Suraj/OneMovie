@@ -41,7 +41,7 @@ const Episodes = ({ slug }) => {
         <>
             {
                 HD ?
-                    <div className="mt-16 border-t pt-10 flex items-center flex-col gap-5">
+                    <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
                         <h2 className="text-3xl">Download Episodes 720P</h2>
                         <div className="flex flex-wrap gap-5 justify-center">
                             {HD?.map((item, idx) => {
@@ -55,7 +55,7 @@ const Episodes = ({ slug }) => {
             }
             {
                 FHD ?
-                    <div className="mt-16 border-t pt-10 flex items-center flex-col gap-5">
+                    <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
                         <h2 className="text-3xl">Download Episodes 1080P</h2>
                         <div className="flex gap-5 justify-center">
                             {FHD?.map((item, idx) => {
@@ -69,7 +69,7 @@ const Episodes = ({ slug }) => {
             }
             {
                 UHD ?
-                    <div className="mt-16 border-t pt-10 flex items-center flex-col gap-5">
+                    <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
                         <h2 className="text-3xl">Download Episodes 2160P/4K</h2>
                         <div className="flex gap-5 justify-center">
                             {UHD?.map((item, idx) => {

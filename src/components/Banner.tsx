@@ -72,7 +72,7 @@ const Banner = () => {
                                                         <span>{item.duration}</span>
                                                         <span>{getYear(item.releaseDate)}</span>
                                                     </div>
-                                                    <p className="text-sm text-opacity-50 w-10/12">{item.overview}</p>
+                                                    <p className="text-sm text-opacity-50 md:w-10/12">{item.overview}</p>
                                                     <Link to={`/movies/${item.slug.current}`}>
                                                         <Button className="w-fit">More Info</Button>
                                                     </Link>
