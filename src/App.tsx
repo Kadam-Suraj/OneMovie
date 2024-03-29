@@ -14,8 +14,8 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<Hero />} />
-          <Route path="/:info" element={<Info />} />
           <Route path='/movies' element={<Movies />} />
+          <Route path="/movies/:info" element={<Info />} />
         </Routes>
       </BrowserRouter>
     </>

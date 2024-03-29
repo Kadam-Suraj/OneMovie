@@ -1,9 +1,10 @@
-import { getMovie } from "@/api/client"
+import { getEpisodes, getMovie } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
 import { getYear } from "../Banner"
 import { Button } from "../ui/button"
+import Episodes from "../Episodes/Episodes"
 
 const Info = () => {
     const [data, setData] = useState([])
@@ -15,8 +16,11 @@ const Info = () => {
             setData(data)
         })()
     }, [])
+
+    
+    // console.log(episodes)
     return (
-        <div className="m-auto max-w-[1536px] mt-20 p-5">
+        <div className="m-auto max-w-[1536px] my-20 p-5">
             <Link to={"/"}>
                 <Button variant="default" className="mb-5">Home</Button>
             </Link>
@@ -45,6 +49,7 @@ const Info = () => {
                                     <span>{item.duration}</span>
                                     <span>{getYear(item.releaseDate)}</span>
                                 </div>
+                                <span className="text-xl">Synopsis:</span>
                                 <p className="text-sm text-gray-900 dark:text-gray-400 text-opacity-80 w-10/12 md:w-1/2">{item.overview}</p>
                                 {/* <Link to={`/${item.slug.current}`}>
                                     <Button className="w-fit">More Info</Button>
@@ -54,6 +59,9 @@ const Info = () => {
                     </div>
                 }
             })}
+            <div>
+                <Episodes slug={info}></Episodes>
+            </div>
         </div>
     )
 }

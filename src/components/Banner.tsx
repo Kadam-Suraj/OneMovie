@@ -52,6 +52,7 @@ const Banner = () => {
                         Autoplay({
                             delay: 5000,
                         }),
+                        
                     ]}>
                     <CarouselContent>
                         {data.map((item, idx) => {
@@ -72,7 +73,7 @@ const Banner = () => {
                                                         <span>{getYear(item.releaseDate)}</span>
                                                     </div>
                                                     <p className="text-sm text-opacity-50 w-10/12">{item.overview}</p>
-                                                    <Link to={`/${item.slug.current}`}>
+                                                    <Link to={`/movies/${item.slug.current}`}>
                                                         <Button className="w-fit">More Info</Button>
                                                     </Link>
                                                 </div>
