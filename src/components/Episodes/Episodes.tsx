@@ -46,7 +46,7 @@ const Episodes = ({ slug }) => {
                         <div className="flex flex-wrap gap-5 justify-center">
                             {HD?.map((item, idx) => {
                                 return <div key={idx}>
-                                    <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number}</Button></Link>
+                                    <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
                                 </div>
                             })}
                         </div>
@@ -60,7 +60,7 @@ const Episodes = ({ slug }) => {
                         <div className="flex gap-5 justify-center">
                             {FHD?.map((item, idx) => {
                                 return <div key={idx}>
-                                    <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number}</Button></Link>
+                                    <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
                                 </div>
                             })}
                         </div>
