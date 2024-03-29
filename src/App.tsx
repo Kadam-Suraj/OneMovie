@@ -1,6 +1,7 @@
 import Header from "./components/Header/Header"
+import Info from "./components/Info/Info";
 import Hero from './Hero/Hero'
-import Category from './components/Category'
+import Movies from './Movies'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<Hero />} />
-          <Route path='/movies' element={<Category />} />
+          <Route path="/:info" element={<Info />} />
+          <Route path='/movies' element={<Movies />} />
         </Routes>
       </BrowserRouter>
     </>

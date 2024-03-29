@@ -1,4 +1,3 @@
-// import ReactPlayer from "react-player"
 import { Button } from "./ui/button"
 import {
     Carousel,
@@ -12,15 +11,16 @@ import { useEffect, useState } from "react"
 import { Card, CardContent } from "./ui/card"
 import { emoji } from "@/assets"
 import Autoplay from "embla-carousel-autoplay"
+import { Link } from "react-router-dom"
 
+export const getYear = (data: any) => {
+    let date = new Date(data).getFullYear()
+    return date;
+}
 
 const Banner = () => {
     const [data, setData] = useState([])
 
-    const getYear = (data: any) => {
-        let date = new Date(data).getFullYear()
-        return date;
-    }
 
     const compareDate = (data: any) => {
         const today = new Date();
@@ -72,7 +72,9 @@ const Banner = () => {
                                                         <span>{getYear(item.releaseDate)}</span>
                                                     </div>
                                                     <p className="text-sm text-opacity-50 w-10/12">{item.overview}</p>
-                                                    <Button className="w-fit">More Info</Button>
+                                                    <Link to={`/${item.slug.current}`}>
+                                                        <Button className="w-fit">More Info</Button>
+                                                    </Link>
                                                 </div>
                                                 <div className="flex items-center -order-1 lg:order-1 justify-center lg:justify-end">
                                                     {item.trailer ? <img className=" w-60 lg:w-1/2 rounded-xl" src={urlFor(item.poster).url()} />

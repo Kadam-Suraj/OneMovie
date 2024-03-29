@@ -31,11 +31,11 @@ const Header = () => {
     // console.log(search)
 
     return (
-        <header className="sticky z-10 bg-white dark:bg-black backdrop-blur bg-opacity-30 border-b md:border-b-0 md:border-x border-slate-300 border-x- dark:bg-opacity-30 md:rounded-full items-center grid grid-cols-3 gap-2 px-5 py-2 top-0 pt-3 md:top-5 left-0 right-0 mx-auto max-w-[1536px]">
+        <header className="sticky z-10 bg-white dark:bg-black backdrop-blur bg-opacity-30 border-b md:border-b-0 md:border-x border-slate-300 border-x- dark:bg-opacity-30 md:rounded-full items-center grid grid-cols-2 md:grid-cols-3 gap-2 px-5 py-2 top-0 pt-3 md:top-5 left-0 right-0 mx-auto max-w-[1536px]">
                 <Link to={"/"}>
                     <img className="dark:invert-0 invert select-none" src={logo} width={40} alt="logo" />
                 </Link>
-                <nav className="flex items-center justify-center">
+                <nav className="md:flex hidden items-center justify-center">
                     <ul className="flex gap-2">
                         <MenubarDemo></MenubarDemo>
                     </ul>

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/pagination"
 
 
-const Category = () => {
+const Movies = () => {
     return (
         <section className="m-auto max-w-[1536px] px-5">
             <div className="grid lg:grid-cols-2 items-center justify-between">
@@ -38,4 +38,4 @@ const Category = () => {
     )
 }
 
-export default Category
+export default Movies
