@@ -3,7 +3,7 @@ import {
     MenubarMenu,
     MenubarTrigger,
 } from "@/components/ui/menubar"
-import { Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 export function MenubarDemo() {
     const list = ["Home", "Movies", "Series", "About"]

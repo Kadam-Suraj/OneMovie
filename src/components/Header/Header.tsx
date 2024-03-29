@@ -13,9 +13,9 @@ const Header = () => {
     const openSearch = () => {
         setSearch(true)
     }
-    const closeSearch = () => {
-        setSearch(false)
-    }
+    // const closeSearch = () => {
+    //     setSearch(false)
+    // }
     // if (search == true) {
     //     const body = document.body
     //     body.addEventListener("click", (e) => {

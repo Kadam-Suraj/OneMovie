@@ -1,17 +1,7 @@
-import { getMovie, urlFor } from "@/api/client"
-import { banner, newBg } from "@/assets"
+import { banner } from "@/assets"
 import Banner from "@/components/Banner"
-import { useEffect, useState } from "react"
 
 const Hero = () => {
-    const [data, setData] = useState([])
-
-    useEffect(() => {
-        (async () => {
-            const data = (await getMovie())
-            setData(data)
-        })()
-    }, [])
     return (
         <>
             <div className="m-auto max-w-[1536px] px-5">
