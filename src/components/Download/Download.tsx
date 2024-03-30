@@ -17,7 +17,7 @@ const Download = ({ slug }) => {
         <div>{
             data.map((item, idx) => {
                 if (item.slug.current == slug && item.hasepisode) {
-                    return <Episodes key={idx} slug={slug} movie={item}></Episodes>
+                    return <Episodes key={idx} slug={slug}></Episodes>
                 } else if (item.slug.current == slug) {
                     return <DownloadsLink slug={slug} />
                 }

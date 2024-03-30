@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Button } from "../ui/button"
 
-const Episodes = ({ slug, movie }) => {
+const Episodes = ({ slug }) => {
 
     // const [episodes, setEpisodes] = useState([])
     const [HD, setHD] = useState([])
