@@ -1,4 +1,4 @@
-import logo from './LOGO.svg'
+import logo from './logo.svg'
 import banner from './banner.jpg'
 
 export {
