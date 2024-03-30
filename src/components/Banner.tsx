@@ -22,19 +22,19 @@ const Banner = () => {
     const [data, setData] = useState([])
 
 
-    const compareDate = (data: any) => {
-        const today = new Date();
-        const prevMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate(), today.getHours(), today.getMinutes()).getTime()
-        const compareDate = new Date(data).getTime();
-        if (compareDate > prevMonth) {
-            return true
-            // <span>New</span>
-        }
-        else {
-            return false
-            // <span>Trending</span>
-        }
-    }
+    // const compareDate = (data: any) => {
+    //     const today = new Date();
+    //     const prevMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate(), today.getHours(), today.getMinutes()).getTime()
+    //     const compareDate = new Date(data).getTime();
+    //     if (compareDate > prevMonth) {
+    //         return true
+    //         // <span>New</span>
+    //     }
+    //     else {
+    //         return false
+    //         // <span>Trending</span>
+    //     }
+    // }
 
     useEffect(() => {
         (async () => {
