@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
 import { getYear } from "../Banner"
 import { Button } from "../ui/button"
-import { emoji } from "@/assets"
 import Download from "../Download/Download"
 
 const Info = () => {
@@ -75,7 +74,7 @@ const Info = () => {
                                 :
                                 <div className="flex flex-col items-center gap-5">
                                     <div className="flex flex-col items-center gap-10">
-                                        <img src={emoji} width={150} className="pointer-events-none" />
+                                        {/* <img src={emoji} width={150} className="pointer-events-none" /> */}
                                         <h2 className="text-5xl">Poster Unavailable</h2>
                                     </div>
                                     <p>sorry for inconvenience</p>

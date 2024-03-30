@@ -9,7 +9,6 @@ import {
 import { getMovie, urlFor } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Card, CardContent } from "./ui/card"
-import { emoji } from "@/assets"
 import Autoplay from "embla-carousel-autoplay"
 import { Link } from "react-router-dom"
 import { Skeleton } from "./ui/skeleton"
@@ -117,7 +116,7 @@ const Banner = () => {
                                                                     :
                                                                     <div className="flex flex-col items-center gap-5">
                                                                         <div className="flex flex-col items-center gap-10">
-                                                                            <img src={emoji} width={150} />
+                                                                            {/* <img src={emoji} width={150} /> */}
                                                                             <h2 className="text-5xl">Poster Unavailable</h2>
                                                                         </div>
                                                                         <p>sorry for inconvenience</p>
