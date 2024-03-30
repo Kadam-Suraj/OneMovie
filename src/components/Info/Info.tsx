@@ -22,7 +22,6 @@ const Info = () => {
         })()
     }, [])
 
-    console.log(data)
 
 
     // console.log(episodes)

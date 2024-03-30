@@ -20,7 +20,7 @@ export const getYear = (data: any) => {
 
 const Banner = () => {
     const [data, setData] = useState([])
-
+    const [genres, setGenres] = useState([])
 
     // const compareDate = (data: any) => {
     //     const today = new Date();
@@ -36,12 +36,21 @@ const Banner = () => {
     //     }
     // }
 
+    const getGenres = (val: any) => {
+        <Button variant="outline" className="pointer-events-none rounded-full"></Button>
+    }
+
     useEffect(() => {
         (async () => {
             const data = (await getMovie())
             setData(data)
+            // const Genres = (await getGenres(info))
+            // console.log("Hello")
+            // setGenres(Genres)
         })()
     }, [])
+
+    console.log(data)
 
     const getStatus = (val: any) => {
         const status = val.map((item: any) => {
@@ -56,12 +65,8 @@ const Banner = () => {
             // else {
             // }
         })
-        //  data[2].status[0]
-        // console.log(status)
         return status
     }
-
-    // console.log(data[2].status[0])
 
     return (
         <>
@@ -94,6 +99,11 @@ const Banner = () => {
                                                             <span className="border py-1 px-2">{item.type}</span>
                                                             <span>{item.duration}</span>
                                                             <span>{getYear(item.releaseDate)}</span>
+                                                        </div>
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {item.genres.map((item, idx) => {
+                                                                return <Button key={idx} variant="outline" className="pointer-events-none rounded-full uppercase">{item}</Button>
+                                                            })}
                                                         </div>
                                                         <p className="text-sm text-opacity-50 md:w-10/12">{item.overview}</p>
                                                         <Link to={`/movies/${item.slug.current}`}>
