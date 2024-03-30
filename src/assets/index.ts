@@ -1,5 +1,5 @@
 import logo from './LOGO.svg'
-import banner from "./banner.jpg"
+import banner from './banner.jpg'
 
 export {
     logo,
