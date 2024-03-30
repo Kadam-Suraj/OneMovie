@@ -15,7 +15,7 @@ const Hero = () => {
 
     return (
         <>
-            <div className="m-auto max-w-[1536px] px-5">
+            <div className="m-auto max-w-[1536px] px-5 min-h-screen">
                 <div className="absolute top-0 left-0 right-0 -z-10 w-full h-screen">
                     {profile.map((item, idx) => {
                         return <img key={idx} src={urlFor(item.image).url()} className="h-[450px] w-full object-cover object-top pointer-events-none select-none backdrop-brightness-50" alt={item.slug.current} draggable={false} />

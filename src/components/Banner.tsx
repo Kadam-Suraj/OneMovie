@@ -72,7 +72,7 @@ const Banner = () => {
             {
                 data ?
                     <div className="lg:px-10">
-                        <Carousel className="w-full" opts={{
+                        <Carousel className="w-full select-none" opts={{
                             align: "start",
                             loop: true,
                         }}
@@ -102,7 +102,7 @@ const Banner = () => {
                                                                     <span>{getYear(item.releaseDate)}</span>
                                                                 </div>
                                                                 <div className="flex flex-wrap gap-2">
-                                                                    {item.genres.map((item, idx) => {
+                                                                    {item.genres.map((item: any, idx: any) => {
                                                                         return <Button key={idx} variant="outline" className="pointer-events-none rounded-full uppercase">{item}</Button>
                                                                     })}
                                                                 </div>
@@ -112,7 +112,7 @@ const Banner = () => {
                                                                 </Link>
                                                             </div>
                                                             <div className="flex items-center -order-1 lg:order-1 justify-center lg:justify-end">
-                                                                {item.trailer ? <img className=" w-60 lg:w-1/2 rounded-xl" src={urlFor(item.poster).url()} />
+                                                                {item.trailer ? <img className=" w-60 lg:w-1/2 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} />
                                                                     :
                                                                     <div className="flex flex-col items-center gap-5">
                                                                         <div className="flex flex-col items-center gap-10">

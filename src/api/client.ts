@@ -42,6 +42,11 @@ export async function getMovie() {
     return Movie
 }
 
+export async function getMovieBySlug(slug: any) {
+    const Movie = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]`)
+    return Movie
+}
+
 export async function getGenres(slug: any) {
     const Genres = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{genres}`)
     return Genres
