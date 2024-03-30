@@ -84,7 +84,7 @@ const Banner = () => {
                             ]}>
                             <CarouselContent>
                                 {data.map((item, idx) => {
-                                    if (idx <= 4) {
+                                    if (getStatus(item.status) == "new" || getStatus(item.status) == "trending" || getStatus(item.status) == "upcoming") {
                                         return <CarouselItem key={idx}>
                                             <div className="p-1">
                                                 <Card>
