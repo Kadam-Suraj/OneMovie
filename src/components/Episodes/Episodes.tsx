@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Button } from "../ui/button"
 
-const Episodes = ({ slug }) => {
+const Episodes = ({ slug, movie }) => {
 
     // const [episodes, setEpisodes] = useState([])
     const [HD, setHD] = useState([])
@@ -39,48 +39,51 @@ const Episodes = ({ slug }) => {
     // console.log(HD)
     return (
         <>
-            {
-                HD ?
-                    <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
-                        <h2 className="text-3xl">Download Episodes 720P</h2>
-                        <div className="flex flex-wrap gap-5 justify-center">
-                            {HD?.map((item, idx) => {
-                                return <div key={idx}>
-                                    <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
-                                </div>
-                            })}
+            <div>
+
+                {
+                    HD ?
+                        <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
+                            <h2 className="text-3xl">Download Episodes 720P</h2>
+                            <div className="flex flex-wrap gap-5 justify-center">
+                                {HD?.map((item, idx) => {
+                                    return <div key={idx}>
+                                        <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    : ""
-            }
-            {
-                FHD ?
-                    <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
-                        <h2 className="text-3xl">Download Episodes 1080P</h2>
-                        <div className="flex gap-5 justify-center">
-                            {FHD?.map((item, idx) => {
-                                return <div key={idx}>
-                                    <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
-                                </div>
-                            })}
+                        : ""
+                }
+                {
+                    FHD ?
+                        <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
+                            <h2 className="text-3xl">Download Episodes 1080P</h2>
+                            <div className="flex gap-5 justify-center">
+                                {FHD?.map((item, idx) => {
+                                    return <div key={idx}>
+                                        <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    : ""
-            }
-            {
-                UHD ?
-                    <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
-                        <h2 className="text-3xl">Download Episodes 2160P/4K</h2>
-                        <div className="flex gap-5 justify-center">
-                            {UHD?.map((item, idx) => {
-                                return <div key={idx}>
-                                    <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
-                                </div>
-                            })}
+                        : ""
+                }
+                {
+                    UHD ?
+                        <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
+                            <h2 className="text-3xl">Download Episodes 2160P/4K</h2>
+                            <div className="flex gap-5 justify-center">
+                                {UHD?.map((item, idx) => {
+                                    return <div key={idx}>
+                                        <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    : ""
-            }
+                        : ""
+                }
+            </div>
         </>
     )
 }

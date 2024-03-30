@@ -62,9 +62,9 @@ const Banner = () => {
                                         <CardContent className="flex items-center lg:justify-center p-6">
                                             <div className="grid gap-5 lg:grid-cols-2 w-fit" >
                                                 <div className="flex flex-col gap-5 justify-center w-full">
-                                                    <div className="flex gap-5 items-center text-xs lg:w-1/2 bg-gradient-to-r from-black from-30% to-transparent to-90% rounded-full px-1 py-1">
+                                                    <div className="flex gap-5 items-center text-xs lg:w-1/2 bg-gradient-to-r  from-black dark:from-white dark:from-70% from-70% to-transparent dark:to-transparent dark:to-90% to-90% rounded-full px-1 py-1">
                                                         <span className="bg-red-500 px-4 py-2 rounded-full text-white">{compareDate(item.releaseDate)}</span>
-                                                        <span className="text-white text-sm text-opacity0">Released In {getYear(item.releaseDate)}</span>
+                                                        <span className="text-white dark:text-black text-sm text-opacity0">Released In {getYear(item.releaseDate)}</span>
                                                     </div>
                                                     <h1 className="font-bold text-5xl lg:text-8xl">{item.title}</h1>
                                                     <div className="flex gap-5 items-center">

@@ -1,10 +1,11 @@
-import { getMovie, getScreenshots } from "@/api/client"
+import { getMovie, getScreenshots, urlFor } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
 import { getYear } from "../Banner"
 import { Button } from "../ui/button"
-import Episodes from "../Episodes/Episodes"
+import { emoji } from "@/assets"
+import Download from "../Download/Download"
 
 const Info = () => {
     const [data, setData] = useState([])
@@ -31,18 +32,21 @@ const Info = () => {
                 <Button variant="default" className="mb-5">Home</Button>
             </Link>
             {data.map((item, idx) => {
-                if (item.slug.current === info) {
+                if (item.slug.current == info) {
                     return <div key={idx} className="flex flex-col gap-10">
-                        <div className="flex justify-center order-1 md:-order-1">
-                            <ReactPlayer
-                                config={{
-                                    youtube: {
-                                        playerVars: { showinfo: 0, }
-                                    }
-                                }}
-                                controls
-                                url={item.trailer}
-                            />
+                        <div className="flex flex-col items-center gap-2 justify-center order-2 md:-order-">
+                            <h2 className="self-start font-bold text-2xl">Watch Trailer :</h2>
+                            <div className="w-full flex justify-center">
+                                <ReactPlayer
+                                    config={{
+                                        youtube: {
+                                            playerVars: { showinfo: 0, }
+                                        }
+                                    }}
+                                    controls
+                                    url={item.trailer}
+                                />
+                            </div>
                         </div>
                         <div className="grid grid-cols-1 gap-2">
                             <Button variant="outline" className="w-fit pointer-events-none">Download</Button>
@@ -62,11 +66,23 @@ const Info = () => {
                                 </Link> */}
                             </div>
                         </div>
+                        <div className="flex items-center -order-1 lg:order-1 justify-center">
+                            {item.trailer ? <img className=" w-60 lg:w-1/3 rounded-xl" src={urlFor(item.poster).url()} />
+                                :
+                                <div className="flex flex-col items-center gap-5">
+                                    <div className="flex flex-col items-center gap-10">
+                                        <img src={emoji} width={150} />
+                                        <h2 className="text-5xl">Poster Unavailable</h2>
+                                    </div>
+                                    <p>sorry for inconvenience</p>
+                                </div>
+                            }
+                        </div>
                     </div>
                 }
             })}
-            <div className="my-10 flex flex-col gap-10">
-                <h2><span className="font-semibold text-xl">ScreenShots:</span><br />Must See Before Downloading . . .</h2>
+            <div className="my-10 flex flex-col items-center gap-10">
+                <h2 className="flex items-center flex-col"><span className="font-semibold text-xl">ScreenShots:</span><span>Must See Before Downloading . . .</span></h2>
                 <div className="flex flex-col gap-2 items-center">
                     {screenshot.map((item, idx) => {
                         if (item) {
@@ -76,11 +92,8 @@ const Info = () => {
                     })}
                 </div>
             </div>
-            <div>{data.map((item, idx) => {
-                if (item.episodes) {
-                    return <Episodes key={idx} slug={info}></Episodes>
-                }
-            })}
+            <div>
+                <Download slug={info}></Download>
             </div>
         </div>
     )
