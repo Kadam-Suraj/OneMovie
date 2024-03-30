@@ -67,11 +67,11 @@ const Info = () => {
                             </div>
                         </div>
                         <div className="flex items-center -order-1 lg:order-1 justify-center">
-                            {item.trailer ? <img className=" w-60 lg:w-1/3 rounded-xl" src={urlFor(item.poster).url()} />
+                            {item.trailer ? <img className=" w-60 lg:w-1/3 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} />
                                 :
                                 <div className="flex flex-col items-center gap-5">
                                     <div className="flex flex-col items-center gap-10">
-                                        <img src={emoji} width={150} />
+                                        <img src={emoji} width={150} className="pointer-events-none" />
                                         <h2 className="text-5xl">Poster Unavailable</h2>
                                     </div>
                                     <p>sorry for inconvenience</p>
@@ -86,7 +86,7 @@ const Info = () => {
                 <div className="flex flex-col gap-2 items-center">
                     {screenshot.map((item, idx) => {
                         if (item) {
-                            return <img key={idx} src={item} alt={`screenshot`} className="w-10/12 md:w-1/2" />
+                            return <img key={idx} src={item} alt={`screenshot${idx}`} className="w-10/12 md:w-1/2 pointer-events-none" />
                         }
                         return <h1 key={idx}>ScreenShots Unavailable</h1>
                     })}
