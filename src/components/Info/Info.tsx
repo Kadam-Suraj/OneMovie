@@ -58,6 +58,11 @@ const Info = () => {
                                     <span>{item.duration}</span>
                                     <span>{getYear(item.releaseDate)}</span>
                                 </div>
+                                <div className="flex flex-wrap gap-2">
+                                    {item.genres.map((item : any, idx : any) => {
+                                        return <Button key={idx} variant="outline" className="pointer-events-none rounded-full uppercase">{item}</Button>
+                                    })}
+                                </div>
                                 <span className="text-xl">Synopsis:</span>
                                 <p className="text-sm text-gray-900 dark:text-gray-400 text-opacity-80 w-10/12 md:w-1/2">{item.overview}</p>
                                 {/* <Link to={`/${item.slug.current}`}>

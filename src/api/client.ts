@@ -33,6 +33,10 @@ export async function getScreenshots(source: any) {
 
 
 // Get Data
+export async function getProfile() {
+    const Profile = await client.fetch('*[_type == "profile"]')
+    return Profile
+}
 export async function getMovie() {
     const Movie = await client.fetch('*[_type == "movie"]')
     return Movie
