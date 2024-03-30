@@ -20,7 +20,7 @@ export const getYear = (data: any) => {
 
 const Banner = () => {
     const [data, setData] = useState([])
-    const [genres, setGenres] = useState([])
+    // const [genres, setGenres] = useState([])
 
     // const compareDate = (data: any) => {
     //     const today = new Date();
@@ -36,9 +36,9 @@ const Banner = () => {
     //     }
     // }
 
-    const getGenres = (val: any) => {
-        <Button variant="outline" className="pointer-events-none rounded-full"></Button>
-    }
+    // const getGenres = (val: any) => {
+    //     <Button variant="outline" className="pointer-events-none rounded-full"></Button>
+    // }
 
     useEffect(() => {
         (async () => {
