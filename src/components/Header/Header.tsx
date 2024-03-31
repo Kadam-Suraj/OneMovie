@@ -48,7 +48,7 @@ const Header = () => {
                     <Button>Search</Button>
                 </div>
                 <ModeToggle></ModeToggle>
-                <div>
+                <div className="md:hidden block">
                     <MobileMenu></MobileMenu>
                 </div>
             </nav>
