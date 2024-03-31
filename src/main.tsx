@@ -14,10 +14,9 @@ const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Hero />} />
+      <Route path="/download/:slug" element={<Info />} />
       <Route path="/movies" element={<Movies />} />
-      <Route path="/movies/:slug" element={<Info />} />
       <Route path="/series" element={<Series />} />
-      <Route path="/series/:slug" element={<Info />} />
       <Route path="/about" element={<About />} />
     </Route>
   )

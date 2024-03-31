@@ -22,7 +22,7 @@ const Series = () => {
                         data.map((item, idx) => {
                             if (item.type === "TV Series") {
                                 return <div key={idx}>
-                                    <Link to={`/series/${item.slug.current}`}>
+                                    <Link to={`/download/${item.slug.current}`}>
                                         <Card className="border rounded-md relative">
                                             <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md" />
                                             <CardFooter className="flex flex-col items-start gap-2">

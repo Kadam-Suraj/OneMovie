@@ -107,7 +107,7 @@ const Banner = () => {
                                                                     })}
                                                                 </div>
                                                                 <p className="text-sm text-opacity-50 md:w-10/12">{item.overview}</p>
-                                                                <Link to={`/movies/${item.slug.current}`}>
+                                                                <Link to={`/download/${item.slug.current}`}>
                                                                     <Button className="w-fit">More Info</Button>
                                                                 </Link>
                                                             </div>
