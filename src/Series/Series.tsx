@@ -12,7 +12,7 @@ const Series = () => {
             setData(data)
         })()
     }, [])
-    console.log(data)
+    // console.log(data)
     return (
         <section className="m-auto max-w-[1536px] px-5 my-20 min-h-screen">
             <div className="grid gap-10">

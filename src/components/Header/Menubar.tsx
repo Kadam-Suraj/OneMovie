@@ -24,3 +24,23 @@ export function MenubarDemo() {
 
     )
 }
+
+export function MenubarPhone() {
+    const list = ["Home", "Movies", "Series", "About"]
+
+    return (
+        <Menubar className="flex flex-col justify-start gap-5 items-start">
+            {
+                list.map((item, idx) => {
+                    return <MenubarMenu key={idx}>
+                        <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-500 " : ""}`}>
+                            <MenubarTrigger className="cursor-pointer text-2xl p-0">{item}</MenubarTrigger>
+                        </NavLink>
+                    </MenubarMenu>
+                })
+            }
+        </Menubar >
+
+
+    )
+}

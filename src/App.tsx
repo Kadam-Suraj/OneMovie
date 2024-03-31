@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className="selection:bg-[#0000004d] dark:selection:bg-[#ffffff4d]">
-        <div className="md:px-10 md:pt-5">
+        <div className="sticky top-0 md:top-5 left-0 right-0 md:px-10 z-10">
           <Header></Header>
         </div>
         <Outlet />
