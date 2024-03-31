@@ -1,5 +1,7 @@
 import { getProfile, urlFor } from "@/api/client"
 import Banner from "@/components/Banner"
+import HomeMovieSection from "@/components/HomeMovieSection"
+import MoviesByGenres from "@/components/MoviesByGenres/MoviesByGenres"
 import { useEffect, useState } from "react"
 
 const Hero = () => {
@@ -26,6 +28,8 @@ const Hero = () => {
                 <div className="mt-32">
                     <Banner></Banner>
                 </div>
+                <MoviesByGenres></MoviesByGenres>
+                <HomeMovieSection />
             </div>
         </>
     )

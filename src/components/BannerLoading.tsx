@@ -3,7 +3,7 @@ import { Skeleton } from "./ui/skeleton";
 const SkeletonComponent = () => {
     return (
         <div className="lg:px-10">
-            <div className="w-full select-none">
+            <div className="w-full select-none md:min-h-[650px]">
                 <div className="w-full">
                     <div>
                         <div className="p-1">

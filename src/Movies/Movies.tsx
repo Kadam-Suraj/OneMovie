@@ -8,7 +8,7 @@
 //     PaginationPrevious,
 // } from "@/components/ui/pagination"
 
-import GalleryList from "@/assets/GalleryList/GalleryList"
+import { GalleryList } from "@/assets/GalleryList/GalleryList"
 
 const Movies = () => {
 
@@ -36,7 +36,7 @@ const Movies = () => {
 
                 </div> */}
             </div>
-            <GalleryList type={"Movies"}></GalleryList>
+            <GalleryList type={"Movies"} link={null}></GalleryList>
         </section>
     )
 }

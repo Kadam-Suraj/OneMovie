@@ -54,6 +54,11 @@ export async function getGenres(slug: any) {
     return Genres
 }
 
+export async function getAllGenres() {
+    const Genres = await client.fetch(`*[_type == "genres"]`)
+    return Genres
+}
+
 
 
 export async function getEpisodes(slug: any) {

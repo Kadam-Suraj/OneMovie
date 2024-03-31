@@ -51,12 +51,10 @@ const Banner = () => {
             // setGenres(Genres)
         })()
 
-        if (data.length !== 0) {
-            setTimeout(() => {
-                setisLoading(false)
-            }, 100);
-        }
-    }, [data])
+        setTimeout(() => {
+            setisLoading(false)
+        }, 100);
+    }, [])
 
 
     const getStatus = (val: any) => {

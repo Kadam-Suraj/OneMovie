@@ -1,6 +1,7 @@
 import { Button } from "./ui/button"
 
 const Genrestags = ({ genres }) => {
+    console.log(genres)
     return (
         <div className="flex flex-wrap gap-2">
             {

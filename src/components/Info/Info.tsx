@@ -24,12 +24,10 @@ const Info = () => {
             setScreenshot(screenshot)
         })()
 
-        if (data.length !== 0) {
-            setTimeout(() => {
-                setisLoading(false)
-            }, 100);
-        }
-    }, [slug, data])
+        setTimeout(() => {
+            setisLoading(false)
+        }, 100);
+    }, [slug])
     return (
         <>
             {

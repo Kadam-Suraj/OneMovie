@@ -5,15 +5,15 @@ import './index.css'
 import { ThemeProvider } from './components/theme-provider.tsx'
 import { Route, RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom'
 import Movies from './Movies/Movies.tsx'
-import Hero from './Hero/Hero.tsx'
 import Info from './components/Info/Info.tsx'
 import Series from './Series/Series.tsx'
 import About from './About/About.tsx'
+import Home from './Home/Home.tsx'
 
 const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="" element={<Hero />} />
+      <Route path="" element={<Home />} />
       <Route path="/download/:slug" element={<Info />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/series" element={<Series />} />
