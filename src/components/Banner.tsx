@@ -112,7 +112,7 @@ const Banner = () => {
                                                                 </Link>
                                                             </div>
                                                             <div className="flex items-center -order-1 lg:order-1 justify-center lg:justify-end">
-                                                                {item.trailer ? <img className=" w-60 lg:w-1/2 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} />
+                                                                {item.trailer ? <img className=" w-60 lg:w-1/2 rounded-xl pointer-events-none" src={urlFor(item.poster).url()}  alt={item.slug.current}/>
                                                                     :
                                                                     <div className="flex flex-col items-center gap-5">
                                                                         <div className="flex flex-col items-center gap-10">

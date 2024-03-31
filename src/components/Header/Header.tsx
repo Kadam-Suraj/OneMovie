@@ -38,7 +38,9 @@ const Header = () => {
             </Link>
             <nav className="md:flex hidden items-center justify-center">
                 <ul className="flex gap-2">
+                    <li>
                     <MenubarDemo></MenubarDemo>
+                    </li>
                 </ul>
             </nav>
             <nav className="relative flex gap-2 items-center justify-end">
