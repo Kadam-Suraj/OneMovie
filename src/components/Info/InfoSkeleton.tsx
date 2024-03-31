@@ -16,7 +16,7 @@ const SkeletonComponent = () => {
                             <Skeleton className="h-48 w-1/2" />
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 gap-2">
+                    <div className="grid grid-cols-1 gap-2 order-1">
                         <Skeleton className="h-12 w-32" />
                         <div className="flex flex-col gap-5 justify-center w-full">
                             <h1 className="font-bold text-5xl lg:text-7xl">
@@ -35,7 +35,7 @@ const SkeletonComponent = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center lg:order-1">
                         <Skeleton className="h-96 w-72" />
                     </div>
                 </div>
