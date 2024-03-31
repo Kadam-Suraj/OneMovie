@@ -1,5 +1,6 @@
 import Header from "./components/Header/Header"
 import { Outlet } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
 
@@ -10,6 +11,9 @@ function App() {
           <Header></Header>
         </div>
         <Outlet />
+        <div className="hidden">
+        <ScrollToTop />
+        </div>
       </div>
     </>
   )
