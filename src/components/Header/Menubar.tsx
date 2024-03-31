@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/menubar"
 import { NavLink } from "react-router-dom"
 
-export function MenubarDemo() {
+export function MenubarDesktop() {
     const list = ["Home", "Movies", "Series", "About"]
 
     return (
