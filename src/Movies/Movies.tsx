@@ -1,5 +1,3 @@
-import { getMovie, urlFor } from "@/api/client"
-import { Card, CardFooter } from "@/components/ui/card"
 // import {
 //     Pagination,
 //     PaginationContent,
@@ -9,19 +7,11 @@ import { Card, CardFooter } from "@/components/ui/card"
 //     PaginationNext,
 //     PaginationPrevious,
 // } from "@/components/ui/pagination"
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+
+import GalleryList from "@/assets/GalleryList/GalleryList"
 
 const Movies = () => {
 
-    const [data, setData] = useState([])
-
-    useEffect(() => {
-        (async () => {
-            const data = (await getMovie())
-            setData(data)
-        })()
-    }, [])
     return (
         <section className="m-auto max-w-[1536px] grid gap-5 px-5 my-20 min-h-screen">
             <div className="grid lg:grid-cols-2 items-center justify-between">
@@ -46,37 +36,7 @@ const Movies = () => {
 
                 </div> */}
             </div>
-            <div className="grid gap-10 border-t pt-10">
-                <h2 className="font-semibold text-2xl">Movies</h2>
-                <div className="grid min-[350px]:grid-cols-2 sm:grid-cols-4 gap-5">
-                    {
-                        data.map((item, idx) => {
-                            if (item.type !== "TV Series") {
-                                return <div key={idx}>
-                                    <Link to={`/download/${item.slug.current}`}>
-                                        <Card className="border rounded-md relative">
-                                            <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md" />
-                                            <CardFooter className="flex flex-col items-start gap-2">
-                                                <div>
-                                                    {item.title}
-                                                </div>
-                                                <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between w-full font-semibold">
-                                                    <span>
-                                                        {item.duration}
-                                                    </span>
-                                                    <span className="uppercase text-red-500">
-                                                        {item.genres[0]}
-                                                    </span>
-                                                </div>
-                                            </CardFooter>
-                                        </Card>
-                                    </Link>
-                                </div>
-                            }
-                        })
-                    }
-                </div>
-            </div>
+            <GalleryList type={"Movies"}></GalleryList>
         </section>
     )
 }

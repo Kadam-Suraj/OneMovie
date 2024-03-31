@@ -38,7 +38,9 @@ export async function getProfile() {
     return Profile
 }
 export async function getMovie() {
-    const Movie = await client.fetch('*[_type == "movie"]')
+    const Movie = await client.fetch('*[_type == "movie"] | order(releaseDate desc)') // Newest Released Date
+
+    // const Movie = await client.fetch('*[_type == "movie"]') // default order
     return Movie
 }
 
