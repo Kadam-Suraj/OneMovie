@@ -7,7 +7,7 @@ const Genrestags = ({ genres }) => {
             {
                 genres.map((item: any, idx: any) => {
                     return <Button key={idx} variant="outline" className="rounded-full uppercase">
-                        <Link to={'#'}>
+                        <Link to={`/category/${item}`}>
                             {item}
                         </Link>
                     </Button>
