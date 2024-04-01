@@ -52,8 +52,8 @@ export const GalleryList = ({ type, link }) => {
                                                                 {item.title}
                                                             </h2>
                                                         </div>
-                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between w-full font-semibold">
-                                                            <span className="font-light text-lg">
+                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between w-full font-semibold items-center">
+                                                            <span className="font-light text-sm">
                                                                 {item.duration}
                                                             </span>
                                                             <span className="uppercase text-red-500">
