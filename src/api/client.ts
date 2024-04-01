@@ -55,8 +55,12 @@ export async function getGenres(slug: any) {
 }
 
 export async function getAllGenres() {
-    const Genres = await client.fetch(`*[_type == "genres"]`)
-    return Genres
+    const Genres = await client.fetch(`array::unique(*[_type == "movie"]{
+        "genres": genres[]
+    }[].genres[])
+    `)
+    let data = Genres.filter(value => value !== null)
+    return data
 }
 
 

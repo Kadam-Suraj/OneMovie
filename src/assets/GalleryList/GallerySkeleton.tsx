@@ -6,7 +6,7 @@ const SkeletonComponent = () => {
             <h2 className="font-semibold text-2xl">
                 <Skeleton className="w-20 h-7" />
             </h2>
-            <div className="grid min-[350px] grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3">
+            <div >
                 {[...Array(12)].map((_, idx) => (
                     <div key={idx}>
                         <div className="rounded-md relative grid gap-3">
