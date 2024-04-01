@@ -26,7 +26,7 @@ const CategoryGenre = () => {
         <section className="m-auto max-w-[1536px] grid gap-5 px-5 my-20">
             <div className="grid lg:grid-cols-2 items-center justify-between">
                 <div className="flex flex-col gap-2">
-                    <h2 className="font-bold text-2xl">Category: <span className="pl-2 capitalize">
+                    <h2 className="font-bold text-2xl">Category: <span className="pl-2 capitalize text-red-500">
                         {genre}
                     </span>
                     </h2>
@@ -60,18 +60,18 @@ const CategoryGenre = () => {
                                 return <div key={idx}>
                                     <Link to={`/download/${item.slug.current}`}>
                                         <Card className="border rounded-md relative">
-                                            <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md" />
+                                            <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
                                             <CardFooter className="flex flex-col items-start gap-2">
                                                 <div className="w-full">
                                                     <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
                                                         {item.title}
                                                     </h2>
                                                 </div>
-                                                <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between w-full font-semibold items-center">
+                                                <div className="flex flex-wrap md:text-lg gap-2 justify-between items-center w-full font-semibold">
                                                     <span className="font-light text-sm">
                                                         {item.duration}
                                                     </span>
-                                                    <span className="uppercase text-red-500">
+                                                    <span className="uppercase text-sm text-red-500">
                                                         {genre}
                                                     </span>
                                                 </div>

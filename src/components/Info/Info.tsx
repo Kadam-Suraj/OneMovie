@@ -89,9 +89,9 @@ const Info = () => {
                                             </div>
                                             <div className="my-10 flex flex-col items-center gap-10">
                                                 <h2 className="flex items-center flex-col"><span className="font-semibold text-xl">ScreenShots:</span><span>Must See Before Downloading . . .</span></h2>
-                                                <div className="flex flex-col gap-2 items-center w-10/12 md:w-[60%]">
+                                                <div className="flex flex-col items-center w-10/12 md:w-[60%]">
                                                     {screenshot[0] ?
-                                                        <div>
+                                                        <div className="grid gap-5">
                                                             {
                                                                 screenshot.map((item, idx) => {
                                                                     return <img key={idx} src={item} alt={`screenshot${idx}`} className="pointer-events-none" />
