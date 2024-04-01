@@ -72,7 +72,7 @@ const CategoryGenre = () => {
                                                         {item.duration}
                                                     </span>
                                                     <span className="uppercase text-red-500">
-                                                        {item.genres[0]}
+                                                        {genre}
                                                     </span>
                                                 </div>
                                             </CardFooter>

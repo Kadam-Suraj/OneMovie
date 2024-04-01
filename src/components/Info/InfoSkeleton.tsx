@@ -1,6 +1,5 @@
 import { Skeleton } from "../ui/skeleton";
 
-Skeleton
 const SkeletonComponent = () => {
     return (
         <div className="m-auto max-w-[1536px] my-20 p-5 min-h-screen">
@@ -30,9 +29,7 @@ const SkeletonComponent = () => {
                             <span className="text-xl">
                                 <Skeleton className="h-8 w-40" />
                             </span>
-                            <p className="text-sm text-gray-900 dark:text-gray-400 text-opacity-80 w-10/12 md:w-1/2">
-                                <Skeleton className="h-20 w-full" />
-                            </p>
+                            <Skeleton className="h-20 w-full" />
                         </div>
                     </div>
                     <div className="flex justify-center lg:order-1">

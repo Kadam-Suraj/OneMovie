@@ -55,8 +55,9 @@ export async function getGenres(slug: any) {
 }
 
 export async function getMovieByGenre(genre: any) {
-    const Genres = await client.fetch(`*[_type == "movie" && genres[0] == "${genre}"]
+    const Genres = await client.fetch(`*[_type == "movie" && "${genre}" in genres[]| order(releaseDate desc)]
     `)
+    // *[_type == "movie" && genres[0] == "${genre}"] // checks only first genre
     return Genres
 }
 

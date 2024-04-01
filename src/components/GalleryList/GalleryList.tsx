@@ -45,18 +45,18 @@ export const GalleryList = ({ type, link }) => {
                                         return <div key={idx}>
                                             <Link to={`/download/${item.slug.current}`}>
                                                 <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md" />
+                                                    <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
                                                     <CardFooter className="flex flex-col items-start gap-2">
                                                         <div className="w-full">
                                                             <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
                                                                 {item.title}
                                                             </h2>
                                                         </div>
-                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between items-center w-full font-semibold">
+                                                        <div className="flex flex-wrap md:text-lg gap-2 justify-between items-center w-full font-semibold">
                                                             <span className="font-light text-sm">
                                                                 {item.duration}
                                                             </span>
-                                                            <span className="uppercase text-red-500">
+                                                            <span className="uppercase text-sm text-red-500">
                                                                 {item.genres[0]}
                                                             </span>
                                                         </div>
@@ -71,18 +71,18 @@ export const GalleryList = ({ type, link }) => {
                                         return <div key={idx}>
                                             <Link to={`/download/${item?.slug.current}`}>
                                                 <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item?.poster).url()} alt={item?.slug.current} className="rounded-t-md" />
+                                                    <img src={urlFor(item?.poster).url()} alt={item?.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy"/>
                                                     <CardFooter className="flex flex-col items-start gap-2">
                                                         <div className="w-full">
                                                             <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
                                                                 {item?.title}
                                                             </h2>
                                                         </div>
-                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between items-center w-full font-semibold">
+                                                        <div className="flex flex-wrap md:text-lg gap-2 justify-between items-center w-full font-semibold">
                                                             <span className="font-light text-sm">
                                                                 {item?.duration}
                                                             </span>
-                                                            <span className="uppercase text-red-500">
+                                                            <span className="uppercase text-sm text-red-500">
                                                                 {item?.genres[0]}
                                                             </span>
                                                         </div>
@@ -126,7 +126,7 @@ export const GalleryListHome = ({ type, link }) => {
             }
             {!isLoading && data &&
 
-                <div className="grid gap-10 border-t pt-10">
+                <div className="grid gap-10">
                     <div className="flex gap-3 justify-between">
                         <h2 className="font-semibold text-2xl">{type == "TV Series" ? "Series" : "Movies"}</h2>
                         {link ?
@@ -136,7 +136,7 @@ export const GalleryListHome = ({ type, link }) => {
                             : null
                         }
                     </div>
-                    <div className="grid min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3">
+                    <div className="grid min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
                         {
                             data.map((item, idx) => {
                                 if (type == "TV Series" && idx <= 5) {
@@ -144,18 +144,18 @@ export const GalleryListHome = ({ type, link }) => {
                                         return <div key={idx}>
                                             <Link to={`/download/${item.slug.current}`}>
                                                 <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md" />
+                                                    <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
                                                     <CardFooter className="flex flex-col items-start gap-2">
                                                         <div className="w-full">
                                                             <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
                                                                 {item.title}
                                                             </h2>
                                                         </div>
-                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 items-center justify-between w-full font-semibold">
+                                                        <div className="flex flex-wrap md:text-lg gap-2 items-center justify-between w-full font-semibold">
                                                             <span className="font-light text-sm">
                                                                 {item.duration}
                                                             </span>
-                                                            <span className="uppercase text-red-500">
+                                                            <span className="uppercase text-sm text-red-500">
                                                                 {item.genres[0]}
                                                             </span>
                                                         </div>
@@ -170,18 +170,18 @@ export const GalleryListHome = ({ type, link }) => {
                                         return <div key={idx}>
                                             <Link to={`/download/${item?.slug.current}`}>
                                                 <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item?.poster).url()} alt={item?.slug.current} className="rounded-t-md" />
+                                                    <img src={urlFor(item?.poster).url()} alt={item?.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
                                                     <CardFooter className="flex flex-col items-start gap-2">
                                                         <div className="w-full">
                                                             <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
                                                                 {item?.title}
                                                             </h2>
                                                         </div>
-                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 items-center justify-between w-full font-semibold">
+                                                        <div className="flex flex-wrap md:text-lg gap-2 items-center justify-between w-full font-semibold">
                                                             <span className="font-light text-sm">
                                                                 {item?.duration}
                                                             </span>
-                                                            <span className="uppercase text-red-500">
+                                                            <span className="uppercase text-sm text-red-500">
                                                                 {item?.genres[0]}
                                                             </span>
                                                         </div>
