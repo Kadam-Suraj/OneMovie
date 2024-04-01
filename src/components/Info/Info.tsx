@@ -1,5 +1,5 @@
 import { getMovieBySlug, getScreenshots, urlFor } from "@/api/client"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
 import { getYear } from "../Banner"
@@ -16,18 +16,21 @@ const Info = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        (async () => {
-            const data = (await getMovieBySlug(slug))
-            setData(data)
-            const screenshot = (await getScreenshots(slug))
-            setScreenshot(screenshot)
-        })()
 
+    const fetchData = useCallback(async () => {
+        const data = await getMovieBySlug(slug)
+        setData(data)
+        const screenshot = await getScreenshots(slug)
+        setScreenshot(screenshot)
+    }, []);
+
+    useEffect(() => {
+        fetchData();
         setTimeout(() => {
             setisLoading(false)
         }, 100);
-    }, [slug])
+    }, [slug, fetchData]);
+
     return (
         <>
             {

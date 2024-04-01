@@ -7,7 +7,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import { getMovie, urlFor } from "@/api/client"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Card, CardContent } from "./ui/card"
 import Autoplay from "embla-carousel-autoplay"
 import { Link } from "react-router-dom"
@@ -42,21 +42,19 @@ const Banner = () => {
     //     <Button variant="outline" className="pointer-events-none rounded-full"></Button>
     // }
 
-    useEffect(() => {
-        (async () => {
-            const data = (await getMovie())
-            setData(data)
-            // const Genres = (await getGenres(info))
-            // console.log("Hello")
-            // setGenres(Genres)
-        })()
 
+    const fetchData = useCallback(async () => {
+        const data = await getMovie();
+        setData(data);
+    }, []);
+
+    useEffect(() => {
+        fetchData();
         setTimeout(() => {
             setisLoading(false)
         }, 100);
-    }, [])
-
-
+    }, [fetchData]);
+    
     const getStatus = (val: any) => {
         const status = val.map((item: any) => {
             return item

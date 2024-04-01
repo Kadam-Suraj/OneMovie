@@ -1,21 +1,23 @@
 import { getAllGenres } from "@/api/client"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import SkeletonMoviesByGenres from "./SkeletonMoviesByGenres"
 
 const MoviesByGenres = () => {
-    const [data, setdata] = useState([])
+    const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
+    const fetchData = useCallback(async () => {
+        const data = await getAllGenres();
+        setData(data);
+    }, []);
+
     useEffect(() => {
-        (async () => {
-            const data = (await getAllGenres())
-            setdata(data)
-        })()
+        fetchData();
         setTimeout(() => {
             setisLoading(false)
         }, 100);
-    }, [isLoading])
+    }, [fetchData]);
 
     return (
         <section className="border-t py-10">

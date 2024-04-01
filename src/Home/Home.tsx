@@ -2,18 +2,19 @@ import { getProfile, urlFor } from "@/api/client"
 import Banner from "@/components/Banner"
 import HomeMovieSection from "@/components/HomeMovieSection"
 import MoviesByGenres from "@/components/MoviesByGenres/MoviesByGenres"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 const Hero = () => {
-
     const [profile, setProfile] = useState([])
 
+    const fetchData = useCallback(async () => {
+        const data = await getProfile();
+        setProfile(data);
+    }, []);
+
     useEffect(() => {
-        (async () => {
-            const data = (await getProfile())
-            setProfile(data)
-        })()
-    }, [])
+        fetchData();
+    }, [fetchData]);
 
     return (
         <>
