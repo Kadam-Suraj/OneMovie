@@ -54,12 +54,27 @@ export async function getGenres(slug: any) {
     return Genres
 }
 
+export async function getMovieByGenre(genre: any) {
+    const Genres = await client.fetch(`*[_type == "movie" && genres[0] == "${genre}"]
+    `)
+    return Genres
+}
+
 export async function getAllGenres() {
     const Genres = await client.fetch(`array::unique(*[_type == "movie"]{
         "genres": genres[]
     }[].genres[])
     `)
-    let data = Genres.filter(value => value !== null)
+    let data = Genres.filter((value: any) => value !== null)
+    return data
+}
+
+export async function getOrigin() {
+    const Origin = await client.fetch(`array::unique(*[_type == "movie"]{
+        "origin": origin[]
+      }[].origin[])
+    `)
+    let data = Origin.filter((value: any) => value !== null)
     return data
 }
 

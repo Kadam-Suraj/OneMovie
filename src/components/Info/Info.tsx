@@ -16,7 +16,6 @@ const Info = () => {
 
     const navigate = useNavigate()
 
-
     const fetchData = useCallback(async () => {
         const data = await getMovieBySlug(slug)
         setData(data)
@@ -38,7 +37,7 @@ const Info = () => {
             }
             {!isLoading && data &&
 
-                <div className="m-auto max-w-[1536px] my-20 p-5 min-h-screen">
+                <div className="m-auto max-w-[1536px] my-20 p-5">
                     <Button onClick={() => navigate(-1)} variant="default" className="mb-5">Back</Button>
                     {
 

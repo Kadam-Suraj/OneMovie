@@ -52,7 +52,7 @@ export const GalleryList = ({ type, link }) => {
                                                                 {item.title}
                                                             </h2>
                                                         </div>
-                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between w-full font-semibold">
+                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between items-center w-full font-semibold">
                                                             <span className="font-light text-lg">
                                                                 {item.duration}
                                                             </span>
@@ -78,7 +78,7 @@ export const GalleryList = ({ type, link }) => {
                                                                 {item?.title}
                                                             </h2>
                                                         </div>
-                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between w-full font-semibold">
+                                                        <div className="flex flex-wrap text-xs md:text-lg gap-2 justify-between items-center w-full font-semibold">
                                                             <span className="font-light text-lg">
                                                                 {item?.duration}
                                                             </span>

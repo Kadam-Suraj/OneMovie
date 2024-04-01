@@ -8,7 +8,7 @@
 //     PaginationPrevious,
 // } from "@/components/ui/pagination"
 
-import { GalleryList } from "@/assets/GalleryList/GalleryList"
+import { GalleryList } from "@/components/GalleryList/GalleryList"
 
 const Movies = () => {
 

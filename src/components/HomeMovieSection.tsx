@@ -1,4 +1,4 @@
-import { GalleryListHome } from "@/assets/GalleryList/GalleryList"
+import { GalleryListHome } from "@/components/GalleryList/GalleryList"
 
 const HomeMovieSection = () => {
     return (

@@ -1,6 +1,6 @@
 import { Skeleton } from "../ui/skeleton"
 
-const MoviesByGenres = () => {
+const MoviesByGenresSkeleton = () => {
 
     // console.log(data)
 
@@ -18,4 +18,4 @@ const MoviesByGenres = () => {
     )
 }
 
-export default MoviesByGenres
+export default MoviesByGenresSkeleton

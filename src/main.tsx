@@ -9,12 +9,14 @@ import Info from './components/Info/Info.tsx'
 import Series from './Series/Series.tsx'
 import About from './About/About.tsx'
 import Home from './Home/Home.tsx'
+import CategoryGenre from './components/Category/CategoryGenre.tsx'
 
 const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Home />} />
-      <Route path="/download/:slug" element={<Info />} />
+      <Route path="/category/:genre" element={<CategoryGenre />} />
+      <Route path="/download/:slug" element={<Info />} /> 
       <Route path="/movies" element={<Movies />} />
       <Route path="/series" element={<Series />} />
       <Route path="/about" element={<About />} />

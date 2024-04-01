@@ -1,14 +1,15 @@
-import { getAllGenres } from "@/api/client"
+import { getOrigin } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import SkeletonMoviesByGenres from "./SkeletonMoviesByGenres"
+import { Link } from "react-router-dom"
 
-const MoviesByGenres = () => {
+const ByOrigin = () => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
     const fetchData = useCallback(async () => {
-        const data = await getAllGenres();
+        const data = await getOrigin();
         setData(data);
     }, []);
 
@@ -20,7 +21,7 @@ const MoviesByGenres = () => {
     }, [fetchData]);
 
     return (
-        <section className="border-t py-10">
+        <section>
             <div className="flex gap-3 flex-wrap justify-center">
                 {
                     isLoading && <SkeletonMoviesByGenres />
@@ -31,8 +32,10 @@ const MoviesByGenres = () => {
                     <div className="flex gap-3 flex-wrap justify-center">
                         {
                             data.map((item, idx) => {
-                                return <Button key={idx} className="capitalize">
-                                    {item}
+                                return <Button key={idx} className="capitalize rounded-full">
+                                    <Link to={"#"}>
+                                        {item}
+                                    </Link>
                                 </Button>
                             })
                         }
@@ -43,4 +46,4 @@ const MoviesByGenres = () => {
     )
 }
 
-export default MoviesByGenres
+export default ByOrigin
