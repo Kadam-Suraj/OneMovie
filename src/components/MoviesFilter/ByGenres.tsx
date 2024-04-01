@@ -59,8 +59,8 @@ const ByGenres = () => {
                                                         <CardContent className="overflow-hidde p-1">
                                                             <div className="h-[350px] w-full relative">
                                                                 <MoviesByGenre genre={genre}></MoviesByGenre>
-                                                                <div className="w-full h-full bg-red-20 rounded-md absolute top-0 bottom-0 bg-gradient-to-t from-black from-5% to-50% to-transparent" />
-                                                                <h2 className="capitalize absolute bottom-0 px-5 pb-1 text-center w-full">{genre}</h2>
+                                                                <div className="w-full h-full bg-red-20 rounded-md absolute top-0 bottom-0 bg-gradient-to-t from-white dark:from-black from-5% to-50% to-transparent" />
+                                                                <h2 className="capitalize absolute bottom-0 px-5 pb-1 text-center w-full font-semibold">{genre}</h2>
                                                             </div>
                                                         </CardContent>
                                                     </Card>
