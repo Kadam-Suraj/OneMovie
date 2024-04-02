@@ -53,6 +53,7 @@ const SearchComponent = () => {
                             value={input}
                             onChange={((e) => setInput(e.target.value))}
                             onKeyDown={((e) => submitInput(e))}
+                            autoFocus
                         />
                     </motion.div>
                 )}
