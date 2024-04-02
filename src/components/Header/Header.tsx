@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MobileMenu } from "./MobileMenu";
+import SearchBar from "../SearchBar";
 
 const Header = () => {
     const [search, setSearch] = useState(false)
@@ -17,7 +18,7 @@ const Header = () => {
 
     return (
         <header className="bg-white dark:bg-black backdrop-blur bg-opacity-30 border-b md:border-b-0 md:border-x border-slate-300 border-x- dark:bg-opacity-30 md:rounded-full items-center grid grid-cols-2 md:grid-cols-3 gap-2 px-5 py-2 pt-3 mx-auto max-w-[1536px]">
-            <Link to={"/"} className="w-fit">
+            <Link to={"/"} className="w-fit z-10">
                 <img className="dark:invert-0 invert select-none" src={logo} width={40} alt="logo" />
             </Link>
             <nav className="md:flex hidden items-center justify-center">
@@ -33,7 +34,10 @@ const Header = () => {
                     <Input className="w-44" type="text" placeholder="Search content"></Input>
                     <Button>Search</Button>
                 </div>
-                <ModeToggle></ModeToggle>
+                <div className="flex gap-2 items-center justify-center">
+                    <SearchBar></SearchBar>
+                    <ModeToggle></ModeToggle>
+                </div>
                 <div className="md:hidden block">
                     <MobileMenu></MobileMenu>
                 </div>

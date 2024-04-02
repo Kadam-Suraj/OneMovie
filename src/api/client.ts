@@ -33,10 +33,18 @@ export async function getScreenshots(source: any) {
 
 
 // Get Data
+
+// Search Movie by user input
+export async function search(parameter: any) {
+    const Response = await client.fetch(`*[_type == "movie" && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*."]`)
+    return Response
+}
+
 export async function getProfile() {
     const Profile = await client.fetch('*[_type == "profile"]')
     return Profile
 }
+
 export async function getMovie() {
     const Movie = await client.fetch('*[_type == "movie"] | order(releaseDate desc)') // Newest Released Date
 
@@ -80,6 +88,14 @@ export async function getOrigin() {
 }
 
 
+// Get All Download Links On Current Slug
+
+export async function getDownloads(slug: any) {
+    const Download = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{download}`)
+    return Download
+}
+
+//
 
 export async function getEpisodes(slug: any) {
     const Episode = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{episodes}`)

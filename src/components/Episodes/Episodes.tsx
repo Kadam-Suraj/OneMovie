@@ -1,87 +1,130 @@
-import { getEpHD, getEpUHD } from "@/api/client"
+import { getEpisodes } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Button } from "../ui/button"
+import { toast } from "../ui/use-toast"
 
 const Episodes = ({ slug }) => {
-
-    // const [episodes, setEpisodes] = useState([])
-    const [HD, setHD] = useState([])
-    const [FHD, setFHD] = useState([])
-    const [UHD, setUHD] = useState([])
+    const [data, setData] = useState([])
 
     useEffect(() => {
         (async () => {
-            // const episodes = (await getEpisodes(slug))
-            // setEpisodes(episodes[0].episodes)
-            const HD = (await getEpHD(slug))
-            setHD(HD.hd)
-            const FHD = (await getEpHD(slug))
-            setFHD(FHD.fhd)
-            const UHD = (await getEpUHD(slug))
-            setUHD(UHD.uhd)
+            const data = (await getEpisodes(slug))
+            setData(data)
         })()
     }, [])
 
-    console.log(UHD)
-
-
-
-
-    // episodes?.map((item) => {
-    //     item.episodes?.map((ep : any) => {
-    //         // setHD(ep)
-    //         // ep.hd?.map((hd, i) => {
-    //         //     // console.log(hd.number)
-    //         // })
-    //     })
-    // })
-    // console.log(HD)
     return (
         <>
             <div>
-
                 {
-                    HD ?
-                        <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
-                            <h2 className="text-3xl">Download Episodes 720P</h2>
-                            <div className="flex flex-wrap gap-5 justify-center">
-                                {HD?.map((item, idx) => {
-                                    return <div key={idx}>
-                                        <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
+                    data.map((item, idx) => {
+                        return <div key={idx}>
+                            {
+                                item.episodes ?
+                                    <div className='flex flex-col gap-5 items-center'>
+                                        {
+                                            <div className='flex flex-col gap-16 divide-y w-full'>
+                                                {
+                                                    item.episodes.map((link: any, idx: any) => {
+                                                        return (
+                                                            <div key={idx} className='grid gap-10'>
+                                                                {
+                                                                    link.hd &&
+                                                                    <div className='flex flex-col items-center gap-2'>
+                                                                        <h2 className='text-xl'>Download Episode 720P</h2>
+                                                                        <div className='flex gap-2 items-center justify-center flex-wrap'>
+                                                                            {link.hd && link.hd.map((hdItem: any, idx: any) => (
+                                                                                <div key={idx} className='flex flex-col items-center justify-center gap-2'>
+                                                                                    <div>
+                                                                                        <Link to={hdItem.link} className="w-ft">
+                                                                                            <Button
+                                                                                                onClick={() => {
+                                                                                                    toast({
+                                                                                                        title: "Thank You For Downloading.",
+                                                                                                        description: "Hope You Enjoyed Our Service",
+                                                                                                    });
+                                                                                                }}
+                                                                                                className=''
+                                                                                            >
+                                                                                                {hdItem.number} | {hdItem.size || "Size Not Available"}
+                                                                                            </Button>
+                                                                                        </Link>
+                                                                                    </div>
+                                                                                </div>
+                                                                            ))}
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                                <div>
+                                                                    {
+                                                                        link.fhd &&
+                                                                        <div className='flex flex-col items-center gap-2'>
+                                                                            <h2 className='text-xl'>Download Episode 1080P</h2>
+                                                                            <div className='flex gap-2 items-center justify-center flex-wrap'>
+                                                                                {link.fhd && link.fhd.map((fhdItem: any, idx: any) => (
+                                                                                    <div key={idx} className='flex flex-col items-center justify-center gap-2'>
+                                                                                        <div>
+                                                                                            <Link to={fhdItem.link} className="w-ft">
+                                                                                                <Button
+                                                                                                    onClick={() => {
+                                                                                                        toast({
+                                                                                                            title: "Thank You For Downloading.",
+                                                                                                            description: "Hope You Enjoyed Our Service",
+                                                                                                        });
+                                                                                                    }}
+                                                                                                    className=''
+                                                                                                >
+                                                                                                    {fhdItem.number} | {fhdItem.size || "Size Not Available"}
+                                                                                                </Button>
+                                                                                            </Link>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                ))}
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                                <div>
+                                                                    {
+                                                                        link.uhd &&
+                                                                        <div className='flex flex-col items-center gap-2'>
+                                                                            <h2 className='text-xl'>Download Episode 2160P/4K</h2>
+                                                                            <div className='flex gap-2 items-center justify-center flex-wrap'>
+                                                                                {link.uhd && link.uhd.map((uhdItem: any, idx: any) => (
+                                                                                    <div key={idx} className='flex flex-col items-center justify-center gap-2'>
+                                                                                        <div>
+                                                                                            <Link to={uhdItem.link} className="w-ft">
+                                                                                                <Button
+                                                                                                    onClick={() => {
+                                                                                                        toast({
+                                                                                                            title: "Thank You For Downloading.",
+                                                                                                            description: "Hope You Enjoyed Our Service",
+                                                                                                        });
+                                                                                                    }}
+                                                                                                    className=''
+                                                                                                >
+                                                                                                    {uhdItem.number} | {uhdItem.size || "Size Not Available"}
+                                                                                                </Button>
+                                                                                            </Link>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                ))}
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    })
+                                                }
+                                            </div>
+                                        }
                                     </div>
-                                })}
-                            </div>
+                                    : <div key={idx} className='text-center text-xl'>Downloads Will Available Soon</div>
+                            }
                         </div>
-                        : ""
-                }
-                {
-                    FHD ?
-                        <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
-                            <h2 className="text-3xl">Download Episodes 1080P</h2>
-                            <div className="flex gap-5 justify-center">
-                                {FHD?.map((item, idx) => {
-                                    return <div key={idx}>
-                                        <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
-                                    </div>
-                                })}
-                            </div>
-                        </div>
-                        : ""
-                }
-                {
-                    UHD ?
-                        <div className="mt-16 border-t pt-10 flex sm:items-center flex-col gap-5">
-                            <h2 className="text-3xl">Download Episodes 2160P/4K</h2>
-                            <div className="flex gap-5 justify-center">
-                                {UHD?.map((item, idx) => {
-                                    return <div key={idx}>
-                                        <Link to={item.link} about="_blank" className="w-fit"><Button>{item.number} {item.size}</Button></Link>
-                                    </div>
-                                })}
-                            </div>
-                        </div>
-                        : ""
+                    })
                 }
             </div>
         </>
