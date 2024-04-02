@@ -13,6 +13,7 @@ import Autoplay from "embla-carousel-autoplay"
 import { Link } from "react-router-dom"
 import Genrestags from "./genres-tags"
 import SkeletonComponent from "./BannerLoading"
+import { motion } from "framer-motion"
 
 export const getYear = (data: any) => {
     let date = new Date(data).getFullYear()
@@ -54,7 +55,7 @@ const Banner = () => {
             setisLoading(false)
         }, 100);
     }, [fetchData]);
-    
+
     const getStatus = (val: any) => {
         const status = val.map((item: any) => {
             return item
@@ -71,7 +72,11 @@ const Banner = () => {
             }
             {
                 !isLoading && data &&
-                <div className="lg:px-10">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="lg:px-10">
                     <Carousel className="w-full select-none" opts={{
                         align: "start",
                         loop: true,
@@ -130,7 +135,7 @@ const Banner = () => {
                         <CarouselPrevious className="hidden lg:flex" />
                         <CarouselNext className="hidden lg:flex" />
                     </Carousel>
-                </div>
+                </motion.div>
             }
         </>
     )

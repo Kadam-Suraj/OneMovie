@@ -29,10 +29,11 @@ const SearchComponent = () => {
     const handleButtonClick = () => {
         setShowInput(!showInput);
     };
-
+    
     const submitInput = (e: any) => {
         if (e.key == "Enter") {
             redirect(`/search/${input}`);
+            setShowInput(false);
         }
     }
 
