@@ -1,7 +1,7 @@
 import { getOrigin } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
-import SkeletonMoviesByGenres from "./SkeletonMoviesByGenres"
+import { SkeletonByOrigin } from "./SkeletonMoviesByGenres"
 import { Link } from "react-router-dom"
 
 const ByOrigin = () => {
@@ -17,14 +17,14 @@ const ByOrigin = () => {
         fetchData();
         setTimeout(() => {
             setisLoading(false)
-        }, 100);
+        }, 300);
     }, [fetchData]);
 
     return (
         <section>
-            <div className="flex gap-3 flex-wrap justify-center">
+            <div className="flex gap-3 flex-wrap justify-center min-h-10">
                 {
-                    isLoading && <SkeletonMoviesByGenres />
+                    isLoading && <SkeletonByOrigin />
                 }
 
                 {

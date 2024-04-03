@@ -36,10 +36,31 @@ export async function getScreenshots(source: any) {
 
 // Search Movie by user input
 export async function search(parameter: any) {
-    const Response = await client.fetch(`*[_type == "movie" && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*."]`)
+    const Response = await client.fetch(`*[_type == "movie" && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*." || tags match ".*${parameter}*."]`)
     return Response
 }
 
+// Search by platfrom i.e Netflix, Amazon Prime, Disney+ Hotstar etc
+// get All the platforms without duplicate values
+export async function getPlatforms() {
+    const Platforms = await client.fetch(`array::unique(*[_type in ["movie", "series"]]{
+        "platform": platform[]
+      }[].platform[])`)
+    let data = Platforms.filter((value: any) => value !== null)
+    data.sort()
+    return data
+}
+
+// get Data by platform
+export async function searchByPlatform(platform: any) {
+    const Platform = await client.fetch(`
+    *[_type in ["movie", "series"] && "${platform}" in platform] | order(releaseDate desc)
+    `)
+    // *[_type in ["movie", "series"] && "${platform}" in platform] 
+    return Platform
+}
+
+// get Data About Site
 export async function getProfile() {
     const Profile = await client.fetch('*[_type == "profile"]')
     return Profile
@@ -57,8 +78,8 @@ export async function getMovieBySlug(slug: any) {
     return Movie
 }
 
-export async function getGenres(slug: any) {
-    const Genres = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{genres}`)
+export async function getGenres(genre: any) {
+    const Genres = await client.fetch(`*[_type == "movie" && slug.current == "${genre}"]{genres}`)
     return Genres
 }
 
@@ -69,6 +90,7 @@ export async function getMovieByGenre(genre: any) {
     return Genres
 }
 
+// get All the Genres without duplicate values
 export async function getAllGenres() {
     const Genres = await client.fetch(`array::unique(*[_type == "movie"]{
         "genres": genres[]
@@ -90,20 +112,20 @@ export async function getOrigin() {
 
 // Get All Download Links On Current Slug
 
-export async function getDownloads(slug: any) {
-    const Download = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{download}`)
+export async function getDownloads(link: any) {
+    const Download = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{download}`)
     return Download
 }
 
 //
 
-export async function getEpisodes(slug: any) {
-    const Episode = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{episodes}`)
+export async function getEpisodes(link: any) {
+    const Episode = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{episodes}`)
     return Episode
 }
 
-export async function getEpHD(slug: any) {
-    const EpHD = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{episodes}`)
+export async function getEpHD(link: any) {
+    const EpHD = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{episodes}`)
     let data: any
     EpHD?.map((item: any) => {
         item.episodes?.map((item: any) => {
@@ -113,8 +135,8 @@ export async function getEpHD(slug: any) {
     return data
 }
 
-export async function getEpFHD(slug: any) {
-    const EpFHD = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{episodes}`)
+export async function getEpFHD(link: any) {
+    const EpFHD = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{episodes}`)
     let data: any
     EpFHD?.map((item: any) => {
         item.episodes?.map((item: any) => {
@@ -124,8 +146,8 @@ export async function getEpFHD(slug: any) {
     return data
 }
 
-export async function getEpUHD(slug: any) {
-    const EpUHD = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]{episodes}`)
+export async function getEpUHD(link: any) {
+    const EpUHD = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{episodes}`)
     let data: any
     EpUHD?.map((item: any) => {
         item.episodes?.map((item: any) => {

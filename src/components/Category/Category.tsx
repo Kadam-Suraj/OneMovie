@@ -16,16 +16,16 @@ export const GalleryList = ({ type, link }) => {
 
         setTimeout(() => {
             setisLoading(false)
-        }, 100);
+        }, 300);
     }, [])
 
     return (
 
         <>
             {
-                isLoading && <GallerySkeleton />
+                isLoading && <GallerySkeleton items={3} />
             }
-            {!isLoading && data &&
+            {!isLoading && data[0] &&
 
                 <div className="grid gap-10 border-t pt-10">
                     <div className="flex gap-3 justify-between">

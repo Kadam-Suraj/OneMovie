@@ -1,8 +1,14 @@
+import { motion } from "framer-motion";
 import { Skeleton } from "../ui/skeleton";
 
 const SkeletonComponent = () => {
     return (
-        <div className="m-auto max-w-[1536px] my-20 p-5 min-h-screen">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+            className="m-auto max-w-[1536px] my-20 p-5 min-h-screen">
             <Skeleton className="mb-5 h-8 w-20"></Skeleton>
             <div>
                 {/* Skeleton Carousel Item */}
@@ -52,7 +58,7 @@ const SkeletonComponent = () => {
                     <Skeleton className="h-12 w-48" />
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

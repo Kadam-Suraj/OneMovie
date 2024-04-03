@@ -9,6 +9,7 @@ import { motion } from "framer-motion"
 export const GalleryList = ({ type, link }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
+
     useEffect(() => {
         (async () => {
             const data = (await getMovie())
@@ -17,14 +18,14 @@ export const GalleryList = ({ type, link }) => {
 
         setTimeout(() => {
             setisLoading(false)
-        }, 100);
+        }, 300);
     }, [])
 
     return (
 
         <>
             {
-                isLoading && <GallerySkeleton />
+                isLoading && <GallerySkeleton items={null} />
             }
             {!isLoading && data &&
 
@@ -38,7 +39,7 @@ export const GalleryList = ({ type, link }) => {
                             : null
                         }
                     </div>
-                    <div className="grid min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3">
+                    <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3">
                         {
                             data.map((item, idx) => {
                                 if (type == "TV Series") {
@@ -46,7 +47,8 @@ export const GalleryList = ({ type, link }) => {
                                         return <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.3 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
                                             key={idx}>
                                             <Link to={`/download/${item.slug.current}`}>
                                                 <Card className="border rounded-md relative">
@@ -76,7 +78,8 @@ export const GalleryList = ({ type, link }) => {
                                         return <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.3 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
                                             key={idx}>
                                             <Link to={`/download/${item?.slug.current}`}>
                                                 <Card className="border rounded-md relative">
@@ -128,7 +131,7 @@ export const GalleryListHome = ({ type, link }) => {
 
         <>
             {
-                isLoading && <GallerySkeleton />
+                isLoading && <GallerySkeleton items={5} />
             }
             {!isLoading && data &&
                 <div className="grid gap-10">
@@ -141,7 +144,7 @@ export const GalleryListHome = ({ type, link }) => {
                             : null
                         }
                     </div>
-                    <div className="grid min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
+                    <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
                         {
                             data.map((item, idx) => {
                                 if (type == "TV Series" && idx <= 5) {
@@ -149,7 +152,8 @@ export const GalleryListHome = ({ type, link }) => {
                                         return <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.3 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
                                             key={idx}>
                                             <Link to={`/download/${item.slug.current}`}>
                                                 <Card className="border rounded-md relative">
@@ -179,8 +183,10 @@ export const GalleryListHome = ({ type, link }) => {
                                         return <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.3 }}
-                                            key={idx}>
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
+                                            key={idx}
+                                        >
                                             <Link to={`/download/${item?.slug.current}`}>
                                                 <Card className="border rounded-md relative">
                                                     <img src={urlFor(item?.poster).url()} alt={item?.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
@@ -230,19 +236,20 @@ export const GalleryListSearch = ({ param }) => {
     return (
         <>
             {
-                isLoading && <GallerySkeleton />
+                isLoading && <GallerySkeleton items={null} />
             }
             {!isLoading && data &&
                 <div className="grid gap-10 flex-wrap justify-center border-t pt-10">
                     {
                         data[0] ?
-                            <div className="grid min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
+                            <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
                                 {
                                     data.map((item, idx) => {
                                         return <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.3 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
                                             key={idx}>
                                             <Link to={`/download/${item.slug.current}`}>
                                                 <Card className="border rounded-md relative">

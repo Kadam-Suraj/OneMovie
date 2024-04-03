@@ -1,5 +1,5 @@
 # OneMovie
-OneMovie is a web application built using React, TypeScript, Tailwind CSS, and Sanity CMS. It allows users to explore a collection of sci-fi movies, view details about each movie, and search for movies based on various criteria.
+OneMovie is a web application built on Vite using React, TypeScript, Tailwind CSS, and Sanity CMS. It allows users to explore a collection of sci-fi movies, view details about each movie, and search for movies based on various criteria.
 
 ## Features
 View a curated collection of sci-fi movies.
@@ -15,7 +15,7 @@ Navigate between different pages using React Router DOM.
 ## Setup
 #### Clone the repository:
 ```bash
-git clone https://github.com/SK170401/OneMovie
+git clone https://github.com/SK170401/OneMovie.git
 ```
 Install dependencies:
 ``` bash
@@ -30,7 +30,7 @@ Update the Sanity client configuration in your React app to use your project's A
 
 #### Start the development server:
 ```bash
-npm start
+npm run dev
 ```
 Open http://localhost:3000 in your browser to view the app.
 

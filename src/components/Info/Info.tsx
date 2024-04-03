@@ -12,12 +12,13 @@ import { motion } from "framer-motion"
 const Info = () => {
     const [data, setData] = useState([])
     const [screenshot, setScreenshot] = useState([])
+    const [param, setParam] = useState("")
     const { slug } = useParams()
     const [isLoading, setisLoading] = useState(true)
 
     const navigate = useNavigate()
-
     const fetchData = useCallback(async () => {
+        setParam(slug)
         const data = await getMovieBySlug(slug)
         setData(data)
         const screenshot = await getScreenshots(slug)
@@ -28,8 +29,8 @@ const Info = () => {
         fetchData();
         setTimeout(() => {
             setisLoading(false)
-        }, 100);
-    }, [slug, fetchData]);
+        }, 300);
+    }, [slug]);
 
     return (
         <>
@@ -45,11 +46,12 @@ const Info = () => {
                             <div>
                                 {
                                     data.map((item, idx) => {
-                                        if (item.slug.current === slug) {
+                                        if (item.slug.current === param) {
                                             return <motion.div
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
-                                                transition={{ duration: 0.3 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 0.7 }}
                                                 key={idx} >
                                                 <div className="flex flex-col gap-10">
                                                     <div className="flex flex-col items-center gap-2 justify-center order-2 md:-order-">
@@ -110,7 +112,7 @@ const Info = () => {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <Download slug={slug}></Download>
+                                                    <Download slug={param}></Download>
                                                 </div>
                                             </motion.div>
                                         }

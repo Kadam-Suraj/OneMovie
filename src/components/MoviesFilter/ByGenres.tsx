@@ -12,7 +12,7 @@ import { motion } from "framer-motion"
 const ByGenres = () => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
-
+    
     const fetchData = useCallback(async () => {
         const data = await getAllGenres();
         setData(data);
@@ -21,12 +21,15 @@ const ByGenres = () => {
 
     // console.log(movie)
 
-    useEffect(() => {
-        fetchData();
+    if (data[0]) {
         setTimeout(() => {
             setisLoading(false)
         }, 100);
-    }, [fetchData]);
+    }
+    
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <section>
@@ -59,8 +62,9 @@ const ByGenres = () => {
                                             return <CarouselItem key={idx} >
                                                 <motion.div
                                                     initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    transition={{ duration: 0.3 * idx }}
+                                                    whileInView={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{ duration: 0.5, delay: 0.1 * idx }}
                                                 >
                                                     <Link to={`/category/${genre}`}>
                                                         <Card className="rounded-md border overflow-hidden select-none">

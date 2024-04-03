@@ -39,7 +39,7 @@ const SearchComponent = () => {
 
     return (
         <div className="flex w-60 lg:w-full items-center justify-end space-x-5 relative">
-            <div className="w-56 absolute lg:static top-14 -right-20 md:right-0" ref={inputRef}>
+            <div className="w-56 absolute lg:static top-14 -right-28 sm:-right-20 md:right-0" ref={inputRef}>
                 {showInput && (
                     <motion.div
                         initial={{ opacity: 0, x: 0 }}
