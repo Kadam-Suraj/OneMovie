@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { BiSearch } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom'
 import { search, urlFor } from '@/api/client';
-import { getYear } from './Banner';
+import { getYear } from '@/constants/getYear';
 
 const SearchComponent = () => {
     const [showInput, setShowInput] = useState(false);

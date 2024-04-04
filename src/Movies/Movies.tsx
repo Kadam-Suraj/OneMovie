@@ -1,4 +1,4 @@
-import { GalleryList } from "@/components/GalleryList/GalleryList"
+import { GalleryMovies } from "@/components/GalleryList/GalleryList"
 
 const Movies = () => {
 
@@ -10,7 +10,7 @@ const Movies = () => {
                     <p className="text-sm">Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</p>
                 </div>
             </div>
-            <GalleryList type={"Movies"} link={null}></GalleryList>
+            <GalleryMovies type={"Movies"} colmn={null}></GalleryMovies>
         </section>
     )
 }

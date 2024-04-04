@@ -1,12 +1,12 @@
-import { getMovie, search, searchByPlatform, urlFor } from "@/api/client"
-import { Card, CardFooter } from "@/components/ui/card"
+import { getMovie, getSeries, search, searchByPlatform } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import GallerySkeleton from "./GallerySkeleton"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
+import Gallery from "./Gallery"
 
-export const GalleryList = ({ type, link }) => {
+// Gallery Section Home
+export const GalleryMovies = ({ type, colmn }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
@@ -25,87 +25,20 @@ export const GalleryList = ({ type, link }) => {
 
         <>
             {
-                isLoading && <GallerySkeleton items={null} />
+                isLoading && <GallerySkeleton items={colmn} />
             }
             {!isLoading && data &&
 
                 <div className="grid gap-10 border-t pt-10">
                     <div className="flex gap-3 justify-between">
                         <h2 className="font-semibold text-2xl">{type == "TV Series" ? "Series" : "Movies"}</h2>
-                        {link ?
-                            <Link to={link}>
-                                <Button>See More</Button>
-                            </Link>
-                            : null
-                        }
+                        <Link to={"/movies"}>
+                            <Button>See More</Button>
+                        </Link>
                     </div>
-                    <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3">
+                    <div>
                         {
-                            data.map((item, idx) => {
-                                if (type == "TV Series") {
-                                    if (item.type == "TV Series") {
-                                        return <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
-                                            key={idx}>
-                                            <Link to={`/download/${item.slug.current}`}>
-                                                <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
-                                                    <CardFooter className="flex flex-col items-start gap-2">
-                                                        <div className="w-full">
-                                                            <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
-                                                                {item.title}
-                                                            </h2>
-                                                        </div>
-                                                        <div className="flex flex-wrap md:text-lg gap-2 justify-between items-center w-full font-semibold">
-                                                            <span className="font-light text-sm">
-                                                                {item.duration}
-                                                            </span>
-                                                            <span className="uppercase text-sm text-red-500">
-                                                                {item.genres[0]}
-                                                            </span>
-                                                        </div>
-                                                    </CardFooter>
-                                                </Card>
-                                            </Link>
-                                        </motion.div>
-                                    }
-                                }
-                                else if (type !== "TV Series") {
-                                    if (item?.type !== "TV Series") {
-                                        return <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
-                                            key={idx}>
-                                            <Link to={`/download/${item?.slug.current}`}>
-                                                <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item?.poster).url()} alt={item?.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
-                                                    <CardFooter className="flex flex-col items-start gap-2">
-                                                        <div className="w-full">
-                                                            <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
-                                                                {item?.title}
-                                                            </h2>
-                                                        </div>
-                                                        <div className="flex flex-wrap md:text-lg gap-2 justify-between items-center w-full font-semibold">
-                                                            <span className="font-light text-sm">
-                                                                {item?.duration}
-                                                            </span>
-                                                            <span className="uppercase text-sm text-red-500">
-                                                                {item?.genres[0]}
-                                                            </span>
-                                                        </div>
-                                                    </CardFooter>
-                                                </Card>
-                                            </Link>
-                                        </motion.div>
-                                    }
-                                }
-
-                            })
+                            <Gallery data={data} items={colmn} />
                         }
                     </div>
                 </div>
@@ -114,104 +47,42 @@ export const GalleryList = ({ type, link }) => {
     )
 }
 
-export const GalleryListHome = ({ type, link }) => {
+
+// Gallery Section Series
+export const GallerySeries = ({ type, colmn }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
+
     useEffect(() => {
         (async () => {
-            const data = (await getMovie())
+            const data = (await getSeries())
             setData(data)
         })()
+
         setTimeout(() => {
             setisLoading(false)
-        }, 100);
+        }, 300);
     }, [])
 
     return (
 
         <>
             {
-                isLoading && <GallerySkeleton items={5} />
+                isLoading && <GallerySkeleton items={colmn} />
             }
             {!isLoading && data &&
-                <div className="grid gap-10">
+
+                <div className="grid gap-10 border-t pt-10">
                     <div className="flex gap-3 justify-between">
                         <h2 className="font-semibold text-2xl">{type == "TV Series" ? "Series" : "Movies"}</h2>
-                        {link ?
-                            <Link to={link}>
-                                <Button>See More</Button>
-                            </Link>
-                            : null
-                        }
-                    </div>
-                    <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
-                        {
-                            data.map((item, idx) => {
-                                if (type == "TV Series" && idx <= 5) {
-                                    if (item.type == "TV Series") {
-                                        return <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
-                                            key={idx}>
-                                            <Link to={`/download/${item.slug.current}`}>
-                                                <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
-                                                    <CardFooter className="flex flex-col items-start gap-2">
-                                                        <div className="w-full">
-                                                            <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
-                                                                {item.title}
-                                                            </h2>
-                                                        </div>
-                                                        <div className="flex flex-wrap md:text-lg gap-2 items-center justify-between w-full font-semibold">
-                                                            <span className="font-light text-sm">
-                                                                {item.duration}
-                                                            </span>
-                                                            <span className="uppercase text-sm text-red-500">
-                                                                {item.genres[0]}
-                                                            </span>
-                                                        </div>
-                                                    </CardFooter>
-                                                </Card>
-                                            </Link>
-                                        </motion.div>
-                                    }
-                                }
-                                else if (type !== "TV Series") {
-                                    if (item?.type !== "TV Series" && idx <= 5) {
-                                        return <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
-                                            key={idx}
-                                        >
-                                            <Link to={`/download/${item?.slug.current}`}>
-                                                <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item?.poster).url()} alt={item?.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
-                                                    <CardFooter className="flex flex-col items-start gap-2">
-                                                        <div className="w-full">
-                                                            <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
-                                                                {item?.title}
-                                                            </h2>
-                                                        </div>
-                                                        <div className="flex flex-wrap md:text-lg gap-2 items-center justify-between w-full font-semibold">
-                                                            <span className="font-light text-sm">
-                                                                {item?.duration}
-                                                            </span>
-                                                            <span className="uppercase text-sm text-red-500">
-                                                                {item?.genres[0]}
-                                                            </span>
-                                                        </div>
-                                                    </CardFooter>
-                                                </Card>
-                                            </Link>
-                                        </motion.div>
-                                    }
-                                }
+                        <Link to={"/series"}>
+                            <Button>See More</Button>
+                        </Link>
 
-                            })
+                    </div>
+                    <div>
+                        {
+                            <Gallery data={data} items={colmn} />
                         }
                     </div>
                 </div>
@@ -219,6 +90,7 @@ export const GalleryListHome = ({ type, link }) => {
         </>
     )
 }
+
 
 export const GalleryListSearch = ({ param }) => {
     const [data, setData] = useState([])
@@ -242,38 +114,8 @@ export const GalleryListSearch = ({ param }) => {
                 <div className="grid gap-10 flex-wrap justify-center border-t pt-10">
                     {
                         data[0] ?
-                            <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
-                                {
-                                    data.map((item, idx) => {
-                                        return <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.5, delay: 0.07 * idx }}
-                                            key={idx}>
-                                            <Link to={`/download/${item.slug.current}`}>
-                                                <Card className="border rounded-md relative">
-                                                    <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
-                                                    <CardFooter className="flex flex-col items-start gap-2">
-                                                        <div className="w-full">
-                                                            <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
-                                                                {item.title}
-                                                            </h2>
-                                                        </div>
-                                                        <div className="flex flex-wrap md:text-lg gap-2 items-center justify-between w-full font-semibold">
-                                                            <span className="font-light text-sm">
-                                                                {item.duration}
-                                                            </span>
-                                                            <span className="uppercase text-sm text-red-500">
-                                                                {item.genres[0]}
-                                                            </span>
-                                                        </div>
-                                                    </CardFooter>
-                                                </Card>
-                                            </Link>
-                                        </motion.div>
-                                    })
-                                }
+                            <div>
+                                <Gallery data={data} items={null} />
                             </div>
                             : <div className="flex justify-center items-center w-full">
                                 <h2 className="text-4xl font-bold w-full">No Result Found</h2>
@@ -311,45 +153,7 @@ export const GalleryListPlatform = () => {
                 }
                 {!isLoading && data &&
                     <div className="grid gap-10 flex-wrap justify-center border-t pt-10">
-                        {
-                            data[0] ?
-                                <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
-                                    {
-                                        data.map((item, idx) => {
-                                            return <motion.div
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                transition={{ duration: 0.5, delay: 0.07 * idx }}
-                                                key={idx}>
-                                                <Link to={`/download/${item.slug.current}`}>
-                                                    <Card className="border rounded-md relative">
-                                                        <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
-                                                        <CardFooter className="flex flex-col items-start gap-2">
-                                                            <div className="w-full">
-                                                                <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
-                                                                    {item.title}
-                                                                </h2>
-                                                            </div>
-                                                            <div className="flex flex-wrap md:text-lg gap-2 items-center justify-between w-full font-semibold">
-                                                                <span className="font-light text-sm">
-                                                                    {item.duration}
-                                                                </span>
-                                                                <span className="uppercase text-sm text-red-500">
-                                                                    {item.genres[0]}
-                                                                </span>
-                                                            </div>
-                                                        </CardFooter>
-                                                    </Card>
-                                                </Link>
-                                            </motion.div>
-                                        })
-                                    }
-                                </div>
-                                : <div className="flex justify-center items-center w-full">
-                                    <h2 className="text-4xl font-bold w-full">No Result Found</h2>
-                                </div>
-                        }
+                        <Gallery data={data} items={null} />
                     </div>
                 }
             </section>

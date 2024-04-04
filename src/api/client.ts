@@ -36,7 +36,7 @@ export async function getScreenshots(source: any) {
 
 // Search Movie by user input
 export async function search(parameter: any) {
-    const Response = await client.fetch(`*[_type == "movie" && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*." || tags match ".*${parameter}*." || platform match ".*${parameter}*."] | order(releaseDate desc)`)
+    const Response = await client.fetch(`*[_type in ["movie", "series"] && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*." || tags match ".*${parameter}*." || platform match ".*${parameter}*."] | order(releaseDate desc)`)
     return Response
 }
 
@@ -66,6 +66,15 @@ export async function getProfile() {
     return Profile
 }
 
+// getData for Home Banner
+export async function getLatest() {
+    const Movie = await client.fetch('*[_type in ["movie", "series"] && "new" in status || "trending" in status || "upcoming" in status] | order(releaseDate desc)') // Newest Released Date
+
+    // const Movie = await client.fetch('*[_type == "movie"]') // default order
+    return Movie
+}
+
+// getMovie Data
 export async function getMovie() {
     const Movie = await client.fetch('*[_type == "movie"] | order(releaseDate desc)') // Newest Released Date
 
@@ -73,18 +82,19 @@ export async function getMovie() {
     return Movie
 }
 
+
 export async function getMovieBySlug(slug: any) {
-    const Movie = await client.fetch(`*[_type == "movie" && slug.current == "${slug}"]`)
+    const Movie = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${slug}"]`)
     return Movie
 }
 
 export async function getGenres(genre: any) {
-    const Genres = await client.fetch(`*[_type == "movie" && slug.current == "${genre}"]{genres}`)
+    const Genres = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${genre}"]{genres}`)
     return Genres
 }
 
 export async function getMovieByGenre(genre: any) {
-    const Genres = await client.fetch(`*[_type == "movie" && "${genre}" in genres[]| order(releaseDate desc)]
+    const Genres = await client.fetch(`*[_type in ["movie", "series"] && "${genre}" in genres[]| order(releaseDate desc)]
     `)
     // *[_type == "movie" && genres[0] == "${genre}"] // checks only first genre
     return Genres
@@ -92,7 +102,7 @@ export async function getMovieByGenre(genre: any) {
 
 // get All the Genres without duplicate values
 export async function getAllGenres() {
-    const Genres = await client.fetch(`array::unique(*[_type == "movie"]{
+    const Genres = await client.fetch(`array::unique(*[_type in ["movie", "series"]]{
         "genres": genres[]
     }[].genres[])
     `)
@@ -103,13 +113,17 @@ export async function getAllGenres() {
 export async function getOrigin() {
     const Origin = await client.fetch(`array::unique(*[_type == "movie"]{
         "origin": origin[]
-      }[].origin[])
+    }[].origin[])
     `)
     let data = Origin.filter((value: any) => value !== null)
     return data
 }
 
-
+//
+export async function getSeries() {
+    const Movie = await client.fetch('*[_type == "series"] | order(releaseDate desc)') // Newest Released Date
+    return Movie
+}
 // Get All Download Links On Current Slug
 
 export async function getDownloads(link: any) {

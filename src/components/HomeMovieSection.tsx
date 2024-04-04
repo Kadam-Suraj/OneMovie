@@ -1,4 +1,4 @@
-import { GalleryListHome } from "@/components/GalleryList/GalleryList"
+import { GalleryMovies, GallerySeries } from "@/components/GalleryList/GalleryList"
 
 const HomeMovieSection = () => {
     return (
@@ -7,10 +7,10 @@ const HomeMovieSection = () => {
                 <h2 className="font-semibold text-xl">Latest Release</h2>
             </div>
             <div>
-                <GalleryListHome type="Movies" link="Movies"></GalleryListHome>
+                <GalleryMovies type="Movies" colmn={6}></GalleryMovies>
             </div>
             <div>
-                <GalleryListHome type="TV Series" link="Series"></GalleryListHome>
+                <GallerySeries type="TV Series" colmn={6}></GallerySeries>
             </div>
         </section>
     )

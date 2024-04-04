@@ -2,12 +2,12 @@ import { getMovieBySlug, getScreenshots, urlFor } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
-import { getYear } from "../Banner"
 import { Button } from "../ui/button"
 import Download from "../Download/Download"
 import Genrestags from "../genres-tags"
 import InfoSkeleton from "./InfoSkeleton"
 import { motion } from "framer-motion"
+import { getYear } from "@/constants/getYear"
 
 const Info = () => {
     const [data, setData] = useState([])
@@ -83,7 +83,7 @@ const Info = () => {
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center -order-1 lg:order-1 justify-center">
-                                                        {item.trailer ? <img className=" w-60 lg:w-1/3 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} />
+                                                        {item.poster ? <img className=" w-60 lg:w-1/3 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} />
                                                             :
                                                             <div className="flex flex-col items-center gap-5">
                                                                 <div className="flex flex-col items-center gap-10">
