@@ -36,7 +36,7 @@ export async function getScreenshots(source: any) {
 
 // Search Movie by user input
 export async function search(parameter: any) {
-    const Response = await client.fetch(`*[_type == "movie" && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*." || tags match ".*${parameter}*."]`)
+    const Response = await client.fetch(`*[_type == "movie" && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*." || tags match ".*${parameter}*." || platform match ".*${parameter}*."] | order(releaseDate desc)`)
     return Response
 }
 

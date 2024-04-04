@@ -15,8 +15,11 @@ const SearchComponent = () => {
     const [data, setData] = useState([])
     // const [isLoading, setisLoading] = useState(true)
 
-
     const redirect = useNavigate()
+
+    const overFlowHandler = () => {
+        showInput ? document.body.style.overflow = "hidden" : document.body.removeAttribute("style")
+    }
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -25,6 +28,7 @@ const SearchComponent = () => {
             }
         };
         document.addEventListener('click', handleClickOutside);
+        overFlowHandler()
 
         return () => {
             document.removeEventListener('click', handleClickOutside);
@@ -58,12 +62,13 @@ const SearchComponent = () => {
 
     return (
         <div className="flex w-60 lg:w-full items-center justify-end space-x-5">
-            <div className='relative'>
-                <div className="w-56 absolute lg:static top-14 -right-28 sm:-right-20 md:right-0" ref={inputRef}>
+            <div className='relative' ref={inputRef}>
+                <div className="w-56 absolute lg:static top-14 -right-28 sm:-right-20 md:right-0" >
                     {showInput && (
                         <motion.div
-                            initial={{ opacity: 0, x: 0 }}
+                            initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 20 }}
                             transition={{ duration: 0.3 }}
                             className="border lg:border-none rounded-md bg-white dark:bg-black backdrop-blu bg-opacity-90 dark:bg-opacity-85"
                         >
@@ -78,32 +83,43 @@ const SearchComponent = () => {
                         </motion.div>
                     )}
                 </div>
+                <div className="w-[21rem] absolute lg:stat top-[7rem] lg:top-20 -right-36 sm:-right-40 md:right-0 w-ful  ">
+                    {showInput && input && data[0] && (
+                        <div className='rounded-md border overflow-hidden'>
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.5 }}
+                                className="w-fit  grid gap-2 p-2 lg:border-non max-h-[25rem] overflow-y-scroll bg-white dark:bg-black backdrop-blur bg-opacity-90 dark:bg-opacity-85"
+                            >
+                                {data.map((item, idx) => (
+                                    <Link to={`/download/${item.slug.current}`} key={idx}>
+                                        <div className="flex items-center gap-3 w-80 border-b dark:hover:bg-gray-800 hover:bg-gray-300 transition duration-200 rounded-md">
+                                            <img
+                                                src={urlFor(item.poster).url()}
+                                                alt={item.slug.current}
+                                                className="h-fit w-20 object-cover rounded-md"
+                                            />
+                                            <div>
+                                                <h2 className="font-semibold text-lg pr-1">{item.title}</h2>
+                                                <span className="text-gray-400 dark:text-gray-300">
+                                                    {getYear(item.releaseDate)}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </motion.div>
+                        </div>
+                    )}
+                </div>
             </div>
             <Button type="button" variant="ghost" className="rounded-full p-0 m-0" onClick={handleButtonClick} ref={buttonRef}>
                 <BiSearch className="text-xl" />
             </Button>
-            <div className="-56 absolute lg:stat top-[7rem] lg:top-20 right-28 sm:right-20 md:right-0 w-full">
-                {showInput && input && data[0] && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "26rem" }}
-                        transition={{ duration: 0.5 }}
-                        className=" w-fit border grid gap-2 p-2 lg:border-non max-h6 overflow-y-scroll scroll-mb-0 rounded-md bg-white dark:bg-black backdrop-blu bg-opacity-90 dark:bg-opacity-85"
-                    >
-                        {data.map((item, idx) => {
-                            return <Link to={`/download/${item.slug.current}`}>
-                                <div key={idx} className='flex items-center gap-3 w-80 border-b pb-2'>
-                                    <img src={urlFor(item.poster).url()} alt={item.slug.current} className='h-fit w-20 object-cover rounded-md' />
-                                    <div>
-                                        <h2 className='font-semibold text-lg'>{item.title}</h2>
-                                        <span className='text-gray-300'>{getYear(item.releaseDate)}</span>
-                                    </div>
-                                </div>
-                            </Link>
-                        })}
-                    </motion.div>
-                )}
-            </div>
+
+
         </div>
     );
 };
