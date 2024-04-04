@@ -6,7 +6,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import { getLatest, getMovie, urlFor } from "@/api/client"
+import { getLatest, urlFor } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
 import { Card, CardContent } from "./ui/card"
 import Autoplay from "embla-carousel-autoplay"
