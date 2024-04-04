@@ -1,7 +1,7 @@
-import { getMovie, search, urlFor } from "@/api/client"
+import { getMovie, search, searchByPlatform, urlFor } from "@/api/client"
 import { Card, CardFooter } from "@/components/ui/card"
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import GallerySkeleton from "./GallerySkeleton"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
@@ -281,6 +281,78 @@ export const GalleryListSearch = ({ param }) => {
                     }
                 </div>
             }
+        </>
+    )
+}
+
+export const GalleryListPlatform = () => {
+    const [data, setData] = useState([])
+    const [isLoading, setisLoading] = useState(true)
+    const { platform } = useParams()
+
+    useEffect(() => {
+        (async () => {
+            const platformRes = await searchByPlatform(platform)
+            setData(platformRes)
+        })()
+        setTimeout(() => {
+            setisLoading(false)
+        }, 300);
+    }, [platform])
+
+    return (
+        <>
+            <section className="m-auto max-w-[1536px] grid gap-5 px-5 my-20">
+                <div>
+                    <h2 className="font-semibold text-lg">Platform : <span className="text-red-500">{platform}</span></h2>
+                </div>
+                {
+                    isLoading && <GallerySkeleton items={null} />
+                }
+                {!isLoading && data &&
+                    <div className="grid gap-10 flex-wrap justify-center border-t pt-10">
+                        {
+                            data[0] ?
+                                <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3 border-b pb-10">
+                                    {
+                                        data.map((item, idx) => {
+                                            return <motion.div
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 0.5, delay: 0.07 * idx }}
+                                                key={idx}>
+                                                <Link to={`/download/${item.slug.current}`}>
+                                                    <Card className="border rounded-md relative">
+                                                        <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
+                                                        <CardFooter className="flex flex-col items-start gap-2">
+                                                            <div className="w-full">
+                                                                <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
+                                                                    {item.title}
+                                                                </h2>
+                                                            </div>
+                                                            <div className="flex flex-wrap md:text-lg gap-2 items-center justify-between w-full font-semibold">
+                                                                <span className="font-light text-sm">
+                                                                    {item.duration}
+                                                                </span>
+                                                                <span className="uppercase text-sm text-red-500">
+                                                                    {item.genres[0]}
+                                                                </span>
+                                                            </div>
+                                                        </CardFooter>
+                                                    </Card>
+                                                </Link>
+                                            </motion.div>
+                                        })
+                                    }
+                                </div>
+                                : <div className="flex justify-center items-center w-full">
+                                    <h2 className="text-4xl font-bold w-full">No Result Found</h2>
+                                </div>
+                        }
+                    </div>
+                }
+            </section>
         </>
     )
 }

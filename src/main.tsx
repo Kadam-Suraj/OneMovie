@@ -12,6 +12,7 @@ import Home from './Home/Home.tsx'
 import CategoryGenre from './components/Category/CategoryGenre.tsx'
 import { Toaster } from './components/ui/toaster.tsx'
 import BySearch from './components/MoviesFilter/BySearch.tsx'
+import { GalleryListPlatform } from './components/GalleryList/GalleryList.tsx'
 
 const router = createHashRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createHashRouter(
       <Route path="" element={<Home />} />
       <Route path="/search/:q" element={<BySearch />} />
       <Route path="/category/:genre" element={<CategoryGenre />} />
+      <Route path="/category/platform/:platform" element={<GalleryListPlatform />} />
       <Route path="/download/:slug" element={<Info />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/series" element={<Series />} />
