@@ -23,7 +23,7 @@ const Info = () => {
         setData(data)
         const screenshot = await getScreenshots(slug)
         setScreenshot(screenshot)
-    }, []);
+    }, [slug]);
 
     useEffect(() => {
         fetchData();
