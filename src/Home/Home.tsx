@@ -1,7 +1,7 @@
 import { getProfile, urlFor } from "@/api/client"
 import { banner } from "@/assets"
 import Banner from "@/components/Banner"
-import HomeMovieSection from "@/components/HomeMovieSection"
+import HomeMovieSection from "@/components/HomeSection"
 import MoviesFilter from "@/components/MoviesFilter/MoviesFilter"
 import { useCallback, useEffect, useState } from "react"
 

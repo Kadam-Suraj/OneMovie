@@ -75,9 +75,19 @@
 
   body {
     @apply bg-background text-foreground;
-    scrollbar-width: none;
-    /* user-select: none; */
   }
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 img {

@@ -1,7 +1,7 @@
-import { Link, useParams } from "react-router-dom"
-import { Card, CardFooter } from "../ui/card"
-import { getMovieByGenre, urlFor } from "@/api/client"
+import { useParams } from "react-router-dom"
+import { getMovieByGenre } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
+import Gallery from "../GalleryList/Gallery"
 
 const CategoryGenre = () => {
     const { genre } = useParams()
@@ -54,34 +54,7 @@ const CategoryGenre = () => {
                         <h2 className="font-semibold text-2xl">{''}</h2>
 
                     </div>
-                    <div className="grid min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3">
-                        {
-                            data.map((item, idx) => {
-                                return <div key={idx}>
-                                    <Link to={`/download/${item.slug.current}`}>
-                                        <Card className="border rounded-md relative">
-                                            <img src={urlFor(item.poster).url()} alt={item.slug.current} className="rounded-t-md object-top h-80 object-cover w-full" loading="lazy" />
-                                            <CardFooter className="flex flex-col items-start gap-2">
-                                                <div className="w-full">
-                                                    <h2 className="font-semibold text-xl overflow-hidden text-nowrap text-ellipsis">
-                                                        {item.title}
-                                                    </h2>
-                                                </div>
-                                                <div className="flex flex-wrap md:text-lg gap-2 justify-between items-center w-full font-semibold">
-                                                    <span className="font-light text-sm">
-                                                        {item.duration}
-                                                    </span>
-                                                    <span className="uppercase text-sm text-red-500">
-                                                        {genre}
-                                                    </span>
-                                                </div>
-                                            </CardFooter>
-                                        </Card>
-                                    </Link>
-                                </div>
-                            })
-                        }
-                    </div>
+                    <Gallery data={data} items={null} />
                 </div>
             </div>
         </section>

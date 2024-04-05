@@ -18,7 +18,13 @@ const SearchComponent = () => {
     const redirect = useNavigate()
 
     const overFlowHandler = () => {
-        showInput ? document.body.style.overflow = "hidden" : document.body.removeAttribute("style")
+        if (showInput) {
+            document.body.style.overflow = "clip"
+            // document.body.style.height = "100svh"
+        }
+        else {
+            document.body.removeAttribute("style")
+        }
     }
 
     useEffect(() => {
@@ -61,7 +67,7 @@ const SearchComponent = () => {
     }, [input])
 
     return (
-        <div className="flex w-60 lg:w-full items-center justify-end space-x-5">
+        <div className="flex w-60 lg:w-fit items-center justify-end space-x-5">
             <div className='relative' ref={inputRef}>
                 <div className="w-56 absolute lg:static top-14 -right-28 sm:-right-20 md:right-0" >
                     {showInput && (

@@ -69,7 +69,6 @@ export async function getProfile() {
 // getData for Home Banner
 export async function getLatest() {
     const Movie = await client.fetch('*[_type in ["movie", "series"] && "new" in status || "trending" in status || "upcoming" in status] | order(releaseDate desc)') // Newest Released Date
-
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
     return Movie
 }
@@ -77,7 +76,6 @@ export async function getLatest() {
 // getMovie Data
 export async function getMovie() {
     const Movie = await client.fetch('*[_type == "movie"] | order(releaseDate desc)') // Newest Released Date
-
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
     return Movie
 }

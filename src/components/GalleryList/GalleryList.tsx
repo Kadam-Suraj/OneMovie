@@ -1,12 +1,11 @@
 import { getMovie, getSeries, search, searchByPlatform } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import GallerySkeleton from "./GallerySkeleton"
 import { Button } from "@/components/ui/button"
 import Gallery from "./Gallery"
 
 // Gallery Section Home
-export const GalleryMovies = ({ type, colmn }) => {
+export const GalleryMovies = ({ colmn }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
@@ -24,14 +23,11 @@ export const GalleryMovies = ({ type, colmn }) => {
     return (
 
         <>
-            {
-                isLoading && <GallerySkeleton items={colmn} />
-            }
             {!isLoading && data &&
 
-                <div className="grid gap-10 border-t pt-10">
+                <div className="grid gap-10 border-t pt-10 items-start">
                     <div className="flex gap-3 justify-between">
-                        <h2 className="font-semibold text-2xl">{type == "TV Series" ? "Series" : "Movies"}</h2>
+                        <h2 className="font-semibold text-2xl text-red-500">Movies</h2>
                         <Link to={"/movies"}>
                             <Button>See More</Button>
                         </Link>
@@ -49,7 +45,7 @@ export const GalleryMovies = ({ type, colmn }) => {
 
 
 // Gallery Section Series
-export const GallerySeries = ({ type, colmn }) => {
+export const GallerySeries = ({ colmn }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
@@ -67,14 +63,11 @@ export const GallerySeries = ({ type, colmn }) => {
     return (
 
         <>
-            {
-                isLoading && <GallerySkeleton items={colmn} />
-            }
             {!isLoading && data &&
 
                 <div className="grid gap-10 border-t pt-10">
                     <div className="flex gap-3 justify-between">
-                        <h2 className="font-semibold text-2xl">{type == "TV Series" ? "Series" : "Movies"}</h2>
+                        <h2 className="font-semibold text-2xl text-red-500">Series</h2>
                         <Link to={"/series"}>
                             <Button>See More</Button>
                         </Link>
@@ -107,9 +100,6 @@ export const GalleryListSearch = ({ param }) => {
 
     return (
         <>
-            {
-                isLoading && <GallerySkeleton items={null} />
-            }
             {!isLoading && data &&
                 <div className="grid gap-10 flex-wrap justify-center border-t pt-10">
                     {
@@ -148,9 +138,6 @@ export const GalleryListPlatform = () => {
                 <div>
                     <h2 className="font-semibold text-lg">Platform : <span className="text-red-500">{platform}</span></h2>
                 </div>
-                {
-                    isLoading && <GallerySkeleton items={null} />
-                }
                 {!isLoading && data &&
                     <div className="grid gap-10 flex-wrap justify-center border-t pt-10">
                         <Gallery data={data} items={null} />
