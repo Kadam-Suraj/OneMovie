@@ -83,7 +83,7 @@ function Gallery({ data, items }) {
         return () => {
             timeoutIds.forEach(timeoutId => clearTimeout(timeoutId));
         };
-    }, []);
+    }, [data]);
 
     return (
         <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3">
