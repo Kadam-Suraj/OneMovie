@@ -105,7 +105,7 @@ export async function getAllGenres() {
     }[].genres[])
     `)
     let data = Genres.filter((value: any) => value !== null)
-    return data
+    return data.sort()
 }
 
 export async function getOrigin() {

@@ -16,21 +16,12 @@ const Download = ({ slug }) => {
     return (
         <div className='md:w-1/2 mx-auto'>{
             data.map((item, idx) => {
-                // if (item.current.slug == slug) {
-                //     return <div key={idx}>
-                //         {item.episodes ? <Episodes slug={slug}></Episodes> : item.current.slug == slug ? <DownloadsLink slug={slug} /> : <h2>Downloads will Available soon</h2>}
-                //     </div>
-                // }
                 if (item.slug.current == slug) {
-                    return <div key={idx}>
-                        {item.episodes ? <Episodes key={idx} slug={slug}></Episodes> : null}
-                        <DownloadsLink key={idx} slug={slug} />
+                    return <div key={idx} className='flex flex-col items-center'>
+                        {item.episodes ? <Episodes slug={slug}></Episodes> : item.slug.current == slug && item.download ? <DownloadsLink slug={slug} /> :
+                            <h2>Downloads Will Available Soon</h2>}
                     </div>
-                    // return <Episodes key={idx} slug={slug}></Episodes>
-                } 
-                // if (item.slug.current == slug) {
-                //     return <DownloadsLink key={idx} slug={slug} />
-                // }
+                }
             })
         }</div>
     )

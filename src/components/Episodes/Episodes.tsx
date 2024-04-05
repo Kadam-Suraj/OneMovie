@@ -26,7 +26,7 @@ const Episodes = ({ slug }) => {
                                         {
                                             <div className='flex flex-col gap-16 divide-y w-full'>
                                                 {
-                                                    item.episodes.map((link: any, idx: any) => {
+                                                    item.episodes?.map((link: any, idx: any) => {
                                                         return (
                                                             <div key={idx} className='grid gap-10'>
                                                                 {

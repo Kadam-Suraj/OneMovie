@@ -71,7 +71,7 @@ const Info = () => {
                                                     <div className="grid grid-cols-1 gap-2">
                                                         <Button variant="outline" className="w-fit pointer-events-none">Download</Button>
                                                         <div className="flex flex-col gap-5 justify-center w-full">
-                                                            <h1 className="font-bold text-5xl lg:text-7xl">{item.title}</h1>
+                                                            <h1 className="font-bold text-3xl min-[320px]:text-5xl lg:text-8xl leading-10 min-[300px]:leading-[3.5rem] text-wrap sm:w-full">{item.title}</h1>
                                                             <div className="flex gap-5 items-center">
                                                                 <span className="border py-1 px-2">{item.type}</span>
                                                                 <span>{item.duration}</span>
