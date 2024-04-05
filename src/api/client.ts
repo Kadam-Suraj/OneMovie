@@ -18,7 +18,7 @@ export function urlFor(source: any) {
 
 // ScreenShots
 export async function getScreenshots(source: any) {
-    const Images = await client.fetch(`*[_type == "movie" && slug.current == "${source}"]{gallery}`)
+    const Images = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${source}"]{gallery}`)
     // console.log(Images)
     let Screenshot = []
     Images.map((item: any) => {
@@ -75,7 +75,7 @@ export async function getLatest() {
 
 // getMovie Data
 export async function getMovie() {
-    const Movie = await client.fetch('*[_type == "movie"] | order(releaseDate desc)') // Newest Released Date
+    const Movie = await client.fetch('*[_type in ["movie", "series"]] | order(releaseDate desc)') // Newest Released Date
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
     return Movie
 }
@@ -125,14 +125,14 @@ export async function getSeries() {
 // Get All Download Links On Current Slug
 
 export async function getDownloads(link: any) {
-    const Download = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{download}`)
+    const Download = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${link}"]{download}`)
     return Download
 }
 
 //
 
 export async function getEpisodes(link: any) {
-    const Episode = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{episodes}`)
+    const Episode = await client.fetch(`*[_type == "series" && slug.current == "${link}"]{episodes}`)
     return Episode
 }
 

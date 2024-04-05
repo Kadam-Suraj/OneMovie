@@ -62,14 +62,14 @@ const Banner = () => {
                                 return <CarouselItem key={idx}>
                                     <div className="p-1">
                                         <Card>
-                                            <CardContent className="flex items-center lg:justify-center p-6">
+                                            <CardContent className="flex items-center lg:justify-center min-[300px]:p-6">
                                                 <div className="grid gap-5 lg:grid-cols-2 w-fit" >
                                                     <div className="flex flex-col gap-5 justify-center w-full">
                                                         <div className="flex gap-5 items-center text-xs lg:w-1/2 bg-gradient-to-r  from-black dark:from-white dark:from-70% from-70% to-transparent dark:to-transparent dark:to-90% to-90% rounded-full px-1 py-1">
                                                             <span className="bg-red-500 px-4 py-2 rounded-full text-white uppercase">{item.status}</span>
                                                             <span className="text-white dark:text-black text-sm text-opacity0">Released In {getYear(item.releaseDate)}</span>
                                                         </div>
-                                                        <h1 className="font-bold text-5xl lg:text-8xl">{item.title}</h1>
+                                                        <h1 className="font-bold text-3xl min-[300px]:text-5xl lg:text-8xl  leading-10 min-[300px]:leading-[3.5rem] text-wrap sm:w-full">{item.title}</h1>
                                                         <div className="flex gap-5 items-center">
                                                             <span className="border py-1 px-2">{item.type}</span>
                                                             <span>{item.duration}</span>
@@ -82,7 +82,7 @@ const Banner = () => {
                                                         </Link>
                                                     </div>
                                                     <div className="flex items-center -order-1 lg:order-1 justify-center lg:justify-end">
-                                                        {item.poster ? <img className=" w-60 lg:w-1/2 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} alt={item.slug.current} />
+                                                        {item.poster ? <img className="w-44 sm:w-60 lg:w-1/2 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} alt={item.slug.current} />
                                                             :
                                                             <div className="flex flex-col items-center gap-5">
                                                                 <div className="flex flex-col items-center gap-10">

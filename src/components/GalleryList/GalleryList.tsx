@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import Gallery from "./Gallery"
 
 // Gallery Section Home
-export const GalleryMovies = ({ colmn }) => {
+export const GalleryMovies = ({ colmn, link }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
@@ -28,9 +28,13 @@ export const GalleryMovies = ({ colmn }) => {
                 <div className="grid gap-10 border-t pt-10 items-start">
                     <div className="flex gap-3 justify-between">
                         <h2 className="font-semibold text-2xl text-red-500">Movies</h2>
-                        <Link to={"/movies"}>
-                            <Button>See More</Button>
-                        </Link>
+                        {
+                            link ?
+                                <Link to={"/movies"}>
+                                    <Button>See More</Button>
+                                </Link>
+                                : null
+                        }
                     </div>
                     <div>
                         {
@@ -45,7 +49,7 @@ export const GalleryMovies = ({ colmn }) => {
 
 
 // Gallery Section Series
-export const GallerySeries = ({ colmn }) => {
+export const GallerySeries = ({ colmn, link }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
@@ -68,10 +72,13 @@ export const GallerySeries = ({ colmn }) => {
                 <div className="grid gap-10 border-t pt-10">
                     <div className="flex gap-3 justify-between">
                         <h2 className="font-semibold text-2xl text-red-500">Series</h2>
-                        <Link to={"/series"}>
-                            <Button>See More</Button>
-                        </Link>
-
+                        {
+                            link ?
+                                <Link to={"/series"}>
+                                    <Button>See More</Button>
+                                </Link>
+                                : null
+                        }
                     </div>
                     <div>
                         {

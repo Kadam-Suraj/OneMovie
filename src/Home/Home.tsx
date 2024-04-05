@@ -24,8 +24,7 @@ const Hero = () => {
                     {profile.map((item, idx) => {
                         return <img key={idx} src={urlFor(item.image).url() || banner} className="h-[450px] w-full object-cover object-top pointer-events-none select-none backdrop-brightness-50" alt={item.slug.current} draggable={false} />
                     })}
-                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t dark:hidden from-white from-55% via-transparent to-white  " />
-                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t hidden dark:block from-black from-55% via-transparent to-black " />
+                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-white from-60% via-transparent to-white dark:from-black dark:from-60% dark:via-transparent dark:to-black  " />
                 </div>
                 <div className="mt-32">
                     <Banner></Banner>
