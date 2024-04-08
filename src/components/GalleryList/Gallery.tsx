@@ -9,10 +9,10 @@ function CardSkeleton({ isVisible }) {
     return isVisible ? null : (
         <motion.div
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.7 }}
-            className='h-full'
+            transition={{ duration: 0.3 }}
+            className='absolute top-0 left-0 right-0 bottom-0 w-full'
         >
             <div className="rounded-md relative grid gap-3">
                 <Skeleton className="rounded-t-md h-80" />
@@ -38,10 +38,10 @@ function CardComp({ item, isVisible }) {
         transition={{ duration: 0.5 }}
     >
         <Link to={`/download/${item.slug.current}`}>
-            <Card className="border rounded-md relative h-full">
+            <Card className="border rounded-md relative h-full w-full">
                 <div className='p-[.12rem]'>
                     {item.poster ?
-                        <img src={urlFor(item?.poster).url()} alt={item.slug.current} className="rounded-md object-top h-80 object-cover w-full" loading="lazy" />
+                        <img rel="preload" src={urlFor(item?.poster).url()} alt={item.slug.current} className="rounded-md object-top h-80 object-cover w-full" loading="eager" />
                         :
                         <Skeleton className='rounded-md h-80 w-full' />
                     }
@@ -76,20 +76,19 @@ function Gallery({ data, items }) {
         data.slice(0, itemCount).forEach((_, index) => {
             const timeoutId = setTimeout(() => {
                 setCardsLoaded(prevState => [...prevState, index]);
-            }, index * 200); // Delay loading actual card and unloading card Skeleton
+            }, index * 100); // Delay loading actual card and unloading card Skeleton
             timeoutIds.push(timeoutId);
         });
-
         return () => {
             timeoutIds.forEach(timeoutId => clearTimeout(timeoutId));
         };
-    }, [data]);
+    }, [items, data]);
 
     return (
-        <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-3">
+        <div className="grid grid-cols-1 min-[300px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-2">
             {data.slice(0, itemCount).map((item, index) => (
-                <div key={index} className='h-[24.5rem]'>
-                    <CardSkeleton isVisible={cardsLoaded.includes(index)} />
+                <div key={index} className='relative'>
+                    < CardSkeleton isVisible={cardsLoaded.includes(index)} />
                     <CardComp item={item} isVisible={cardsLoaded.includes(index)} />
                 </div>
             ))}

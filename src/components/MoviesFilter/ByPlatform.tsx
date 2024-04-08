@@ -13,9 +13,6 @@ import { motion } from "framer-motion"
 import { Button } from "../ui/button"
 import Gallery from "../GalleryList/Gallery"
 
-// export let PlatformData
-// const [first, setfirst] = useState([])
-
 const ByPlatform = () => {
 
     const [response, setResponse] = useState([])
@@ -72,11 +69,12 @@ const ByPlatform = () => {
                         </Link>
                     </div>
                     {
-                        response[0] ?
+                        response[0] ? <div>
                             <Gallery data={response} items={6} />
+                        </div>
                             :
-                            <div>
-                                <h2>No Data in this platform</h2>
+                            <div className="h-20 flex items-center justify-center">
+                                <h2 className="font-semibold text-xl animate-pulse">No Data in this platform</h2>
                             </div>
                     }
                 </motion.div>

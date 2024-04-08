@@ -6,7 +6,7 @@ const MoviesByGenresSkeleton = () => {
     // Placeholder data for categories
 
     return (
-        <div className="w-full grid gap-5">
+        <div className="w-full grid gap-5 h-[25.75rem]">
             <h2 className="font-semibold text-2xl">Category</h2>
             <div className="lg:px-10">
                 <div className="grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-rows-1 overflow-hidden ">

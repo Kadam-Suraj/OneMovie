@@ -89,7 +89,7 @@ const SearchComponent = () => {
                         </motion.div>
                     )}
                 </div>
-                <div className="w-[21rem] absolute lg:stat top-[7rem] lg:top-20 -right-36 sm:-right-40 md:right-0 w-ful  ">
+                <div className="absolute lg:stat top-[7rem] lg:top-20 -right-36 sm:-right-40 md:right-0 w-ful  ">
                     {showInput && input && data[0] && (
                         <div className='rounded-md border overflow-hidden'>
                             <motion.div
@@ -121,11 +121,9 @@ const SearchComponent = () => {
                     )}
                 </div>
             </div>
-            <Button type="button" variant="ghost" className="rounded-full p-0 m-0" onClick={handleButtonClick} ref={buttonRef}>
-                <BiSearch className="text-xl" />
+            <Button type="button" variant="ghost" className="rounded-full p-0 m-0" onClick={handleButtonClick} ref={buttonRef} name='search'>
+                <BiSearch className="text-xl" name='search'/>
             </Button>
-
-
         </div>
     );
 };

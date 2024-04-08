@@ -33,7 +33,7 @@ const ByGenres = () => {
 
     return (
         <section>
-            <div className="flex gap-3 flex-wrap justify-center">
+            <div className="flex gap-3 flex-wrap justify-center overflow-hidden">
                 {
                     isLoading && <MoviesByGenresSkeleton />
                 }

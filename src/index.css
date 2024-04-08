@@ -78,18 +78,18 @@
   }
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 body::-webkit-scrollbar {
   display: none;
 }
 
-body {
-  scroll-behavior: smooth;
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
 img {
   pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

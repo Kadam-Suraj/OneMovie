@@ -1,24 +1,19 @@
-import { getMovie, getSeries, search, searchByPlatform } from "@/api/client"
+import { Movie, getSeries, search, searchByPlatform } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import Gallery from "./Gallery"
 
 // Gallery Section Home
-export const GalleryMovies = ({ colmn, link }) => {
-    const [data, setData] = useState([])
+export const GalleryMovies = ({ column, link }) => {
+    // const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
-    useEffect(() => {
-        (async () => {
-            const data = (await getMovie())
-            setData(data)
-        })()
+    const data = Movie()
 
-        setTimeout(() => {
-            setisLoading(false)
-        }, 300);
-    }, [])
+    setTimeout(() => {
+        setisLoading(false)
+    }, 300);
 
     return (
 
@@ -38,7 +33,7 @@ export const GalleryMovies = ({ colmn, link }) => {
                     </div>
                     <div>
                         {
-                            <Gallery data={data} items={colmn} />
+                            <Gallery data={data} items={column} />
                         }
                     </div>
                 </div>
@@ -49,7 +44,7 @@ export const GalleryMovies = ({ colmn, link }) => {
 
 
 // Gallery Section Series
-export const GallerySeries = ({ colmn, link }) => {
+export const GallerySeries = ({ column, link }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
 
@@ -82,7 +77,7 @@ export const GallerySeries = ({ colmn, link }) => {
                     </div>
                     <div>
                         {
-                            <Gallery data={data} items={colmn} />
+                            <Gallery data={data} items={column} />
                         }
                     </div>
                 </div>

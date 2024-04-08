@@ -27,9 +27,7 @@ const Info = () => {
 
     useEffect(() => {
         fetchData();
-        setTimeout(() => {
-            setisLoading(false)
-        }, 300);
+        setisLoading(false)
     }, [slug]);
 
     return (
@@ -42,7 +40,7 @@ const Info = () => {
                 <div className="m-auto max-w-[1536px] my-20 p-5">
                     <Button onClick={() => navigate(-1)} variant="default" className="mb-5">Back</Button>
                     {
-                        data[0] ?
+                        data ?
                             <div>
                                 {
                                     data.map((item, idx) => {
@@ -71,7 +69,7 @@ const Info = () => {
                                                     <div className="grid grid-cols-1 gap-2">
                                                         <Button variant="outline" className="w-fit pointer-events-none">Download</Button>
                                                         <div className="flex flex-col gap-5 justify-center w-full">
-                                                            <h1 className="font-bold text-3xl min-[320px]:text-5xl lg:text-8xl leading-10 min-[300px]:leading-[3.5rem] text-wrap sm:w-full">{item.title}</h1>
+                                                            <h1 className="font-bold text-3xl min-[320px]:text-5xl lg:text-8xl text-wrap sm:w-full">{item.title}</h1>
                                                             <div className="flex gap-5 items-center">
                                                                 <span className="border py-1 px-2">{item.type}</span>
                                                                 <span>{item.duration}</span>
@@ -83,7 +81,7 @@ const Info = () => {
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center -order-1 lg:order-1 justify-center">
-                                                        {item.poster ? <img className=" w-60 lg:w-1/3 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} />
+                                                        {item.poster ? <img className=" w-60 lg:w-1/3 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} alt={`poster ${idx}`} loading="lazy" />
                                                             :
                                                             <div className="flex flex-col items-center gap-5">
                                                                 <div className="flex flex-col items-center gap-10">

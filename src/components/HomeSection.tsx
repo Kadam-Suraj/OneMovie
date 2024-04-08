@@ -7,10 +7,10 @@ const HomeMovieSection = () => {
                 <h2 className="font-semibold text-xl">Latest Release</h2>
             </div>
             <div>
-                <GalleryMovies colmn={6} link={true}></GalleryMovies>
+                <GalleryMovies column={6} link={true}></GalleryMovies>
             </div>
             <div>
-                <GallerySeries colmn={6} link={true}></GallerySeries>
+                <GallerySeries column={6} link={true}></GallerySeries>
             </div>
         </section>
     )

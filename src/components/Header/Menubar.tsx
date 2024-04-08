@@ -14,7 +14,7 @@ export function MenubarDesktop() {
                 list.map((item, idx) => {
                     return <MenubarMenu key={idx}>
                         <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-500 " : ""}`}>
-                            <MenubarTrigger className="cursor-pointer">{item}</MenubarTrigger>
+                            <MenubarTrigger className="cursor-pointer" role="link">{item}</MenubarTrigger>
                         </NavLink>
                     </MenubarMenu>
                 })
@@ -34,7 +34,7 @@ export function MenubarPhone() {
                 list.map((item, idx) => {
                     return <MenubarMenu key={idx}>
                         <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-500 " : ""}`}>
-                            <MenubarTrigger className="cursor-pointer text-sm min-[350px]:text-lg p-0">{item}</MenubarTrigger>
+                            <MenubarTrigger className="cursor-pointer text-sm min-[350px]:text-lg p-0" role="link">{item}</MenubarTrigger>
                         </NavLink>
                     </MenubarMenu>
                 })

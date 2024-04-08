@@ -1,5 +1,6 @@
 import { createClient } from "@sanity/client"
 import imageUrlBuilder from '@sanity/image-url'
+import { useEffect, useState } from "react"
 
 export const client = createClient({
     projectId: 'biuzzupd',
@@ -75,9 +76,16 @@ export async function getLatest() {
 
 // getMovie Data
 export async function getMovie() {
-    const Movie = await client.fetch('*[_type in ["movie", "series"]] | order(releaseDate desc)') // Newest Released Date
+    const Movie = await client.fetch('*[_type == "movie" ]| order(releaseDate desc)') // Newest Released Date
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
     return Movie
+}
+
+// get Info page
+export async function getInfo() {
+    const Info = await client.fetch('*[_type in ["movie", "series"] ]| order(releaseDate desc)') // Newest Released Date
+    // const Movie = await client.fetch('*[_type == "movie"]') // default order
+    return Info
 }
 
 
@@ -167,4 +175,19 @@ export async function getEpUHD(link: any) {
         })
     })
     return data
+}
+
+export const Movie = () => {
+    const [movie, setMovie] = useState([])
+
+    useEffect(() => {
+        const fetchMovie = async () => {
+            const data = await getMovie()
+            setMovie(data)
+        }
+        fetchMovie()
+    }, [])
+
+    return movie
+
 }
