@@ -121,8 +121,8 @@ const SearchComponent = () => {
                     )}
                 </div>
             </div>
-            <Button type="button" variant="ghost" className="rounded-full p-0 m-0" onClick={handleButtonClick} ref={buttonRef} name='search'>
-                <BiSearch className="text-xl" name='search'/>
+            <Button aria-label='search' type="button" variant="ghost" className="rounded-full p-0 m-0" onClick={handleButtonClick} ref={buttonRef} >
+                <BiSearch className="text-xl" />
             </Button>
         </div>
     );

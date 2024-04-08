@@ -23,12 +23,12 @@ const MoviesByGenresSkeleton = () => {
                                     about={genre}
                                 >
                                     <div className="w-64">
-                                        <div className="flex flex-col gap-3 p-2">
+                                        <div className="flex flex-col gap-2 p-2">
                                             <div className="grid gap-1">
                                                 <Skeleton className="aspect-w-16 h-80"></Skeleton>
                                             </div>
                                             <div className="w-full">
-                                                <Skeleton className="h-5 rounded"></Skeleton>
+                                                <Skeleton className="h-5 rounded-full mx-3"></Skeleton>
                                             </div>
                                         </div>
                                     </div>

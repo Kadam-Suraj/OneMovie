@@ -12,7 +12,7 @@ export function MenubarDesktop() {
         <Menubar className="lg:border-b">
             {
                 list.map((item, idx) => {
-                    return <MenubarMenu key={idx}>
+                    return <MenubarMenu key={idx} >
                         <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-500 " : ""}`}>
                             <MenubarTrigger className="cursor-pointer" role="link">{item}</MenubarTrigger>
                         </NavLink>

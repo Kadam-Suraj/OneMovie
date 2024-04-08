@@ -21,9 +21,9 @@ const Header = () => {
             <Link to={"/"} className="w-fit z-10">
                 <img className="dark:invert-0 invert select-none" src={logo} width={40} alt="logo" />
             </Link>
-            <nav className="md:flex hidden items-center justify-center">
-                <ul className="flex gap-2">
-                    <li >
+            <nav role="navigation" className="md:flex hidden items-center justify-center">
+                <ul className="flex gap-2" role="menubar">
+                    <li role="menuitem">
                         <MenubarDesktop></MenubarDesktop>
                     </li>
                 </ul>

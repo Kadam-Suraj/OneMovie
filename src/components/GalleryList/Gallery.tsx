@@ -16,13 +16,13 @@ function CardSkeleton({ isVisible }) {
         >
             <div className="rounded-md relative grid gap-3">
                 <Skeleton className="rounded-t-md h-80" />
-                <div className="flex flex-col items-start gap-2">
+                <div className="flex flex-col items-start gap-2 px-2">
                     <div className="w-full">
-                        <Skeleton className="w-1/2 h-6" />
+                        <Skeleton className="w-1/2 h-6 rounded-full" />
                     </div>
                     <div className="flex flex-wrap gap-2 justify-between w-full">
-                        <Skeleton className="w-16 h-5" />
-                        <Skeleton className="w-16 h-5" />
+                        <Skeleton className="w-16 h-5 rounded-full" />
+                        <Skeleton className="w-16 h-5 rounded-full" />
                     </div>
                 </div>
             </div>
