@@ -27,20 +27,21 @@ const Info = () => {
 
     useEffect(() => {
         fetchData();
-        setisLoading(false)
+        data ? setisLoading(false) : setisLoading(true)
     }, [slug]);
+
 
     return (
         <>
             {
                 isLoading && <InfoSkeleton />
             }
-            {!isLoading && data &&
+            {!isLoading && data[0] &&
 
                 <div className="m-auto max-w-[1536px] my-20 p-5">
                     <Button onClick={() => navigate(-1)} variant="default" className="mb-5">Back</Button>
                     {
-                        data ?
+                        data[0] ?
                             <div>
                                 {
                                     data.map((item, idx) => {

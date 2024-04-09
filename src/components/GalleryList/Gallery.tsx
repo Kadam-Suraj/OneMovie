@@ -43,7 +43,7 @@ function CardComp({ item, isVisible }) {
                     {item.poster ?
                         <img rel="preload" src={urlFor(item?.poster).url()} alt={item.slug.current} className="rounded-md object-top h-80 object-cover w-full" loading="eager" />
                         :
-                        <Skeleton className='rounded-md h-80 w-full' />
+                        <span className='rounded-md h-80 w-full' >Poster Unavailable</span>
                     }
                 </div>
                 <CardFooter className="flex flex-col items-start gap-2">

@@ -16,16 +16,9 @@ const ByGenres = () => {
     const fetchData = useCallback(async () => {
         const data = await getAllGenres();
         setData(data);
+        data ? setisLoading(false) : null
 
     }, []);
-
-    // console.log(movie)
-
-    if (data[0]) {
-        setTimeout(() => {
-            setisLoading(false)
-        }, 100);
-    }
     
     useEffect(() => {
         fetchData();

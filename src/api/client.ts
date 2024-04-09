@@ -19,17 +19,14 @@ export function urlFor(source: any) {
 
 // ScreenShots
 export async function getScreenshots(source: any) {
-    const Images = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${source}"]{gallery}`)
-    // console.log(Images)
-    let Screenshot = []
+    const Images = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${source}"]{gallery[]}`)
+    let Image = []
     Images.map((item: any) => {
-        const image = item.gallery.map((item: any) => {
-            return [urlFor(item).url()]
+        item.gallery.map((item: any) => {
+            Image.push([urlFor(item).url()])
         })
-        Screenshot = [...image]
-        // console.log(Screenshot)
     })
-    return Screenshot
+    return Image
 }
 
 
