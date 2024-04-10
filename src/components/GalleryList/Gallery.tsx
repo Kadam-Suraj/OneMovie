@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardFooter } from '../ui/card';
 import { urlFor } from '@/api/client';
 import { Skeleton } from '../ui/skeleton';
+import { FiClock } from "react-icons/fi";
 
 function CardSkeleton({ isVisible }) {
     return isVisible ? null : (
@@ -53,8 +54,13 @@ function CardComp({ item, isVisible }) {
                         </h2>
                     </div>
                     <div className="flex flex-wrap md:text-lg gap-2 justify-between items-center w-full font-semibold">
-                        <span className="font-light text-sm">
-                            {item.duration}
+                        <span className="flex items-center gap-2 font-light text-sm w-fit">
+                            <span>
+                                <FiClock />
+                            </span>
+                            <span>
+                                {item.duration}
+                            </span>
                         </span>
                         <span className="uppercase text-sm text-red-500">
                             {item.genres[0]}

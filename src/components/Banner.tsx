@@ -44,7 +44,7 @@ const Banner = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="lg:px-10 md:min-h-[620px]">
+                    className="lg:px-10 md:min-h-[650px]">
                     <Carousel className="w-full select-none" opts={{
                         align: "start",
                         loop: true,

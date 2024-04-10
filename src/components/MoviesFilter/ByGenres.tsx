@@ -36,7 +36,7 @@ const ByGenres = () => {
                     <div
                         className="w-full grid gap-5">
                         <h2 className="font-semibold text-2xl">Category</h2>
-                        <div className="lg:px-10">
+                        <div className="lg:px-12">
                             <Carousel orientation="horizontal" className="gri rid-cols-5 gap- justify-center w-full"
                                 // opts={{
                                 //     align: "start",

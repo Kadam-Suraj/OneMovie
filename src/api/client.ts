@@ -97,7 +97,7 @@ export async function getGenres(genre: any) {
 }
 
 export async function getMovieByGenre(genre: any) {
-    const Genres = await client.fetch(`*[_type in ["movie", "series"] && "${genre}" in genres[]| order(releaseDate desc)]
+    const Genres = await client.fetch(`*[_type in ["movie", "series"] && "${genre}" in genres[]]| order(releaseDate desc)
     `)
     // *[_type == "movie" && genres[0] == "${genre}"] // checks only first genre
     return Genres
@@ -114,7 +114,15 @@ export async function getAllGenres() {
 }
 
 export async function getOrigin() {
-    const Origin = await client.fetch(`array::unique(*[_type == "movie"]{
+    const Origin = await client.fetch(`array::unique(*[_type in ["movie", "series", "bollywood", "bollywoodseries"]]{
+        "origin": origin[]
+    }[].origin[])
+    `)
+    let data = Origin.filter((value: any) => value !== null)
+    return data
+}
+export async function getOriginMovie() {
+    const Origin = await client.fetch(`array::unique(*[_type in ["movie", "series", "bollywood", "bollywoodseries"]]{
         "origin": origin[]
     }[].origin[])
     `)

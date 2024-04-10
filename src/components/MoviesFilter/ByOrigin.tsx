@@ -1,15 +1,15 @@
-import { getOrigin } from "@/api/client"
+import { getOriginMovie } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import { SkeletonByOrigin } from "./SkeletonMoviesByGenres"
-import { Link } from "react-router-dom"
 
 const ByOrigin = () => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
+    const [section, setSection] = useState("hollywood")
 
     const fetchData = useCallback(async () => {
-        const data = await getOrigin();
+        const data = await getOriginMovie();
         setData(data);
     }, []);
 
@@ -32,11 +32,11 @@ const ByOrigin = () => {
                     <div className="flex gap-3 flex-wrap justify-center">
                         {
                             data.map((item, idx) => {
-                                return <Button key={idx} className="capitalize rounded-full">
-                                    <Link to={"#"}>
-                                        {item}
-                                    </Link>
+                                return <Button key={idx} className={`${item == section ? 'text-red- bg-red-600' : ''} capitalize rounded-full hover:bg-red-400`} onClick={() => setSection(item)}>
+                                    {item}
                                 </Button>
+                                //          <Link to={`/${item == "hollywood" ? "" : `${item}`}`} >
+                                // </Link>
                             })
                         }
                     </div>
