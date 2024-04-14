@@ -49,7 +49,7 @@ const Info = () => {
                                     {
                                         data.map((item, idx) => {
                                             if (item.slug.current === param) {
-                                                return <div>
+                                                return <div key={idx}>
                                                     <Helmet>
                                                         <title>{item.title}</title>
                                                         <meta property="og:title" content={item.name} />
@@ -90,11 +90,11 @@ const Info = () => {
                                                                     </div>
                                                                     <Genrestags genres={item.genres} />
                                                                     {item.language ?
-                                                                    <div className="flex flex-col gap-3 pb-3 border-b w-fit">
+                                                                    <div className="flex flex-col items-cente gap-3">
                                                                         <h3 className="text-xl">Available Languages:</h3>
-                                                                        <div className="flex gap-2 flex-wrap">
-                                                                            {item.language?.map((item, idx) => <span key={idx} className="text-lg">{item}</span>)}
-                                                                        </div>
+                                                                        <ul className="flex gap-10 flex-wrap pl-4">
+                                                                            {item.language?.map((item, idx) => <li key={idx} className="list-decimal text-lg font-semibold">{item}</li>)}
+                                                                        </ul>
                                                                     </div>
                                                                     : null
                                                                     }

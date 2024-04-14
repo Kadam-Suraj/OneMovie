@@ -99,12 +99,12 @@ const SearchComponent = () => {
                                 transition={{ duration: 0.5 }}
                                 className="w-fit  grid gap-2 p-2 lg:border-non max-h-[25rem] overflow-y-scroll bg-white dark:bg-black backdrop-blur bg-opacity-90 dark:bg-opacity-85"
                             >
-                                {data.map((item, idx) => (
-                                    <Link to={`/download/${item.slug.current}`} key={idx} onClick={handleButtonClick}>
+                                {data?.map((item, idx) => (
+                                    item.poster && item.slug ? <Link to={`/download/${item?.slug?.current ? item?.slug?.current : "/"}`} key={idx} onClick={handleButtonClick}>
                                         <div className="flex items-center gap-3 w-80 border-b dark:hover:bg-gray-800 hover:bg-gray-300 transition duration-200 rounded-md">
                                             <img
                                                 src={urlFor(item.poster).url()}
-                                                alt={item.slug.current}
+                                                alt={item?.slug?.current ? item?.slug?.current : "poster"}
                                                 className="h-fit w-20 object-cover rounded-md"
                                             />
                                             <div>
@@ -115,6 +115,7 @@ const SearchComponent = () => {
                                             </div>
                                         </div>
                                     </Link>
+                                        : null
                                 ))}
                             </motion.div>
                         </div>

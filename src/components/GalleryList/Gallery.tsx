@@ -54,7 +54,7 @@ function CardComp({ item, isVisible }) {
                         </h2>
                     </div>
                     <div className="flex flex-wrap md:text-lg gap-2 justify-between items-center w-full font-semibold">
-                        <span className="flex items-center gap-2 font-light text-sm w-fit">
+                        <span className="flex items-center gap-1     font-light text-sm w-fit">
                             <span>
                                 <FiClock />
                             </span>
