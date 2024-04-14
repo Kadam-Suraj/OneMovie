@@ -1,9 +1,8 @@
 import { getProfile, urlFor } from "@/api/client"
 import { banner } from "@/assets"
 import Banner from "@/components/Banner"
-import HomeMovieSection from "@/components/HomeSection"
-import MoviesFilter from "@/components/MoviesFilter/MoviesFilter"
 import { useCallback, useEffect, useState } from "react"
+import { Outlet } from "react-router-dom"
 
 const Hero = () => {
     const [profile, setProfile] = useState([])
@@ -29,8 +28,7 @@ const Hero = () => {
                 <div className="mt-32">
                     <Banner></Banner>
                 </div>
-                <MoviesFilter />
-                <HomeMovieSection />
+                <Outlet />
             </div>
         </>
     )

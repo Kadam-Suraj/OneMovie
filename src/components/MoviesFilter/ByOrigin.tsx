@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import { SkeletonByOrigin } from "./SkeletonMoviesByGenres"
 
-const ByOrigin = () => {
+const ByOrigin = ({ fnc }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
     const [section, setSection] = useState("hollywood")
@@ -15,10 +15,11 @@ const ByOrigin = () => {
 
     useEffect(() => {
         fetchData();
+        fnc(section);
         setTimeout(() => {
             setisLoading(false)
         }, 300);
-    }, [fetchData]);
+    }, [fetchData, section]);
 
     return (
         <section>
@@ -32,7 +33,7 @@ const ByOrigin = () => {
                     <div className="flex gap-3 flex-wrap justify-center">
                         {
                             data.map((item, idx) => {
-                                return <Button key={idx} className={`${item == section ? 'text-red- bg-red-600' : ''} capitalize rounded-full hover:bg-red-400`} onClick={() => setSection(item)}>
+                                return <Button key={idx} className={`${item == section ? 'text-white bg-red-600' : ''} capitalize rounded-full hover:bg-n`} onClick={() => setSection(item)}>
                                     {item}
                                 </Button>
                                 //          <Link to={`/${item == "hollywood" ? "" : `${item}`}`} >

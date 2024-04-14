@@ -57,7 +57,7 @@ const ByPlatform = () => {
                 <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.5 }}
                     className="flex flex-col gap-5">
                     <div className="flex gap-3 justify-between">
                         <h2 className="text-lg font-semibold">Platform: <span className="text-red-500">{platform}</span></h2>

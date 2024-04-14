@@ -3,47 +3,27 @@ import {
     MenubarMenu,
     MenubarTrigger,
 } from "@/components/ui/menubar"
+import { motion } from "framer-motion"
 import { NavLink } from "react-router-dom"
-
-
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 
 export function MenubarDesktop() {
     const list = ["Home", "Movies", "Series", "About"]
 
     return (
-        <Menubar className="lg:border-b">
+        <Menubar className="">
             {
                 list.map((item, idx) => {
                     return <MenubarMenu key={idx}>
-                        <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-500 " : ""}`}>
-                            <MenubarTrigger className="cursor-pointer" role="link">{
-                                item == "Movies" || item == "Series" ?
-                                    <Select>
-                                        <SelectTrigger className="appearance-none" >
-                                            <SelectValue placeholder={item} className="appearance-none" />
-                                        </SelectTrigger>
-                                        <SelectContent className="appearance-none" >
-                                            <SelectGroup className="appearance-none" >
-                                                <NavLink to={item} className={({ isActive }) => `${isActive ? "text-red-600" : ""} cursor-pointer `}>
-                                                    <SelectLabel>All {item}</SelectLabel>
-                                                </NavLink>
-                                                <SelectItem value={item} className="cursor-pointer">{item}</SelectItem>
-                                            </SelectGroup>
-                                        </SelectContent>
-                                    </Select>
-                                    :
-                                    item
-
-                            }</MenubarTrigger>
+                        <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-600 borderb  border-red-" : ""}`}>
+                            <motion.div
+                                initial={{ scale: 1 }}
+                                whileHover={{ scale: 1.1 }}
+                                className="w-fit"
+                            >
+                                <MenubarTrigger className="cursor-pointer" role="link">
+                                    {item}
+                                </MenubarTrigger>
+                            </motion.div>
                         </NavLink>
                     </MenubarMenu>
                 })
@@ -62,7 +42,7 @@ export function MenubarPhone() {
             {
                 list.map((item, idx) => {
                     return <MenubarMenu key={idx}>
-                        <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-500 " : ""}`}>
+                        <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-600 " : ""}`}>
                             <MenubarTrigger className="cursor-pointer text-sm min-[350px]:text-lg p-0" role="link">{item}</MenubarTrigger>
                         </NavLink>
                     </MenubarMenu>

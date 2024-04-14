@@ -89,6 +89,15 @@ const Info = () => {
                                                                         <span>{getYear(item.releaseDate)}</span>
                                                                     </div>
                                                                     <Genrestags genres={item.genres} />
+                                                                    {item.language ?
+                                                                    <div className="flex flex-col gap-3 pb-3 border-b w-fit">
+                                                                        <h3 className="text-xl">Available Languages:</h3>
+                                                                        <div className="flex gap-2 flex-wrap">
+                                                                            {item.language?.map((item, idx) => <span key={idx} className="text-lg">{item}</span>)}
+                                                                        </div>
+                                                                    </div>
+                                                                    : null
+                                                                    }
                                                                     <span className="text-xl">Synopsis:</span>
                                                                     <p className="text-sm text-gray-900 dark:text-gray-400 text-opacity-80 w-10/12 md:w-1/2">{item.overview}</p>
                                                                 </div>
