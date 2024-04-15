@@ -1,16 +1,14 @@
 import HomeMovieSection from "@/components/HomeSection"
 import ByOrigin from "@/components/MoviesFilter/ByOrigin";
 import MoviesFilter from "@/components/MoviesFilter/MoviesFilter"
-import { useState } from "react"
+// import { useState } from "react"
 
 const HomeSection = () => {
-    const [section, setSection] = useState('hollywood');
-    const [data, setData] = useState([])
-
+    // const [section, setSection] = useState('hollywood');
     const reciveData = (data) => {
-        setSection(data)
+        return data
+        // setSection(data)
     }
-
     // console.log(section)
     return (
         <>
@@ -18,7 +16,7 @@ const HomeSection = () => {
 
                 <ByOrigin fnc={reciveData} />
                 <MoviesFilter />
-                <HomeMovieSection origin={section} />
+                <HomeMovieSection/>
             </section>
         </>
     )
