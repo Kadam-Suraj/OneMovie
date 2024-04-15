@@ -32,7 +32,6 @@ const ByPlatform = () => {
     useEffect(() => {
         fetchData()
     }, [platform, fetchData])
-    console.log(response)
 
     return (
         <section className="flex flex-col gap-5 justify-center w-full">

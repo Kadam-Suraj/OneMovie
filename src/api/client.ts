@@ -78,7 +78,6 @@ export async function getMovie(origin) {
     // `*[_type == "movie"]| order(releaseDate desc)`
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
     // console.log(Movie)
-    console.log(origin)
     return Movie
 }
 
