@@ -32,6 +32,7 @@ const ByPlatform = () => {
     useEffect(() => {
         fetchData()
     }, [platform, fetchData])
+    console.log(response)
 
     return (
         <section className="flex flex-col gap-5 justify-center w-full">
@@ -55,7 +56,7 @@ const ByPlatform = () => {
                 </DropdownMenu>
             </div>
             {
-                response[0] &&
+                data && response[0] &&
                 <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
@@ -71,16 +72,18 @@ const ByPlatform = () => {
                         </Link>
                     </div>
                     {
-                        response[0] ? <div>
+                        response && <div>
                             <Gallery data={response} items={6} />
                         </div>
-                            :
-                            <div className="h-20 flex flex-col items-center justify-center">
-                                <h2 className="font-semibold text-xl animate-pulse">No Data in this platform</h2>
-                                <p className="text-lg animate-pulse">Please Select Another Origin or Platform</p>
-                            </div>
                     }
                 </motion.div>
+            }
+            {
+                response.length < 1 ? <div className="h-20 flex flex-col items-center justify-center">
+                    <h2 className="font-semibold text-xl animate-pulse">No Data in this platform</h2>
+                    <p className="text-lg animate-pulse">Please Select Another Origin or Platform</p>
+                </div>
+                    : null
             }
         </section>
     )
