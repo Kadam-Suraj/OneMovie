@@ -23,7 +23,7 @@ const ByOrigin = ({ fnc }) => {
 
     return (
         <section>
-            <div className="flex gap-3 flex-wrap justify-center min-h-10">
+            <div className="flex gap-3 justify-center min-h-10">
                 {
                     isLoading && <SkeletonByOrigin />
                 }

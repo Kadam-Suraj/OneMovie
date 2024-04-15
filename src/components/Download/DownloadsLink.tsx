@@ -1,12 +1,9 @@
 import { getDownloads } from '@/api/client'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from '../ui/button'
-import { useToast } from '../ui/use-toast'
+import { DownloadButton } from '../downloadButton'
 
 const DownloadsLink = ({ slug }) => {
     const [data, setData] = useState([])
-    const { toast } = useToast()
 
     useEffect(() => {
         (async () => {
@@ -29,24 +26,8 @@ const DownloadsLink = ({ slug }) => {
                                             <div className='flex flex-col items-center gap-2'>
                                                 <h2 className='text-xl'>Download 720P</h2>
                                                 <div className='flex gap-2 items-center justify-center flex-wrap'>
-                                                    {link.hd && link.hd.map((hdItem: any, idx: any) => (
-                                                        <div key={idx} className='flex flex-col items-center justify-center gap-2'>
-                                                            <div>
-                                                                <Link to={hdItem.link} className="w-ft">
-                                                                    <Button
-                                                                        onClick={() => {
-                                                                            toast({
-                                                                                title: "Thank You For Downloading.",
-                                                                                description: "Hope You Enjoyed Our Service",
-                                                                            });
-                                                                        }}
-                                                                        className=''
-                                                                    >
-                                                                        {hdItem.title} | {hdItem.size || "Size Not Available"}
-                                                                    </Button>
-                                                                </Link>
-                                                            </div>
-                                                        </div>
+                                                    {link.hd && link.hd.map((item: any, idx: any) => (
+                                                         <DownloadButton key={idx} item={item} idx={idx} />
                                                     ))}
                                                 </div>
                                             </div>
@@ -57,24 +38,8 @@ const DownloadsLink = ({ slug }) => {
                                                 <div className='flex flex-col items-center gap-2'>
                                                     <h2 className='text-xl'>Download 1080P</h2>
                                                     <div className='flex gap-2 items-center justify-center flex-wrap'>
-                                                        {link.fhd && link.fhd.map((fhdItem: any, idx: any) => (
-                                                            <div key={idx} className='flex flex-col items-center justify-center gap-2'>
-                                                                <div>
-                                                                    <Link to={fhdItem.link} className="w-ft">
-                                                                        <Button
-                                                                            onClick={() => {
-                                                                                toast({
-                                                                                    title: "Thank You For Downloading.",
-                                                                                    description: "Hope You Enjoyed Our Service",
-                                                                                });
-                                                                            }}
-                                                                            className=''
-                                                                        >
-                                                                            {fhdItem.title} | {fhdItem.size || "Size Not Available"}
-                                                                        </Button>
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
+                                                        {link.fhd && link.fhd.map((item: any, idx: any) => (
+                                                             <DownloadButton key={idx} item={item} idx={idx} />
                                                         ))}
                                                     </div>
                                                 </div>
@@ -86,24 +51,8 @@ const DownloadsLink = ({ slug }) => {
                                                 <div className='flex flex-col items-center gap-2'>
                                                     <h2 className='text-xl'>Download 2160P/4K</h2>
                                                     <div className='flex gap-2 items-center justify-center flex-wrap'>
-                                                        {link.uhd && link.uhd.map((uhdItem: any, idx: any) => (
-                                                            <div key={idx} className='flex flex-col items-center justify-center gap-2'>
-                                                                <div>
-                                                                    <Link to={uhdItem.link} className="w-ft">
-                                                                        <Button
-                                                                            onClick={() => {
-                                                                                toast({
-                                                                                    title: "Thank You For Downloading.",
-                                                                                    description: "Hope You Enjoyed Our Service",
-                                                                                });
-                                                                            }}
-                                                                            className=''
-                                                                        >
-                                                                            {uhdItem.title} | {uhdItem.size || "Size Not Available"}
-                                                                        </Button>
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
+                                                        {link.uhd && link.uhd.map((item: any, idx: any) => (
+                                                            <DownloadButton key={idx} item={item} idx={idx} />
                                                         ))}
                                                     </div>
                                                 </div>
@@ -121,3 +70,4 @@ const DownloadsLink = ({ slug }) => {
 }
 
 export default DownloadsLink
+
