@@ -14,6 +14,7 @@ import { Toaster } from './components/ui/toaster.tsx'
 import BySearch from './components/MoviesFilter/BySearch.tsx'
 import { GalleryListPlatform } from './components/GalleryList/GalleryList.tsx'
 import HomeSection from './Home/HomeSection.tsx'
+import { OriginProvider } from './Context/OriginContext.tsx'
 
 const router = createHashRouter(
   createRoutesFromElements(
@@ -34,9 +35,11 @@ const router = createHashRouter(
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <RouterProvider router={router} />
-      <Toaster />
-    </ThemeProvider>
+    <OriginProvider>
+      <ThemeProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </ThemeProvider>
+    </OriginProvider>
   </React.StrictMode>,
 )

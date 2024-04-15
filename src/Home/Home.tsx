@@ -14,6 +14,7 @@ const Hero = () => {
     useEffect(() => {
         fetchData();
     }, [fetchData]);
+    
 
     return (
         <>

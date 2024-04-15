@@ -4,20 +4,22 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import GallerySkeleton from "@/components/GalleryList/GallerySkeleton"
+import { useOrigin } from "@/Context/OriginContext"
 
 export const GalleryList = ({ type, link }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
+    const { origin } = useOrigin()
     useEffect(() => {
         (async () => {
-            const data = (await getMovie())
+            const data = (await getMovie(origin))
             setData(data)
         })()
 
         setTimeout(() => {
             setisLoading(false)
         }, 300);
-    }, [])
+    }, [origin])
 
     return (
 

@@ -12,6 +12,7 @@ import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { Button } from "../ui/button"
 import Gallery from "../GalleryList/Gallery"
+import { useOrigin } from "@/Context/OriginContext"
 
 const ByPlatform = () => {
 
@@ -19,17 +20,18 @@ const ByPlatform = () => {
     const [data, setData] = useState([])
     const [platform, setplatform] = useState("")
 
+    const { origin } = useOrigin()
 
     const fetchData = useCallback(async () => {
-        const res = await getPlatforms()
+        const res = await getPlatforms(origin)
         setData(res)
-        const platformRes = await searchByPlatform(platform)
+        const platformRes = await searchByPlatform(platform, origin)
         setResponse(platformRes)
-    }, [platform]);
+    }, [platform, origin]);
 
     useEffect(() => {
         fetchData()
-    }, [platform])
+    }, [platform, fetchData])
 
     return (
         <section className="flex flex-col gap-5 justify-center w-full">
@@ -73,8 +75,9 @@ const ByPlatform = () => {
                             <Gallery data={response} items={6} />
                         </div>
                             :
-                            <div className="h-20 flex items-center justify-center">
+                            <div className="h-20 flex flex-col items-center justify-center">
                                 <h2 className="font-semibold text-xl animate-pulse">No Data in this platform</h2>
+                                <p className="text-lg animate-pulse">Please Select Another Origin or Platform</p>
                             </div>
                     }
                 </motion.div>

@@ -1,6 +1,7 @@
+
 import { createClient } from "@sanity/client"
 import imageUrlBuilder from '@sanity/image-url'
-import { useEffect, useState } from "react"
+
 
 export const client = createClient({
     projectId: 'biuzzupd',
@@ -19,7 +20,7 @@ export function urlFor(source: any) {
 
 // ScreenShots
 export async function getScreenshots(source: any) {
-    const Images = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${source}"]{gallery[]}`)
+    const Images = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries"] && slug.current == "${source}"]{gallery[]}`)
     let Image = []
     Images.map((item: any) => {
         item.gallery.map((item: any) => {
@@ -34,25 +35,25 @@ export async function getScreenshots(source: any) {
 
 // Search Movie by user input
 export async function search(parameter: any) {
-    const Response = await client.fetch(`*[_type in ["movie", "series"] && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*." || tags match ".*${parameter}*." || platform match ".*${parameter}*."] | order(releaseDate desc)`)
+    const Response = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries"] && title match ".*${parameter}*." || genres match ".*${parameter}*." || status match ".*${parameter}*." || slug match ".*${parameter}*." || type match ".*${parameter}*." || origin match ".*${parameter}*." || tags match ".*${parameter}*." || platform match ".*${parameter}*."] | order(releaseDate desc)`)
     return Response
 }
 
 // Search by platfrom i.e Netflix, Amazon Prime, Disney+ Hotstar etc
 // get All the platforms without duplicate values
-export async function getPlatforms() {
-    const Platforms = await client.fetch(`array::unique(*[_type in ["movie", "series"]]{
+export async function getPlatforms(origin) {
+    const Platforms = await client.fetch(`array::unique(*[_type in ["movie", "series", "bollywood", "bollywoodseries"] && '${origin}' in origin[] ]{
         "platform": platform[]
-      }[].platform[])`)
+    }[].platform[])`)
     let data = Platforms.filter((value: any) => value !== null)
     data.sort()
     return data
 }
 
 // get Data by platform
-export async function searchByPlatform(platform: any) {
+export async function searchByPlatform(platform: any, origin) {
     const Platform = await client.fetch(`
-    *[_type in ["movie", "series"] && "${platform}" in platform] | order(releaseDate desc)
+    *[_type in ["movie", "series", "bollywood", "bollywoodseries"] && '${origin}' in origin[] && "${platform}" in platform] | order(releaseDate desc)
     `)
     // *[_type in ["movie", "series"] && "${platform}" in platform] 
     return Platform
@@ -72,41 +73,43 @@ export async function getLatest() {
 }
 
 // getMovie Data
-export async function getMovie() {
-    const Movie = await client.fetch(`*[_type == "movie"]| order(releaseDate desc)`) // Newest Released Date
-    // *[_type == "movie" && '${origin}' in origin[] ]| order(releaseDate desc)
+export async function getMovie(origin) {
+    const Movie = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries"] && '${origin}' in origin[]]| order(releaseDate desc)`) // Newest Released Date
+    // `*[_type == "movie"]| order(releaseDate desc)`
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
+    // console.log(Movie)
+    console.log(origin)
     return Movie
 }
 
 // get Info page
 export async function getInfo() {
-    const Info = await client.fetch('*[_type in ["movie", "series"] ]| order(releaseDate desc)') // Newest Released Date
+    const Info = await client.fetch('*[_type in ["movie", "series", "bollywood", "bollywoodseries"] ]| order(releaseDate desc)') // Newest Released Date
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
     return Info
 }
 
 
 export async function getMovieBySlug(slug: any) {
-    const Movie = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${slug}"]`)
+    const Movie = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries"] && slug.current == "${slug}"]`)
     return Movie
 }
 
 export async function getGenres(genre: any) {
-    const Genres = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${genre}"]{genres}`)
+    const Genres = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries"]  && slug.current == "${genre}"]{genres}`)
     return Genres
 }
 
-export async function getMovieByGenre(genre: any) {
-    const Genres = await client.fetch(`*[_type in ["movie", "series"] && "${genre}" in genres[]]| order(releaseDate desc)
+export async function getMovieByGenre(genre: any, origin) {
+    const Genres = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries"] && '${origin}' in origin[]  && "${genre}" in genres[]]| order(releaseDate desc)
     `)
     // *[_type == "movie" && genres[0] == "${genre}"] // checks only first genre
     return Genres
 }
 
 // get All the Genres without duplicate values
-export async function getAllGenres() {
-    const Genres = await client.fetch(`array::unique(*[_type in ["movie", "series"]]{
+export async function getAllGenres(origin) {
+    const Genres = await client.fetch(`array::unique(*[_type in ["movie", "series", "bollywood", "bollywoodseries"]  && '${origin}' in origin[] ]{
         "genres": genres[]
     }[].genres[])
     `)
@@ -132,26 +135,26 @@ export async function getOriginMovie() {
 }
 
 //
-export async function getSeries() {
-    const Movie = await client.fetch('*[_type == "series"] | order(releaseDate desc)') // Newest Released Date
+export async function getSeries(origin) {
+    const Movie = await client.fetch(`*[_type in ["series", "bollywoodseries"] && '${origin}' in origin[]] | order(releaseDate desc)`) // Newest Released Date
     return Movie
 }
 // Get All Download Links On Current Slug
 
 export async function getDownloads(link: any) {
-    const Download = await client.fetch(`*[_type in ["movie", "series"] && slug.current == "${link}"]{download}`)
+    const Download = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries"] && slug.current == "${link}"]{download}`)
     return Download
 }
 
 //
 
 export async function getEpisodes(link: any) {
-    const Episode = await client.fetch(`*[_type == "series" && slug.current == "${link}"]{episodes}`)
+    const Episode = await client.fetch(`*[_type in ["series", "bollywoodseries"] && slug.current == "${link}"]{episodes}`)
     return Episode
 }
 
 export async function getEpHD(link: any) {
-    const EpHD = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{episodes}`)
+    const EpHD = await client.fetch(`*[_type in ["series", "bollywoodseries"]" && slug.current == "${link}"]{episodes}`)
     let data: any
     EpHD?.map((item: any) => {
         item.episodes?.map((item: any) => {
@@ -162,7 +165,7 @@ export async function getEpHD(link: any) {
 }
 
 export async function getEpFHD(link: any) {
-    const EpFHD = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{episodes}`)
+    const EpFHD = await client.fetch(`*[_type in ["series", "bollywoodseries"] && slug.current == "${link}"]{episodes}`)
     let data: any
     EpFHD?.map((item: any) => {
         item.episodes?.map((item: any) => {
@@ -173,7 +176,7 @@ export async function getEpFHD(link: any) {
 }
 
 export async function getEpUHD(link: any) {
-    const EpUHD = await client.fetch(`*[_type == "movie" && slug.current == "${link}"]{episodes}`)
+    const EpUHD = await client.fetch(`*[_type in ["series", "bollywoodseries"] && slug.current == "${link}"]{episodes}`)
     let data: any
     EpUHD?.map((item: any) => {
         item.episodes?.map((item: any) => {
@@ -183,17 +186,17 @@ export async function getEpUHD(link: any) {
     return data
 }
 
-export const Movie = () => {
-    const [movie, setMovie] = useState([])
+// export const Movie = () => {
+//     const [movie, setMovie] = useState([])
 
-    useEffect(() => {
-        const fetchMovie = async () => {
-            const data = await getMovie()
-            setMovie(data)
-        }
-        fetchMovie()
-    }, [origin])
+//     useEffect(() => {
+//         const fetchMovie = async () => {
+//             const data = await getMovie()
+//             setMovie(data)
+//         }
+//         fetchMovie()
+//     }, [origin])
 
-    return movie
+//     return movie
 
-}
+// }

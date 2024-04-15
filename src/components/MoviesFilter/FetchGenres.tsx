@@ -1,13 +1,16 @@
+import { useOrigin } from "@/Context/OriginContext";
 import { getMovieByGenre, urlFor } from "@/api/client";
 import { useCallback, useEffect, useState } from "react";
 
 const MoviesByGenre = ({ genre }) => {
     const [data, setData] = useState([])
     // const [genre, setGenre] = useState()
+    const { origin } = useOrigin()
+    
     const fetchData = useCallback(async () => {
-        const data = await getMovieByGenre(genre);
+        const data = await getMovieByGenre(genre, origin);
         setData(data);
-    }, []);
+    }, [origin, genre]);
 
     // console.log(movie)
 
@@ -16,7 +19,7 @@ const MoviesByGenre = ({ genre }) => {
         // setTimeout(() => {
         //     setisLoading(false)
         // }, 100);
-    }, [fetchData]);
+    }, [fetchData, origin, genre]);
     return (
         <div className="grid grid-cols-2 gap-2">
             {

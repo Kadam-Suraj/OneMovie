@@ -2,24 +2,29 @@ import { getOriginMovie } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import { SkeletonByOrigin } from "./SkeletonMoviesByGenres"
+import { useOrigin } from "@/Context/OriginContext"
 
-const ByOrigin = ({ fnc }) => {
+const ByOrigin = ({ cachefnc }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
-    const [section, setSection] = useState("hollywood")
+
+    const { origin } = useOrigin()
 
     const fetchData = useCallback(async () => {
         const data = await getOriginMovie();
         setData(data);
     }, []);
 
+    const onClickHandler = (item) => {
+        cachefnc(item)
+    }
+
     useEffect(() => {
         fetchData();
-        fnc(section);
         setTimeout(() => {
             setisLoading(false)
         }, 300);
-    }, [fetchData, section]);
+    }, [fetchData]);
 
     return (
         <section>
@@ -33,7 +38,7 @@ const ByOrigin = ({ fnc }) => {
                     <div className="flex gap-3 flex-wrap justify-center">
                         {
                             data.map((item, idx) => {
-                                return <Button key={idx} className={`${item == section ? 'text-white bg-red-600' : ''} capitalize rounded-full hover:bg-n`} onClick={() => setSection(item)}>
+                                return <Button key={idx} className={`${item == origin ? 'text-white bg-red-600' : ''} capitalize rounded-full hover:bg-n`} onClick={() => onClickHandler(item)}>
                                     {item}
                                 </Button>
                                 //          <Link to={`/${item == "hollywood" ? "" : `${item}`}`} >

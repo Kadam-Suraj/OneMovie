@@ -2,16 +2,18 @@ import { useParams } from "react-router-dom"
 import { getMovieByGenre } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
 import Gallery from "../GalleryList/Gallery"
+import { useOrigin } from "@/Context/OriginContext"
 
 const CategoryGenre = () => {
     const { genre } = useParams()
     const [data, setData] = useState([])
     // const [isLoading, setisLoading] = useState(true)
+    const { origin } = useOrigin()
 
     const fetchData = useCallback(async () => {
-        const data = await getMovieByGenre(genre);
+        const data = await getMovieByGenre(genre, origin);
         setData(data);
-    }, []);
+    }, [origin]);
 
     // console.log(movie)
 
@@ -20,7 +22,7 @@ const CategoryGenre = () => {
         setTimeout(() => {
             // setisLoading(false)
         }, 100);
-    }, [fetchData]);
+    }, [fetchData, origin]);
 
     return (
         <section className="m-auto max-w-[1536px] grid gap-5 px-5 my-20">

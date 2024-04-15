@@ -62,7 +62,7 @@ function CardComp({ item, isVisible }) {
                                 {item.duration}
                             </span>
                         </span>
-                        <span className="uppercase text-sm text-red-500">
+                        <span className="uppercase text-sm text-red-600">
                             {item.genres[0]}
                         </span>
                     </div>

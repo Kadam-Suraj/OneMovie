@@ -1,15 +1,24 @@
-import { Movie, getSeries, search, searchByPlatform } from "@/api/client"
+import { getMovie, getSeries, search, searchByPlatform } from "@/api/client"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import Gallery from "./Gallery"
+import { useOrigin } from "@/Context/OriginContext"
 
 // Gallery Section Home
 export const GalleryMovies = ({ column, link }) => {
-    // const [data, setData] = useState([])
+    const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
+    const { origin } = useOrigin()
 
-    const data = Movie()
+    const fetch = async () => {
+        const data = await getMovie(origin)
+        setData(data)
+    }
+
+    useEffect(() => {
+        fetch()
+    }, [origin])
 
     setTimeout(() => {
         setisLoading(false)
@@ -47,17 +56,18 @@ export const GalleryMovies = ({ column, link }) => {
 export const GallerySeries = ({ column, link }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
+    const { origin } = useOrigin()
 
     useEffect(() => {
         (async () => {
-            const data = (await getSeries())
+            const data = (await getSeries(origin))
             setData(data)
         })()
 
         setTimeout(() => {
             setisLoading(false)
         }, 300);
-    }, [])
+    }, [origin])
 
     return (
 
@@ -123,16 +133,17 @@ export const GalleryListPlatform = () => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
     const { platform } = useParams()
+    const { origin } = useOrigin()
 
     useEffect(() => {
         (async () => {
-            const platformRes = await searchByPlatform(platform)
+            const platformRes = await searchByPlatform(platform, origin)
             setData(platformRes)
         })()
         setTimeout(() => {
             setisLoading(false)
         }, 300);
-    }, [platform])
+    }, [platform, origin])
 
     return (
         <>

@@ -8,21 +8,23 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { BiRightArrowAlt } from "react-icons/bi";
 import Autoplay from "embla-carousel-autoplay"
 import { motion } from "framer-motion"
+import { useOrigin } from "@/Context/OriginContext"
 
 const ByGenres = () => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
-    
+    const { origin } = useOrigin()
+
     const fetchData = useCallback(async () => {
-        const data = await getAllGenres();
+        const data = await getAllGenres(origin);
         setData(data);
         data ? setisLoading(false) : null
 
-    }, []);
-    
+    }, [origin]);
+
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [origin]);
 
     return (
         <section>

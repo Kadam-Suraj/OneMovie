@@ -10,7 +10,7 @@ export function MenubarDesktop() {
     const list = ["Home", "Movies", "Series", "About"]
 
     return (
-        <Menubar className="">
+        <Menubar className="bg-black text-white dark:bg-white dark:text-black rounded-md">
             {
                 list.map((item, idx) => {
                     return <MenubarMenu key={idx}>
