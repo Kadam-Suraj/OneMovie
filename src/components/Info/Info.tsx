@@ -67,17 +67,22 @@ const Info = () => {
                                                         <div className="flex flex-col gap-10">
                                                             <div className="flex flex-col items-center gap-2 justify-center order-2 md:-order-">
                                                                 <h2 className="self-start font-bold text-2xl">Watch Trailer :</h2>
-                                                                <div className="w-full flex justify-center">
-                                                                    <ReactPlayer
-                                                                        config={{
-                                                                            youtube: {
-                                                                                playerVars: { showinfo: 0, }
-                                                                            }
-                                                                        }}
-                                                                        controls
-                                                                        url={item.trailer}
-                                                                    />
-                                                                </div>
+                                                                {
+                                                                    item.trailer ?
+                                                                        <div className="w-full flex justify-center">
+                                                                            <ReactPlayer
+                                                                                config={{
+                                                                                    youtube: {
+                                                                                        playerVars: { showinfo: 0, }
+                                                                                    }
+                                                                                }}
+                                                                                controls
+                                                                                url={item.trailer}
+                                                                            />
+                                                                        </div>
+                                                                        :
+                                                                        <h2 className="font-semibold text-2xl">Trailer Unavailable</h2>
+                                                                }
                                                             </div>
                                                             <div className="grid grid-cols-1 gap-2">
                                                                 <Button variant="outline" className="w-fit pointer-events-none">Download</Button>
@@ -90,13 +95,13 @@ const Info = () => {
                                                                     </div>
                                                                     <Genrestags genres={item.genres} />
                                                                     {item.language ?
-                                                                    <div className="flex flex-col items-cente gap-3">
-                                                                        <h3 className="text-xl">Available Languages:</h3>
-                                                                        <ul className="flex gap-10 flex-wrap pl-4">
-                                                                            {item.language?.map((item, idx) => <li key={idx} className="list-decimal text-lg font-semibold">{item}</li>)}
-                                                                        </ul>
-                                                                    </div>
-                                                                    : null
+                                                                        <div className="flex flex-col items-cente gap-3">
+                                                                            <h3 className="text-xl">Available Languages:</h3>
+                                                                            <ul className="flex gap-10 flex-wrap pl-4">
+                                                                                {item.language?.map((item, idx) => <li key={idx} className="list-decimal text-lg font-semibold">{item}</li>)}
+                                                                            </ul>
+                                                                        </div>
+                                                                        : null
                                                                     }
                                                                     <span className="text-xl">Synopsis:</span>
                                                                     <p className="text-sm text-gray-900 dark:text-gray-400 text-opacity-80 w-10/12 md:w-1/2">{item.overview}</p>

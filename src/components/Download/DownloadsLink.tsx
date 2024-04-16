@@ -20,7 +20,7 @@ const DownloadsLink = ({ slug }) => {
                         {
                             item.download?.map((link: any, idx: any) => {
                                 return (
-                                    <div key={idx} className='grid gap-10'>
+                                    <div key={idx} className='grid gap-5 pt-5'>
                                         {
                                             link.hd &&
                                             <div className='flex flex-col items-center gap-2'>
