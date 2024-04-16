@@ -127,7 +127,7 @@ const Info = () => {
                                                                     <div className="grid gap-5">
                                                                         {
                                                                             screenshot.map((item, idx) => {
-                                                                                return <img key={idx} src={item} alt={`screenshot${idx}`} className="pointer-events-none" />
+                                                                                return <img key={idx} src={item} alt={`screenshot${idx}`} className="pointer-events-none w-full" />
                                                                             })
                                                                         }
                                                                     </div>
