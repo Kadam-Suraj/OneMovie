@@ -25,7 +25,6 @@ export async function getScreenshots(source: any) {
             Image.push([urlFor(item).url()])
         })
     })
-    console.log(Images)
     return Image
 }
 

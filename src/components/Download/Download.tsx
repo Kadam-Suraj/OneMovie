@@ -14,12 +14,13 @@ const Download = ({ slug }) => {
     }, [slug])
 
     return (
-        <div className='md:w-1/2 mx-auto'>{
+        <div className='md:w-1/2 mx-auto pt-14'>{
             data.map((item, idx) => {
                 if (item.slug.current == slug) {
                     return <div key={idx} className='flex flex-col items-center'>
-                        {item.episodes ? <Episodes slug={slug} /> : item.download ? <DownloadsLink slug={slug} /> :
-                            <h2>Downloads Will Available Soon</h2>}
+                        {item.episodes ? <Episodes slug={slug} /> : null}
+                        {item.download ? <DownloadsLink slug={slug} /> : null}
+                        {!item.episodes && !item.download ? <h2>Downloads Will Available Soon</h2> : null}
                     </div>
                 }
             })

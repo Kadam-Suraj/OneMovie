@@ -21,13 +21,14 @@ const DownloadsLink = ({ slug }) => {
                             item.download?.map((link: any, idx: any) => {
                                 return (
                                     <div key={idx} className='grid gap-5 pt-5'>
+                                        <h2 className="text-center font-semibold text-xl">{link?.title}</h2>
                                         {
                                             link.hd &&
                                             <div className='flex flex-col items-center gap-2'>
-                                                <h2 className='text-xl'>Download 720P</h2>
+                                                <h2 className='text-xl'>720P</h2>
                                                 <div className='flex gap-2 items-center justify-center flex-wrap'>
                                                     {link.hd && link.hd.map((item: any, idx: any) => (
-                                                         <DownloadButton key={idx} item={item} idx={idx} />
+                                                        <DownloadButton key={idx} item={item} idx={idx} />
                                                     ))}
                                                 </div>
                                             </div>
@@ -36,10 +37,10 @@ const DownloadsLink = ({ slug }) => {
                                             {
                                                 link.fhd &&
                                                 <div className='flex flex-col items-center gap-2'>
-                                                    <h2 className='text-xl'>Download 1080P</h2>
+                                                    <h2 className='text-xl'>1080P</h2>
                                                     <div className='flex gap-2 items-center justify-center flex-wrap'>
                                                         {link.fhd && link.fhd.map((item: any, idx: any) => (
-                                                             <DownloadButton key={idx} item={item} idx={idx} />
+                                                            <DownloadButton key={idx} item={item} idx={idx} />
                                                         ))}
                                                     </div>
                                                 </div>
@@ -49,7 +50,7 @@ const DownloadsLink = ({ slug }) => {
                                             {
                                                 link.uhd &&
                                                 <div className='flex flex-col items-center gap-2'>
-                                                    <h2 className='text-xl'>Download 2160P/4K</h2>
+                                                    <h2 className='text-xl'>2160P/4K</h2>
                                                     <div className='flex gap-2 items-center justify-center flex-wrap'>
                                                         {link.uhd && link.uhd.map((item: any, idx: any) => (
                                                             <DownloadButton key={idx} item={item} idx={idx} />
