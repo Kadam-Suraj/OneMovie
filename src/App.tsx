@@ -1,8 +1,17 @@
 import Header from "./components/Header/Header"
 import { Outlet } from "react-router-dom";
 import ScrollToTop from "./components/ScrollOnTop/ScrollToTop";
+import { useOrigin } from "./Context/OriginContext";
+import { useEffect } from "react";
+
 
 function App() {
+  const { setOrigin } = useOrigin()
+  
+  useEffect(() => {
+    const cachedData = localStorage.getItem('cachedData');
+    cachedData ? setOrigin(cachedData) : setOrigin('hollywood');
+  }, []);
 
   return (
     <>

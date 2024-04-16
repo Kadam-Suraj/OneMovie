@@ -8,21 +8,19 @@ const HomeSection = () => {
     const { setOrigin } = useOrigin()
 
     useEffect(() => {
-        // const cachedData = localStorage.getItem('cachedData');
-        // cachedData ? setCachedValue(cachedData) : setCachedValue("hollywood");
-        // setOrigin('hollywood')
+        // const cachedData = localStorage.getItem('origin');
+        // cachedData ? setOrigin(cachedData) : setOrigin('hollywood');
     }, []);
-    
+
     const handleStoreInCache = (item) => {
-        // localStorage.setItem('cachedData', item);
+        localStorage.setItem('origin', item);
         setOrigin(item)
     };
-
-    // console.log(cachedValue)
+    
     return (
         <>
             <section className="m-auto max-w-[1536px] border-y py-10 flex flex-col gap-5">
-                <div className="flex justify-center">
+                <div className="">
                     {/* <div>
                     </div> */}
                     {/* <h2 className="font-semibold text-2xl">Choose Section:</h2> */}

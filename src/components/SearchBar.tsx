@@ -49,7 +49,11 @@ const SearchComponent = () => {
         if (e.key == "Enter") {
             redirect(`/search/${input}`);
             setShowInput(false);
+            if (!input) {
+                redirect(`/`);
+            }
         }
+
     }
 
     const getData = async () => {

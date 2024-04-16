@@ -6,10 +6,10 @@ const HomeMovieSection = () => {
             <div>
                 <h2 className="font-semibold text-xl">Latest Release</h2>
             </div>
-            <div>
+            <div className="min-h-[26rem]">
                 <GalleryMovies column={6} link={true}></GalleryMovies>
             </div>
-            <div>
+            <div className="min-h-[26rem]">
                 <GallerySeries column={6} link={true}></GallerySeries>
             </div>
         </section>

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardFooter } from '../ui/card';
@@ -92,12 +92,14 @@ function Gallery({ data, items }) {
 
     return (
         <div className="grid grid-cols-1 min-[300px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-2">
-            {data.slice(0, itemCount).map((item, index) => (
-                <div key={index} className='relative'>
-                    < CardSkeleton isVisible={cardsLoaded.includes(index)} />
-                    <CardComp item={item} isVisible={cardsLoaded.includes(index)} />
-                </div>
-            ))}
+            <AnimatePresence>
+                {data.slice(0, itemCount).map((item, index) => (
+                    <div key={index} className='relative'>
+                        < CardSkeleton isVisible={cardsLoaded.includes(index)} />
+                        <CardComp item={item} isVisible={cardsLoaded.includes(index)} />
+                    </div>
+                ))}
+            </AnimatePresence>
         </div>
     );
 }

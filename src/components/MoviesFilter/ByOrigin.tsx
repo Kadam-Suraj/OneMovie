@@ -7,7 +7,6 @@ import { useOrigin } from "@/Context/OriginContext"
 const ByOrigin = ({ cachefnc }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
-
     const { origin } = useOrigin()
 
     const fetchData = useCallback(async () => {
@@ -27,7 +26,10 @@ const ByOrigin = ({ cachefnc }) => {
     }, [fetchData]);
 
     return (
-        <section>
+        <section className="grid gap-3">
+            <h2 className="font-semibold text-xl">
+                Origin:
+            </h2>
             <div className="flex gap-3 justify-center min-h-10">
                 {
                     isLoading && <SkeletonByOrigin />
@@ -41,8 +43,6 @@ const ByOrigin = ({ cachefnc }) => {
                                 return <Button key={idx} className={`${item == origin ? 'text-white bg-red-600' : ''} capitalize rounded-full hover:bg-n`} onClick={() => onClickHandler(item)}>
                                     {item}
                                 </Button>
-                                //          <Link to={`/${item == "hollywood" ? "" : `${item}`}`} >
-                                // </Link>
                             })
                         }
                     </div>

@@ -10,17 +10,19 @@ const OriginContext = createContext<OriginContextType | undefined>(undefined);
 
 // Step 2: Create a state hook
 const OriginProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [origin, setOrigin] = useState('hollywood');
+  const [origin, setOrigin] = useState('');
 
+  
+
+  // localStorage.setItem('cachedData', origin);
   useEffect(() => {
-    const cachedData = localStorage.getItem('cachedData');
-    cachedData ? setOrigin(cachedData) : setOrigin("hollywood");
+    const getcachedData = localStorage.getItem('origin');
+    getcachedData ? setOrigin(getcachedData) : setOrigin("hollywood");
+    // const cachedData = localStorage.setItem('cachedData');
   }, []);
   
   useEffect(() => {
-    setOrigin('hollywood')
-    // localStorage.setItem('cachedData', origin);
-    // const cachedData = localStorage.getItem('cachedData');
+    // setOrigin('hollywood')
     // setOrigin(cachedData)
   }, [])
 

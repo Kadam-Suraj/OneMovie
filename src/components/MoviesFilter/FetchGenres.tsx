@@ -8,7 +8,7 @@ const MoviesByGenre = ({ genre }) => {
     const { origin } = useOrigin()
     
     const fetchData = useCallback(async () => {
-        const data = await getMovieByGenre(genre, origin);
+        const data = await getMovieByGenre(genre, origin || 'hollywood');
         setData(data);
     }, [origin, genre]);
 

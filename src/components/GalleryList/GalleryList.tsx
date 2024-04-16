@@ -3,22 +3,22 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import Gallery from "./Gallery"
-import { useOrigin } from "@/Context/OriginContext"
+import Processing from "../Processing"
 
 // Gallery Section Home
 export const GalleryMovies = ({ column, link }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
-    const { origin } = useOrigin()
+    const storage = localStorage.getItem('origin')
 
     const fetch = async () => {
-        const data = await getMovie(origin)
+        const data = await getMovie(storage || 'hollywood')
         setData(data)
     }
 
     useEffect(() => {
         fetch()
-    }, [origin])
+    }, [storage])
 
     setTimeout(() => {
         setisLoading(false)
@@ -27,7 +27,8 @@ export const GalleryMovies = ({ column, link }) => {
     return (
 
         <>
-            {!isLoading && data &&
+
+            {!isLoading && data ?
 
                 <div className="grid gap-10 border-t pt-10 items-start">
                     <div className="flex gap-3 justify-between">
@@ -46,6 +47,12 @@ export const GalleryMovies = ({ column, link }) => {
                         }
                     </div>
                 </div>
+                :
+                <Processing />
+            }
+            {!data[0] && !isLoading ?
+                <h2 className="text-center w-full font-semibold text-2xl">No Data Found</h2>
+                : null
             }
         </>
     )
@@ -56,23 +63,23 @@ export const GalleryMovies = ({ column, link }) => {
 export const GallerySeries = ({ column, link }) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
-    const { origin } = useOrigin()
+    const storage = localStorage.getItem('origin')
 
     useEffect(() => {
         (async () => {
-            const data = (await getSeries(origin))
+            const data = (await getSeries(storage || 'hollywood'))
             setData(data)
         })()
 
         setTimeout(() => {
             setisLoading(false)
         }, 300);
-    }, [origin])
+    }, [storage])
 
     return (
 
         <>
-            {!isLoading && data &&
+            {!isLoading && data ?
 
                 <div className="grid gap-10 border-t pt-10">
                     <div className="flex gap-3 justify-between">
@@ -91,6 +98,12 @@ export const GallerySeries = ({ column, link }) => {
                         }
                     </div>
                 </div>
+                :
+                <Processing />
+            }
+            {!data[0] && !isLoading ?
+                <h2 className="text-center w-full font-semibold text-2xl">No Data Found</h2>
+                : null
             }
         </>
     )
@@ -133,17 +146,17 @@ export const GalleryListPlatform = () => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
     const { platform } = useParams()
-    const { origin } = useOrigin()
+    const storage = localStorage.getItem('origin')
 
     useEffect(() => {
         (async () => {
-            const platformRes = await searchByPlatform(platform, origin)
+            const platformRes = await searchByPlatform(platform, storage || 'hollywood')
             setData(platformRes)
         })()
         setTimeout(() => {
             setisLoading(false)
         }, 300);
-    }, [platform, origin])
+    }, [platform, storage])
 
     return (
         <>
@@ -151,10 +164,12 @@ export const GalleryListPlatform = () => {
                 <div>
                     <h2 className="font-semibold text-lg">Platform : <span className="text-red-500">{platform}</span></h2>
                 </div>
-                {!isLoading && data &&
+                {!isLoading && data ?
                     <div className="grid gap-10 flex-wrap justify-center border-t pt-10">
                         <Gallery data={data} items={null} />
                     </div>
+                    :
+                    <Processing />
                 }
             </section>
         </>
