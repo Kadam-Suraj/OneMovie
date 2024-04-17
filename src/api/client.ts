@@ -9,7 +9,6 @@ export const client = createClient({
     // token: process.env.SANITY_SECRET_TOKEN // Only if you want to update content with the client
 })
 
-
 // Image URI
 const builder = imageUrlBuilder(client)
 export function urlFor(source: any) {

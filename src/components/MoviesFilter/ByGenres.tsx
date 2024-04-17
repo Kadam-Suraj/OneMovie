@@ -27,15 +27,19 @@ const ByGenres = () => {
 
     return (
         <section>
-            <div className="flex gap-3 flex-wrap justify-center overflow-hidden h-[26rem]">
-                {
-                    isLoading && <MoviesByGenresSkeleton />
-                }
+            <div className="flex gap-3 flex-wrap justify-center overflow-hidden h-[33rem]">
 
                 <div
                     className="w-full grid gap-5">
-                    <h2 className="font-semibold text-2xl">Category</h2>
+                    <div className="flex flex-col gap-2 pb-10">
+                        <h2 className="font-semibold text-2xl">Category</h2>
+                        <h2 className="font-bold text-2xl">Explore our wide variety of categories</h2>
+                        <p className="text-sm">Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</p>
+                    </div>
                     <div className="lg:px-12">
+                        {
+                            isLoading && <MoviesByGenresSkeleton />
+                        }
 
                         {data[0] ?
                             <Carousel orientation="horizontal" className="gri rid-cols-5 gap- justify-center w-full"
