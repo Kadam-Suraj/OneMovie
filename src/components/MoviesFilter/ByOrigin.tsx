@@ -28,7 +28,7 @@ const ByOrigin = ({ cachefnc }) => {
     return (
         <section className="grid gap-3">
             <h2 className="font-semibold text-xl">
-                Origin:
+                Select Origin:
             </h2>
             <div className="flex gap-3 justify-center min-h-10">
                 {
