@@ -27,8 +27,7 @@ const ByGenres = () => {
 
     return (
         <section>
-            <div className="flex gap-3 flex-wrap justify-center overflow-hidden h-[33rem]">
-
+            <div className="flex gap-3 flex-wrap justify-center overflow-hidden min-h-[33rem]">
                 <div
                     className="w-full grid gap-5">
                     <div className="flex flex-col gap-2 pb-10">
@@ -54,7 +53,7 @@ const ByGenres = () => {
                                     <AnimatePresence>
                                         {
                                             data.map((genre, idx) => {
-                                                return <CarouselItem key={idx} >
+                                                return <CarouselItem key={idx}>
 
                                                     <motion.div
                                                         initial={{ opacity: 0 }}
