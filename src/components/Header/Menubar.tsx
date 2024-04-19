@@ -5,12 +5,13 @@ import {
 } from "@/components/ui/menubar"
 import { motion } from "framer-motion"
 import { NavLink } from "react-router-dom"
+import { SheetClose } from "../ui/sheet"
 
 export function MenubarDesktop() {
     const list = ["Home", "Movies", "Series", "About"]
 
     return (
-        <Menubar className="bg-black text-white dark:bg-white dark:text-black rounded-md">
+        <Menubar className="bg-black text-white dark:bg-white dark:text-black rounded-md space-x-1 divide-x divide-red-600">
             {
                 list.map((item, idx) => {
                     return <MenubarMenu key={idx}>
@@ -20,7 +21,7 @@ export function MenubarDesktop() {
                                 whileHover={{ scale: 1.1 }}
                                 className="w-fit"
                             >
-                                <MenubarTrigger className="cursor-pointer" role="link">
+                                <MenubarTrigger className="cursor-pointer " role="link">
                                     {item}
                                 </MenubarTrigger>
                             </motion.div>
@@ -29,8 +30,6 @@ export function MenubarDesktop() {
                 })
             }
         </Menubar >
-
-
     )
 }
 
@@ -38,40 +37,18 @@ export function MenubarPhone() {
     const list = ["Home", "Movies", "Series", "About"]
 
     return (
-        <Menubar className="flex flex-col justify-start gap-5 items-start">
+        <Menubar className="flex flex-col justify-start gap-5 items-start border-t w-full mt-2">
             {
                 list.map((item, idx) => {
                     return <MenubarMenu key={idx}>
-                        <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-600 " : ""}`}>
-                            <MenubarTrigger className="cursor-pointer text-sm min-[350px]:text-lg p-0" role="link">{item}</MenubarTrigger>
+                        <NavLink to={item == "Home" ? "/" : item} className={({ isActive }) => `${isActive ? "text-red-600" : ""}`}>
+                            <SheetClose asChild>
+                                <MenubarTrigger className="cursor-pointer text-sm min-[350px]:text-lg p-0" role="link">{item}</MenubarTrigger>
+                            </SheetClose>
                         </NavLink>
                     </MenubarMenu>
                 })
             }
         </Menubar >
-
-
     )
 }
-
-
-
-// export function SelectContentMenu() {
-//     return (
-//       <Select>
-//         <SelectTrigger className="w-[180px]">
-//           <SelectValue placeholder="Select a fruit" />
-//         </SelectTrigger>
-//         <SelectContent>
-//           <SelectGroup>
-//             <SelectLabel>Fruits</SelectLabel>
-//             <SelectItem value="apple">Apple</SelectItem>
-//             <SelectItem value="banana">Banana</SelectItem>
-//             <SelectItem value="blueberry">Blueberry</SelectItem>
-//             <SelectItem value="grapes">Grapes</SelectItem>
-//             <SelectItem value="pineapple">Pineapple</SelectItem>
-//           </SelectGroup>
-//         </SelectContent>
-//       </Select>
-//     )
-//   }
