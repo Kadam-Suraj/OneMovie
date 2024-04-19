@@ -6,6 +6,7 @@ const GetReleasedStatus = ({ date }) => {
     const Day = new Date(date).toDateString()
     const currentDate = new Date().toDateString()
     const filteredCurrentDate = new Date(currentDate).getTime()
+    console.log(currentDate)
 
     console.log()
     return <div>
