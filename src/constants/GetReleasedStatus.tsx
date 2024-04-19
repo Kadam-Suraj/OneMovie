@@ -6,10 +6,10 @@ const GetReleasedStatus = ({ date }) => {
     const Day = new Date(date).getDate()
 
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const day = months[new Date(date).getMonth()];
+    const Month = months[new Date(date).getMonth()];
 
     return <div>
-        {currentTimeStamp >= movieDate ? <span>Released in {getYear(date)}</span> : <span>Will release on {`${Day}-${day}`}</span>}
+        {currentTimeStamp >= movieDate ? <span>Released in {getYear(date)}</span> : <span>Will release on {`${Day}-${Month}`}</span>}
     </div>
 }
 

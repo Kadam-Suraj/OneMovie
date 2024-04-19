@@ -17,7 +17,7 @@ const Header = () => {
     }
 
     return (
-        <header className="bg-white dark:bg-black backdrop-blur bg-opacity-30 border-b md:border-b-0 md:border-x border-slate-300 border-x- dark:bg-opacity-30 md:rounded-full items-center grid grid-cols-2 md:grid-cols-3 gap-2 px-5 py-2 pt-3 mx-auto max-w-[1536px]">
+        <header className="bg-white dark:bg-black backdrop-blur bg-opacity-30 border-b md:border-b-0 md:border-x border-slate-300 border-x- dark:bg-opacity-30 md:rounded-full items-center grid grid-cols-2 md:grid-cols-3 gap-2 px-5 py-2 mx-auto max-w-[1536px]">
             <Link to={"/"} className="w-fit z-10 flex items-center gap-5">
                 <img className="dark:invert-0 invert select-none" src={logo} width={40} alt="logo" />
                 <span className="text-2xl font-semibold min-[380px]:block hidden">Rapid<span className="text-red-600">Flix</span></span>

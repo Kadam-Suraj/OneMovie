@@ -8,10 +8,19 @@ export const DownloadButton = ({ item, idx }) => {
             <Link to={item.link} className="w-ft">
                 <Button
                     onClick={() => {
-                        toast({
-                            title: "Thank You For Downloading.",
-                            description: "Hope You Enjoyed Our Service",
-                        });
+                        if (!item.link) {
+                            toast({
+                                title: "Uploading . . .",
+                                description: "Link Will Be Available Soon.",
+                            });
+                        }
+                        else {
+
+                            toast({
+                                title: "Thank You For Downloading.",
+                                description: "Hope You Enjoyed Our Service",
+                            });
+                        }
                     }}
                     className='flex gap-2 pr-1'
                 >

@@ -62,8 +62,8 @@ const Banner = () => {
                                             <CardContent className="flex items-center lg:justify-center min-[300px]:p-6">
                                                 <div className="grid gap-5 lg:grid-cols-2 w-fit" >
                                                     <div className="flex flex-col gap-5 justify-center w-full">
-                                                        <div className="flex gap-5 items-center text-xs pr-4 sm:pr-0 w-fit sm:w-full bg-gradient-to-r from-black dark:from-white dark:from-100% sm:dark:from-70% sm:from-70% from-100% sm:to-transparent sm:dark:to-transparent sm:dark:to-90% sm:to-90% rounded-full px-1 min-[300px]:py-1">
-                                                            <span className="bg-red-500 px-4 py-2 rounded-full text-white uppercase">{item.status}</span>
+                                                        <div className="flex gap-2 items-center text-xs pr-4 sm:pr-0 w-fit min-[400px]:w-full bg-gradient-to-r from-black dark:from-white dark:from-100% min-[400px]:dark:from-70% min-[400px]:from-70% from-100% min-[400px]:to-transparent min-[400px]:dark:to-transparent min-[400px]:dark:to-90% min-[400px]:to-90% rounded-full">
+                                                            <span className="bg-red-500 px-4 py-2 rounded-full text-white uppercase m-1">{item.status}</span>
                                                             <span className="text-white dark:text-black text-sm text-opacity0"><GetReleasedStatus date={item.releaseDate} /></span>
                                                         </div>
                                                         <h1 className="font-bold text-[32px] min-[300px]:text-3xl sm:text-6xl lg:text-8xl text-wrap sm:w-full">{item.title}</h1>
