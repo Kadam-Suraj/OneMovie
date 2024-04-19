@@ -1,16 +1,15 @@
 import { getYear } from "./getYear";
 
 const GetReleasedStatus = ({ date }) => {
-
+    const currentTimeStamp = new Date(new Date().toISOString()).getTime()
     const movieDate = new Date(date).getTime()
-    const Day = new Date(date).toDateString()
-    const currentDate = new Date().toDateString()
-    const filteredCurrentDate = new Date(currentDate).getTime()
-    console.log(currentDate)
+    const Day = new Date(date).getDate()
 
-    console.log()
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const day = months[new Date(date).getMonth()];
+
     return <div>
-        {filteredCurrentDate >= movieDate ? <span>Released in {getYear(date)}</span> : <span>Will release on {`${Day}`}</span>}
+        {currentTimeStamp >= movieDate ? <span>Released in {getYear(date)}</span> : <span>Will release on {`${Day}-${day}`}</span>}
     </div>
 }
 
