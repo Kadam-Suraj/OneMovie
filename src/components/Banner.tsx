@@ -15,7 +15,7 @@ import Genrestags from "./genres-tags"
 import SkeletonComponent from "./BannerLoading"
 import { motion } from "framer-motion"
 import { getYear } from "@/constants/getYear"
-
+import GetReleasedStatus from "@/constants/GetReleasedStatus"
 
 const Banner = () => {
     const [data, setData] = useState([])
@@ -33,7 +33,6 @@ const Banner = () => {
 
     return (
         <>
-
             {
                 isLoading &&
                 <SkeletonComponent />
@@ -63,11 +62,11 @@ const Banner = () => {
                                             <CardContent className="flex items-center lg:justify-center min-[300px]:p-6">
                                                 <div className="grid gap-5 lg:grid-cols-2 w-fit" >
                                                     <div className="flex flex-col gap-5 justify-center w-full">
-                                                        <div className="flex gap-5 items-center text-xs w-full lg:w-1/2 bg-gradient-to-r  from-black dark:from-white dark:from-70% from-70% to-transparent dark:to-transparent dark:to-90% to-90% rounded-full px-1 min-[300px]:py-1">
+                                                        <div className="flex gap-5 items-center text-xs pr-4 sm:pr-0 w-fit sm:w-full bg-gradient-to-r from-black dark:from-white dark:from-100% sm:dark:from-70% sm:from-70% from-100% sm:to-transparent sm:dark:to-transparent sm:dark:to-90% sm:to-90% rounded-full px-1 min-[300px]:py-1">
                                                             <span className="bg-red-500 px-4 py-2 rounded-full text-white uppercase">{item.status}</span>
-                                                            <span className="text-white dark:text-black text-sm text-opacity0">Released In {getYear(item.releaseDate)}</span>
+                                                            <span className="text-white dark:text-black text-sm text-opacity0"><GetReleasedStatus date={item.releaseDate} /></span>
                                                         </div>
-                                                        <h1 className="font-bold text-[32px] min-[300px]:text-5xl lg:text-8xl leading-10 min-[300px]:leading-[3.5rem] text-wrap sm:w-full">{item.title}</h1>
+                                                        <h1 className="font-bold text-[32px] min-[300px]:text-3xl sm:text-6xl lg:text-8xl text-wrap sm:w-full">{item.title}</h1>
                                                         <div className="flex gap-5 items-center">
                                                             <span className="border py-1 px-2">{item.type}</span>
                                                             <span>{item.duration}</span>
@@ -86,7 +85,7 @@ const Banner = () => {
                                                                 <div className="flex flex-col items-center gap-10">
                                                                     <h2 className="text-5xl">Poster Unavailable</h2>
                                                                 </div>
-                                                                <p>sorry for inconvenience</p>
+                                                                <p>Sorry for inconvenience</p>
                                                             </div>
                                                         }
                                                     </div>
