@@ -12,7 +12,6 @@ const ShowComments = ({ slug, update }) => {
     useEffect(() => {
         fetch()
     }, [slug, update])
-    console.log(data)
 
     return (
         <div>

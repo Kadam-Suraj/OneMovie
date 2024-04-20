@@ -3,6 +3,7 @@ import { Button } from '../ui/button';
 import { createClient } from '@sanity/client';
 import ShowComments from './ShowComments';
 import { v4 as uuidv4 } from 'uuid'
+import { toast } from "@/components/ui/use-toast";
 
 const client = createClient({
     projectId: 'biuzzupd',
@@ -23,6 +24,7 @@ const CreateComment = ({ movie, slug }) => {
     const [remark, setRemark] = useState(false)
 
     const handleChange = (e) => {
+
         setComment({
             ...comment,
             [e.target.name]: e.target.value
@@ -40,41 +42,58 @@ const CreateComment = ({ movie, slug }) => {
 
             // Add new comment to the comments array
 
-            const newComment = {
-                _type: 'comment',
-                name: comment.name,
-                _key: uuidv4(),
-                email: comment.email,
-                message: comment.message,
-                createdAt: new Date().toISOString() // Add createdAt field with current date
-            };
+            if (comment.name == 'Admin' || comment.name == 'admin' || comment.name == 'RapidFlix' || comment.name == 'rapidflix') {
+                toast({
+                    title: "Cannot Use This Username",
+                    description: "This username is registered please your another.",
+                });
+            }
+            else {
+                const newComment = {
+                    _type: 'comment',
+                    name: comment.name,
+                    _key: uuidv4(),
+                    email: comment.email,
+                    message: comment.message,
+                    createdAt: new Date().toISOString() // Add createdAt field with current date
+                };
 
-            const updatedComments = [...movie.comments, newComment];
+                const updatedComments = [...movie.comments, newComment];
 
-            // const updatedComments = [...movie.comments, {
+                // const updatedComments = [...movie.comments, {
 
-            //     _type: 'comment',
-            //     name: comment.name,
-            //     _key: uuidv4(),
-            //     email: comment.email,
-            //     message: comment.message
-            // }];
-            // Update movie document with the new comments array
-            await client.patch(movie._id).set({ comments: updatedComments }).commit();
-            setComment({
-                _type: '',
-                name: '',
-                _key: '',
-                email: '',
-                message: ''
-            });
-            setRemark(!remark)
+                //     _type: 'comment',
+                //     name: comment.name,
+                //     _key: uuidv4(),
+                //     email: comment.email,
+                //     message: comment.message
+                // }];
+                // Update movie document with the new comments array
+                await client.patch(movie._id).set({ comments: updatedComments }).commit();
+                setComment({
+                    _type: '',
+                    name: '',
+                    _key: '',
+                    email: '',
+                    message: ''
+                });
+                setRemark(!remark)
+                toast({
+                    title: "Succeed",
+                    description: "Comment has been submited.",
+                });
+                // return 
+            }
         } catch (error) {
             console.log(error)
+            toast({
+                title: "Failed !!!",
+                description: "Unable to submit request. Please try later.",
+            });
         }
     };
 
-    console.log(comment)
+    // console.log(comment)
 
     return (
         <>
