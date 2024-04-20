@@ -139,7 +139,7 @@ const Info = () => {
                                                     <div>
                                                         <Download slug={param}></Download>
                                                     </div>
-                                                    <div className="flex flex-col gap-10 sm:w-10/12 md:w-1/2 mx-auto mt-20">
+                                                    <div className="mt-20 border-t">
                                                         <CreateComment movie={data[0]} slug={slug} />
                                                     </div>
                                                 </motion.div>
