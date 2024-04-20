@@ -4,9 +4,9 @@ import imageUrlBuilder from '@sanity/image-url'
 export const client = createClient({
     projectId: 'biuzzupd',
     dataset: 'production',
-    useCdn: true, // set to `false` to bypass the edge cache
+    useCdn: false, // set to `false` to bypass the edge cache
     apiVersion: '2023-05-03', // use current date (YYYY-MM-DD) to target the latest API version
-    // token: process.env.SANITY_SECRET_TOKEN // Only if you want to update content with the client
+    // token: 'skQGxwdkDbiRyBgF3VOnYhRxSCTiZSZY7bpHYMRXGyRhJBYFfp9XOj3OTTrHQIFbPTtHhdAsLtCeVuGr7T1PV3B6Cpcq7Is3suuvSIDFvJIygm8W2bR4Qf2PW5DbYqO6Jo5DVcOy6br6oTyvp2EOKem6kX9IPy1Ys6SV7mWxiu5bRMEKn7dT' // Only if you want to update content with the client
 })
 
 // Image URI
@@ -81,6 +81,13 @@ export async function getMovie(origin) {
 // get Info page
 export async function getInfo() {
     const Info = await client.fetch('*[_type in ["movie", "series", "bollywood", "bollywoodseries","south","anime","marathi"] ]| order(releaseDate desc)') // Newest Released Date
+    // const Movie = await client.fetch('*[_type == "movie"]') // default order
+    return Info
+}
+
+// getComments
+export async function getComments(slug: any) {
+    const Info = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries","south","anime","marathi"] && slug.current == "${slug}"] {comments[]} | order(_createdAt desc)`) // Newest Released Date
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
     return Info
 }

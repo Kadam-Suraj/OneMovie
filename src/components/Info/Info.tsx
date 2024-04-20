@@ -10,6 +10,7 @@ import { motion } from "framer-motion"
 import { getYear } from "@/constants/getYear"
 import { Helmet } from 'react-helmet';
 import Processing from "../Processing"
+import CreateComment from "../Comments/CreateComment"
 
 const Info = () => {
     const [data, setData] = useState([])
@@ -31,7 +32,6 @@ const Info = () => {
         fetchData();
         data ? setisLoading(false) : setisLoading(true)
     }, [slug]);
-
 
     return (
         <>
@@ -138,6 +138,9 @@ const Info = () => {
                                                     </div>
                                                     <div>
                                                         <Download slug={param}></Download>
+                                                    </div>
+                                                    <div className="flex flex-col gap-10 sm:w-10/12 md:w-1/2 mx-auto mt-20">
+                                                        <CreateComment movie={data[0]} slug={slug} />
                                                     </div>
                                                 </motion.div>
                                             </div>
