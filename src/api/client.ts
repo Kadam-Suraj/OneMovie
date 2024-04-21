@@ -87,7 +87,7 @@ export async function getInfo() {
 
 // getComments
 export async function getComments(slug: any) {
-    const Info = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries","south","anime","marathi"] && slug.current == "${slug}"] {comments[]} | order(_createdAt desc)`) // Newest Released Date
+    const Info = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries","south","anime","marathi"] && slug.current == "${slug}"] {comments[]} | order(createdAt desc)`) // Newest Released Date
     // const Movie = await client.fetch('*[_type == "movie"]') // default order
     return Info
 }
