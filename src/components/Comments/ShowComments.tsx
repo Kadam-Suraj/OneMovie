@@ -1,18 +1,14 @@
-import { getComments } from "@/api/client";
 import { useEffect, useRef, useState } from "react";
-import Processing from "../Processing";
 import { AnimatePresence, motion } from "framer-motion";
+import { getComments } from "@/api/client";
 
 const ShowComments = ({ slug, update }) => {
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const commentsListRef = useRef(null);
+    const firstCommentRef = useRef(null);
 
     const fetchComments = async () => {
-        setLoading(true);
         const newData = await getComments(slug);
         setData(newData);
-        setLoading(false);
     };
 
     useEffect(() => {
@@ -20,12 +16,11 @@ const ShowComments = ({ slug, update }) => {
     }, [slug, update]);
 
     useEffect(() => {
-        if (commentsListRef.current) {
-            // Scroll to the bottom of the comment list when new comments are loaded
-            commentsListRef.current.scrollTop = commentsListRef.current.scrollHeight;
+        // Scroll to the bottom when new comments are fetched and displayed
+        if (firstCommentRef.current) {
+            firstCommentRef.current.scrollIntoView({ behavior: "smooth", block: "start" }); // Scroll to the top of the new comment
         }
     }, [data]);
-    console.log(data)
 
     return (
         <div>
@@ -37,20 +32,19 @@ const ShowComments = ({ slug, update }) => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.5 }}
-                        ref={commentsListRef} className="flex flex-col justify-cente gap-5 max-h-96 overflow-y-auto mt-5">
-                        {loading ? (
-                            <Processing key={null} />
-                        ) : (
-                            data[0]?.comments ? data?.flatMap(item => item.comments.map((comment, idx) => (
-                                <div key={idx} className="border rounded-md p-2 flex flex-col justify-center">
-                                    <h4 className="dark:text-gray-600">username: <span className="text-black dark:text-white">{comment.name ? comment.name : 'N/A'}</span></h4>
-                                    {comment.email && <h3 className="dark:text-gray-600">E-mail: <span className="text-black dark:text-white">{comment.email}</span></h3>}
-                                    <h4 className="dark:text-gray-600">Message: <span className="text-black dark:text-white">{comment.message ? comment.message : 'N/A'}</span></h4>
-                                    {comment.createdAt && <span className="text-gray-600 self-end text-sm">{new Date(comment.createdAt).toLocaleString()}</span>}
-                                </div>
-                            )))
-                                : <p className="self-start">No Comments On This Page</p>
-                        )}
+                        className="flex flex-col justify-cente gap-5 max-h-96 overflow-y-auto mt-5 overflow-x-hidden">
+                        {data[0]?.comments ? data.flatMap(item => item.comments.map((comment, idx) => (
+                            <motion.div
+                                initial={{ scale: .8, x: 50 }}
+                                whileInView={{ scale: 1, x: 0 }}
+                                transition={{ duration: 0.3 }}
+                                key={idx} ref={idx === 0 ? firstCommentRef : null} className="border rounded-md p-2 flex flex-col justify-center">
+                                <h4 className="dark:text-gray-600">username: <span className="text-black dark:text-white">{comment.name ? comment.name : 'N/A'}</span></h4>
+                                {comment.email && <h3 className="dark:text-gray-600">E-mail: <span className="text-black dark:text-white">{comment.email}</span></h3>}
+                                <h4 className="dark:text-gray-600">Message: <span className="text-black dark:text-white">{comment.message ? comment.message : 'N/A'}</span></h4>
+                                {comment.date && <span className="text-gray-600 self-end text-sm">{new Date(comment.date).toLocaleString()}</span>}
+                            </motion.div>
+                        ))) : <p className="self-start">No Comments On This Page</p>}
                     </motion.div>
                 </AnimatePresence>
             </div>
