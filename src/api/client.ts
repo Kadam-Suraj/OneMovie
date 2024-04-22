@@ -20,7 +20,7 @@ export async function getScreenshots(source: any) {
     const Images = await client.fetch(`*[_type in ["movie", "series", "bollywood", "bollywoodseries","south","anime","marathi"] && slug.current == "${source}"]{gallery[]}`)
     let Image = []
     Images.map((item: any) => {
-        item.gallery.map((item: any) => {
+        item.gallery?.map((item: any) => {
             Image.push([urlFor(item).url()])
         })
     })
@@ -54,6 +54,26 @@ export async function searchByPlatform(platform: any, origin) {
     `)
     // *[_type in ["movie", "series"] && "${platform}" in platform] 
     return Platform
+}
+
+// getColletion
+export async function getCollection(origin) {
+    const Collection = await client.fetch(`*[_type == 'collection' && '${origin}' in origin[]]{title, poster}`)
+    // *[_type in ["movie", "series"] && "${platform}" in platform] 
+    return Collection
+}
+
+// getSubColletion
+export async function getSubCollection(origin, collection) {
+    const Collection = await client.fetch(`*[_type == 'collection' && '${origin}' in origin[] && title == '${collection}']{"subCollection": subCollection[]->{title,poster, movies[]->{title, slug}}}`)
+    return Collection
+}
+
+// getSubColletion
+export async function getCollectionMovie(origin, collection) {
+    const CollectionMovie = await client.fetch(`*[_type == 'collection' && '${origin}' in origin[] && title == '${collection}']{subCollection[]->{movies[]->{title, poster, duration, slug, genres[]}}}`)
+    const FilteredMovie = [...CollectionMovie[0]?.subCollection?.map((item) => item.movies[0])]
+    return FilteredMovie
 }
 
 // get Data About Site
@@ -188,18 +208,3 @@ export async function getEpUHD(link: any) {
     })
     return data
 }
-
-// export const Movie = () => {
-//     const [movie, setMovie] = useState([])
-
-//     useEffect(() => {
-//         const fetchMovie = async () => {
-//             const data = await getMovie()
-//             setMovie(data)
-//         }
-//         fetchMovie()
-//     }, [origin])
-
-//     return movie
-
-// }

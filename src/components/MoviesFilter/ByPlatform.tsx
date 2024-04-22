@@ -32,7 +32,7 @@ const ByPlatform = () => {
     }, [platform, fetchData, storage])
 
     return (
-        <section className="flex flex-col gap-5 justify-center w-full pb-10 border-b">
+        <section className="flex flex-col gap-10 justify-center w-full pb-10 border-b">
             <div className="self-center">
                 <DropdownMenu>
                     <DropdownMenuTrigger className="border px-4 py-2 rounded-md bg-black dark:bg-white text-white dark:text-black">{platform || "Platform"}</DropdownMenuTrigger>
@@ -53,7 +53,6 @@ const ByPlatform = () => {
                 </DropdownMenu>
             </div>
             <AnimatePresence>
-
                 {
                     data && response[0] &&
                     <motion.div

@@ -16,14 +16,11 @@ const HomeSection = () => {
         localStorage.setItem('origin', item);
         setOrigin(item)
     };
-    
+
     return (
         <>
             <section className="m-auto max-w-[1536px] border-y py-10 flex flex-col gap-5">
                 <div className="">
-                    {/* <div>
-                    </div> */}
-                    {/* <h2 className="font-semibold text-2xl">Choose Section:</h2> */}
                     <ByOrigin cachefnc={handleStoreInCache} />
                 </div>
                 <MoviesFilter />

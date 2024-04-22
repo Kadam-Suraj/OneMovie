@@ -18,7 +18,10 @@ const ShowComments = ({ slug, update }) => {
     useEffect(() => {
         // Scroll to the bottom when new comments are fetched and displayed
         if (firstCommentRef.current) {
-            firstCommentRef.current.scrollIntoView({ behavior: "smooth", block: "start" }); // Scroll to the top of the new comment
+            firstCommentRef.current.scrollTo({
+                top: 'auto',
+                behavior: 'smooth'
+            }); // Scroll to the top of the new comment
         }
     }, [data]);
 
@@ -35,7 +38,7 @@ const ShowComments = ({ slug, update }) => {
                         className="flex flex-col justify-cente gap-5 max-h-96 overflow-y-auto mt-5 overflow-x-hidden">
                         {data[0]?.comments ? data.flatMap(item => item.comments.map((comment, idx) => (
                             <motion.div
-                                initial={{ scale: .8, x: 50 }}
+                                initial={{ scale: .95, x: 50 }}
                                 whileInView={{ scale: 1, x: 0 }}
                                 transition={{ duration: 0.3 }}
                                 key={idx} ref={idx === 0 ? firstCommentRef : null} className="border rounded-md p-2 flex flex-col justify-center">
