@@ -32,14 +32,12 @@ const Info = () => {
         fetchData();
         data ? setisLoading(false) : setisLoading(true)
     }, [slug]);
-
-    console.log(data)
-
+    
     return (
         <>
             <div className="elative top-0">
                 <div className="absolute h-screen left-0 right-0 top-0 bottom-0 -z-10 object-contan object-scale-down">
-                    {data[0] && (data.map(item => item.cover ? < img className="h-screen w-full object-cover" src={urlFor(item?.cover).url()} /> : null))}
+                    {data[0] && (data.map((item, idx) => item.cover ? < img key={idx} className="h-screen w-full object-cover" src={urlFor(item?.cover).url()} /> : null))}
                     <div className="bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 absolute w-full h-full top-0 bottom-0" />
                 </div>
                 <div className="overflow-y-scroll">
