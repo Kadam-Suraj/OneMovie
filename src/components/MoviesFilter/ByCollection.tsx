@@ -19,7 +19,7 @@ const ByCollection = () => {
 
     useEffect(() => {
         fetchCollection()
-        // return setCollection('')
+        return setCollection('')
     }, [origin])
 
     return (
