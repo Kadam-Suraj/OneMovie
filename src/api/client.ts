@@ -58,8 +58,8 @@ export async function searchByPlatform(platform: any, origin) {
 
 // getColletion
 export async function getCollection(origin) {
-    const Collection = await client.fetch(`*[_type == 'collection' && '${origin}' in origin[]]{title, poster}`)
-    // *[_type in ["movie", "series"] && "${platform}" in platform] 
+    const Collection = await client.fetch(`*[_type == 'collection' && '${origin}' in origin[]]{title, poster} | order(title asc)`)
+    // *[_type in ["movie", "series"] && "${platform}" in platform]
     return Collection
 }
 
@@ -70,10 +70,9 @@ export async function getSubCollection(origin, collection) {
 }
 
 // getSubColletion
-export async function getCollectionMovie(origin, collection) {
-    const CollectionMovie = await client.fetch(`*[_type == 'collection' && '${origin}' in origin[] && title == '${collection}']{subCollection[]->{movies[]->{title, poster, duration, slug, genres[]}}}`)
-    const FilteredMovie = [...CollectionMovie[0]?.subCollection?.map((item) => item.movies[0])]
-    return FilteredMovie
+export async function getCollectionMovie(origin, movie) {
+    const CollectionMovie = await client.fetch(`*[_type == 'subCollection' && '${origin}' in origin[] && title == '${movie}']{movies[]->{title, poster, duration, slug, genres[]}}`)
+    return CollectionMovie[0]?.movies
 }
 
 // get Data About Site

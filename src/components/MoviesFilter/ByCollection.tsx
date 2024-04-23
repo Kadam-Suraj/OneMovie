@@ -62,13 +62,16 @@ const ByCollection = () => {
 
 const CollectionGallery = ({ origin, collection }) => {
     const [data, setData] = useState([])
+    const [movieName, setMovieName] = useState('')
     const [movie, setMovie] = useState([])
     const [isOpen, setIsOpen] = useState()
 
     const fetchCollection = async () => {
         const data = await getSubCollection(origin || 'hollywood', collection.title)
         setData(data[0]?.subCollection)
-        const movie = await getCollectionMovie(origin || 'hollywood', collection.title)
+    }
+    const fetchMovie = async () => {
+        const movie = await getCollectionMovie(origin || 'hollywood', movieName)
         setMovie(movie)
     }
 
@@ -78,8 +81,19 @@ const CollectionGallery = ({ origin, collection }) => {
 
     useEffect(() => {
         fetchCollection()
-        return setIsOpen(null)
+        return () => {
+            setIsOpen(null);
+            setMovie[0]
+        }
     }, [collection])
+
+    useEffect(() => {
+        fetchMovie()
+        return () => {
+            setMovie['']
+        }
+    }, [movieName])
+    
     return (
         <>
             <AnimatePresence>
@@ -103,16 +117,13 @@ const CollectionGallery = ({ origin, collection }) => {
                             }
                         </div>
                         <div className="flex flex-col gap-3 justify-between">
-                            {data.map((item, idx) => (
-                                <motion.div
-                                    initial={{ y: 0, scale: 1 }}
-                                    // whileHover={{ y: -5, }}
-                                    transition={{ duration: .2 }}
-                                    key={idx} className="flex flex-col gap-2 min-h-48 border rounded-md"
-                                    onClick={() => toggleGallery(idx)}
+                            {data?.map((item, idx) => (
+                                <div
+                                    key={idx} className={`flex flex-col gap-2 min-h-48 border rounded-md cursor-pointer transition-all ${isOpen === idx ? 'border-red-600' : null}`}
+                                    onClick={() => { toggleGallery(idx); setMovieName(item.title) }}
                                 >
                                     <div
-                                        className="relative cursor-pointer">
+                                        className="relative">
                                         <div
                                             className="relative h-48">
                                             {
@@ -127,7 +138,7 @@ const CollectionGallery = ({ origin, collection }) => {
                                         </div>
                                     </div>
                                     <AnimatePresence >
-                                        {isOpen === idx &&
+                                        {isOpen === idx && movie &&
                                             <motion.div
                                                 initial={{ height: 0, opacity: 0 }}
                                                 animate={isOpen === idx ? { height: 'auto', opacity: 1 } : null}
@@ -138,7 +149,7 @@ const CollectionGallery = ({ origin, collection }) => {
                                             </motion.div>
                                         }
                                     </AnimatePresence >
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
                     </motion.div>
