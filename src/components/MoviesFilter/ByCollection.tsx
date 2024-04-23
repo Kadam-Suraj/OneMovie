@@ -36,10 +36,14 @@ const ByCollection = () => {
                                 transition={{ duration: 1 }}
                                 className="flex gap-3 flex-wrap">
                                 {data[0] ?
-                                    (data?.map((item, idx) => <span
+                                    (data?.map((item, idx) => <motion.span
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: .5 * idx }}
                                         key={idx}>
                                         <Button onClick={() => setCollection({ title: item.title, poster: item.poster })}>{item.title}</Button>
-                                    </span>
+                                    </motion.span>
                                     ))
                                     : <span className="font-semibold text-lg animate-pulse">No Collection.</span>
                                 }
@@ -89,11 +93,9 @@ const CollectionGallery = ({ origin, collection }) => {
 
     useEffect(() => {
         fetchMovie()
-        return () => {
-            setMovie['']
-        }
+        return setMovie(null)
     }, [movieName])
-    
+
     return (
         <>
             <AnimatePresence>
@@ -134,7 +136,7 @@ const CollectionGallery = ({ origin, collection }) => {
                                             }
                                         </div>
                                         <div className="absolute bottom-0 w-full">
-                                            <h3 className="font-bold text-2xl p-2 text-center">{item.title}</h3>
+                                            <h3 className={`font-bold text-2xl p-2 text-center ${isOpen === idx && 'text-red-600'} `}>{item.title}</h3>
                                         </div>
                                     </div>
                                     <AnimatePresence >

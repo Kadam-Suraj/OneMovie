@@ -65,7 +65,7 @@ export async function getCollection(origin) {
 
 // getSubColletion
 export async function getSubCollection(origin, collection) {
-    const Collection = await client.fetch(`*[_type == 'collection' && '${origin}' in origin[] && title == '${collection}']{"subCollection": subCollection[]->{title,poster, movies[]->{title, slug}}}`)
+    const Collection = await client.fetch(`*[_type == 'collection' && '${origin}' in origin[] && title == '${collection}']{"subCollection": subCollection[]->{title,poster, movies[]->{title, slug}}| order(title asc)}`)
     return Collection
 }
 
