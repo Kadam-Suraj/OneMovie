@@ -71,7 +71,7 @@ export async function getSubCollection(origin, collection) {
 
 // getSubColletion
 export async function getCollectionMovie(origin, movie) {
-    const CollectionMovie = await client.fetch(`*[_type == 'subCollection' && '${origin}' in origin[] && title == '${movie}']{movies[]->{title, poster, duration, slug, genres[]}}`)
+    const CollectionMovie = await client.fetch(`*[_type == 'subCollection' && '${origin}' in origin[] && title == '${movie}']{movies[]->{title, poster, duration, slug, genres[], releaseDate }| order(releaseDate desc)}`)
     return CollectionMovie[0]?.movies
 }
 

@@ -19,7 +19,7 @@ const ByCollection = () => {
 
     useEffect(() => {
         fetchCollection()
-        return setCollection('')
+        // return setCollection('')
     }, [origin])
 
     return (
@@ -133,8 +133,8 @@ const CollectionGallery = ({ origin, collection }) => {
                                                 </div>
                                             }
                                         </div>
-                                        <div className="absolute bottom-0 p-2 w-full">
-                                            <h3 className="font-bold text-2xl shadow-black shadow-xl text-center">{item.title}</h3>
+                                        <div className="absolute bottom-0 w-full">
+                                            <h3 className="font-bold text-2xl p-2 text-center">{item.title}</h3>
                                         </div>
                                     </div>
                                     <AnimatePresence >

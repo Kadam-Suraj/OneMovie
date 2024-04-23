@@ -39,7 +39,7 @@ function CardComp({ item, isVisible }) {
         transition={{ duration: 0.5 }}
     >
         <Link to={`/download/${item.slug.current}`}>
-            <Card className="border rounded-md relative h-full w-full">
+            <Card className="border hover:border-red-600 transition-colors duration-500 rounded-md relative h-full w-full">
                 <div className='p-[.12rem]'>
                     {item.poster ?
                         <img rel="preload" src={urlFor(item?.poster).url()} alt={item.slug.current} className="rounded-md object-top h-80 object-cover w-full" loading="eager" />
