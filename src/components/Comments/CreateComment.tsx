@@ -98,15 +98,15 @@ const CreateComment = ({ movie, slug }) => {
                 <form onSubmit={handleSubmit} className='border rounded-md flex flex-col gap-1 p-1'>
                     <div className='flex items-center gap-2 p-2 border-b'>
                         <BiUser />
-                        <input type="text" name="name" value={comment.name} onChange={handleChange} placeholder="Your Name *" className='bg-white dark:bg-black outline-none w-full' required />
+                        <input type="text" name="name" value={comment.name} onChange={handleChange} placeholder="Your Name *" className='bg-whit dark:bg-blac bg-transparent outline-none w-full' required />
                     </div>
                     <div className='flex items-center gap-2 p-2 border-b'>
                         <LuMail />
-                        <input type="email" name="email" value={comment.email} onChange={handleChange} placeholder="Your Email" className='bg-white dark:bg-black outline-none w-full' />
+                        <input type="email" name="email" value={comment.email} onChange={handleChange} placeholder="Your Email" className='bg-whit dark:bg-blac bg-transparent outline-none w-full' />
                     </div>
                     <div className='flex items-start gap-2 p-2'>
                         <BiMessage className='mt-1' />
-                        <textarea name="message" rows={4} value={comment.message} onChange={handleChange} placeholder="Your Comment *" className='bg-white dark:bg-black outline-none w-full' required></textarea>
+                        <textarea name="message" rows={4} value={comment.message} onChange={handleChange} placeholder="Your Comment *" className='bg-whit dark:bg-blac bg-transparent outline-none w-full' required></textarea>
                     </div>
                     <Button type="submit" className='w-full md:w-fit self-end'>Submit</Button>
                 </form>

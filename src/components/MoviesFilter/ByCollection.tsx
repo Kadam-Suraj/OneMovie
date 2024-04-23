@@ -19,7 +19,7 @@ const ByCollection = () => {
 
     useEffect(() => {
         fetchCollection()
-        return setCollection('')
+        // return setCollection('')
     }, [origin])
 
     return (
@@ -106,14 +106,14 @@ const CollectionGallery = ({ origin, collection }) => {
                     <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ height: 0 }}
+                        exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: .5 }}
                         className="flex flex-col gap-4 border p-1 rounded-md">
                         <div className="h-32 md:h-96 w-full">
                             {
                                 collection.poster && <div className="relative h-full w-full">
-                                    <img className="bg-white rounded-md rounded-b-non h-full w-full object-cover object-top bg-gradient-to-b from-white from-75% to-transparent" src={urlFor(collection.poster).url()} alt={collection.title} />
-                                    <div className="absolute top-0 bottom-0 rounded-md rounded-b-non h-full w-full object-cover object-center bg-gradient-to-t from-white to-40% to-transparent dark:from-black dark:to-40% dark:to-transparent" />
+                                    <img className="bg-white rounded-t-md h-full w-full object-cover object-top bg-gradient-to-b from-white from-75% to-transparent" src={urlFor(collection.poster).url()} alt={collection?.title} />
+                                    <div className="absolute top-0 bottom-0 rounded-t-md h-full w-full bg-gradient-to-t from-white to-40% to-transparent dark:from-black dark:to-40% dark:to-transparent" />
                                     <span className="absolute bottom-0 p-2 font-semibold md:text-4xl text-center w-full">{collection.title}</span>
                                 </div>
                             }
@@ -131,12 +131,12 @@ const CollectionGallery = ({ origin, collection }) => {
                                             {
                                                 item.poster && <div className="w-full h-full">
                                                     <img className="rounded-md rounded-b-non w-full h-full object-cover object-top" src={urlFor(item.poster).url()} alt={item.title} />
-                                                    <div className="absolute top-0 bottom-0 rounded-md rounded-b-non h-full w-full object-cover object-center bg-gradient-to-t from-white to-40% to-transparent dark:from-black dark:to-40% dark:to-transparent" />
+                                                    <div className="absolute top-0 bottom-0 rounded-md rounded-b-non h-full w-full object-cover object-center bg-gradient-to-t from-white to-70% to-transparent dark:from-black dark:to-70% dark:to-transparent" />
                                                 </div>
                                             }
                                         </div>
                                         <div className="absolute bottom-0 w-full">
-                                            <h3 className={`font-bold text-2xl p-2 text-center ${isOpen === idx && 'text-red-600'} `}>{item.title}</h3>
+                                            <h3 className={`font-bold text-2xl p-2 text-center transition-colors duration-500 ${isOpen === idx && 'text-red-600'} `}>{item.title}</h3>
                                         </div>
                                     </div>
                                     <AnimatePresence >
@@ -144,7 +144,7 @@ const CollectionGallery = ({ origin, collection }) => {
                                             <motion.div
                                                 initial={{ height: 0, opacity: 0 }}
                                                 animate={isOpen === idx ? { height: 'auto', opacity: 1 } : null}
-                                                exit={{ height: 0 }}
+                                                exit={{ height: 0, opacity: 0, }}
                                                 transition={{ duration: .3 }}
                                                 className="m-2 overflow-x-scroll">
                                                 <Gallery data={movie} items={5} ></Gallery>
