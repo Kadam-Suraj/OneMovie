@@ -68,27 +68,9 @@ const Info = () => {
                                                             animate={{ opacity: 1 }}
                                                             exit={{ opacity: 0 }}
                                                             transition={{ duration: 0.7 }}
-                                                            key={idx} >
-                                                            <div className="flex flex-col gap-10">
-                                                                <div className="flex flex-col items-center gap-2 justify-center order-2 md:-order-">
-                                                                    <h2 className="self-start font-bold text-2xl">Watch Trailer :</h2>
-                                                                    {
-                                                                        item?.trailer ?
-                                                                            <div className="w-full flex justify-center">
-                                                                                <ReactPlayer
-                                                                                    config={{
-                                                                                        youtube: {
-                                                                                            playerVars: { showinfo: 0, }
-                                                                                        }
-                                                                                    }}
-                                                                                    controls
-                                                                                    url={item.trailer}
-                                                                                />
-                                                                            </div>
-                                                                            :
-                                                                            <h2 className="font-semibold text-2xl">Trailer Unavailable</h2>
-                                                                    }
-                                                                </div>
+                                                            key={idx}
+                                                            className="grid gap-10">
+                                                            <div className="flex flex-col gap-20">
                                                                 <div className="grid grid-cols-1 gap-2">
                                                                     <Button variant="outline" className="w-fit pointer-events-none">Download</Button>
                                                                     <div className="flex flex-col gap-5 justify-center w-full">
@@ -112,15 +94,36 @@ const Info = () => {
                                                                         <p className="text-sm text-gray-900 dark:text-gray-400 text-opacity-80 w-10/12 md:w-1/2">{item.overview}</p>
                                                                     </div>
                                                                 </div>
-                                                                <div className="flex items-center -order-1 lg:order-1 justify-center">
-                                                                    {
-                                                                        item?.poster ? <img className=" w-60 lg:w-1/3 rounded-xl pointer-events-none" src={urlFor(item?.poster).url()} alt={`poster ${idx}`} loading="lazy" />
-                                                                            :
-                                                                            <div className="flex flex-col items-center gap-10">
-                                                                                <h2 className="text-5xl">Poster Unavailable</h2>
-                                                                                <p>sorry for inconvenience</p>
-                                                                            </div>
-                                                                    }
+                                                                <div className="grid md:grid-cols-2 gap-10">
+                                                                    <div className="flex items-center justify-center">
+                                                                        {
+                                                                            item?.poster ? <img className=" w-60 lg:w-1/2 rounded-xl pointer-events-none" src={urlFor(item?.poster).url()} alt={`poster ${idx}`} loading="lazy" />
+                                                                                :
+                                                                                <div className="flex flex-col items-center gap-10">
+                                                                                    <h2 className="text-5xl">Poster Unavailable</h2>
+                                                                                    <p>sorry for inconvenience</p>
+                                                                                </div>
+                                                                        }
+                                                                    </div>
+                                                                    <div className="flex flex-col items-center gap-2 justify-center order- md:-order-1">
+                                                                        <h2 className="self-start font-bold text-2xl">Watch Trailer :</h2>
+                                                                        {
+                                                                            item?.trailer ?
+                                                                                <div className="w-[90vw] md:w-full flex justify-center">
+                                                                                    <ReactPlayer
+                                                                                        config={{
+                                                                                            youtube: {
+                                                                                                playerVars: { showinfo: 0, }
+                                                                                            }
+                                                                                        }}
+                                                                                        controls
+                                                                                        url={item.trailer}
+                                                                                    />
+                                                                                </div>
+                                                                                :
+                                                                                <h2 className="font-semibold text-2xl">Trailer Unavailable</h2>
+                                                                        }
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div className="my-10 flex flex-col items-center gap-10">
