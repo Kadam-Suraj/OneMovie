@@ -35,18 +35,18 @@ const Info = () => {
 
     return (
         <>
-            <div className="elative top-0">
-                <div className="absolute h-screen left-0 right-0 top-0 bottom-0 -z-10 object-contan object-scale-down">
+            <div>
+                <div className="fixed h-screen left-0 right-0 top-0 bottom-0 -z-10 object-cover">
                     {data[0] && (data.map((item, idx) => item.cover ? < img key={idx} className="h-screen w-full object-cover" src={urlFor(item?.cover).url()} /> : null))}
                     <div className="bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 absolute w-full h-full top-0 bottom-0" />
                 </div>
-                <div className="overflow-y-scroll">
-                    <div className="h-screen">
+                <div>
+                    <div>
                         {
                             isLoading && <InfoSkeleton />
                         }
                         {!isLoading && data[0] ?
-                            <div className="m-auto max-w-[1536px] py-24 pt-40 p-5">
+                            <div className="m-auto max-w-[1536px] px-5">
                                 <Button onClick={() => navigate(-1)} variant="default" className="mb-5">Back</Button>
                                 {
                                     data[0] &&

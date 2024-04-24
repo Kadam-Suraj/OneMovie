@@ -11,7 +11,7 @@ const CategorySection = () => {
 
 const Movies = () => {
     return (
-        <section className="m-auto max-w-[1536px] flex flex-col gap-5 px-5 py-20 pt-40 min-h-screen">
+        <section className="m-auto max-w-[1536px] flex flex-col gap-5 px-5">
             <div className="grid lg:grid-cols-2 justify-between">
                 <CategorySection />
             </div>

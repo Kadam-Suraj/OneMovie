@@ -40,7 +40,7 @@ const ByCollection = () => {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
-                                        transition={{ duration: .5 * idx }}
+                                        transition={{ duration: .5, delay: .2 * idx }}
                                         key={idx}>
                                         <Button onClick={() => setCollection({ title: item.title, poster: item.poster })}>{item.title}</Button>
                                     </motion.span>
@@ -109,7 +109,7 @@ const CollectionGallery = ({ origin, collection }) => {
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: .5 }}
                         className="flex flex-col gap-4 border p-1 rounded-md">
-                        <div className="h-32 md:h-96 w-full">
+                        <div className="h-60 md:h-96 w-full">
                             {
                                 collection.poster && <div className="relative h-full w-full">
                                     <img className="bg-white rounded-t-md h-full w-full object-cover object-top bg-gradient-to-b from-white from-75% to-transparent" src={urlFor(collection.poster).url()} alt={collection?.title} />
@@ -127,9 +127,9 @@ const CollectionGallery = ({ origin, collection }) => {
                                     <div
                                         className="relative">
                                         <div
-                                            className="relative h-48">
+                                            className="relative h-48 md:h-72">
                                             {
-                                                item.poster && <div className="w-full h-full">
+                                                item?.poster && <div className="w-full h-full">
                                                     <img className="rounded-md rounded-b-non w-full h-full object-cover object-top" src={urlFor(item.poster).url()} alt={item.title} />
                                                     <div className="absolute top-0 bottom-0 rounded-md rounded-b-non h-full w-full object-cover object-center bg-gradient-to-t from-white to-70% to-transparent dark:from-black dark:to-70% dark:to-transparent" />
                                                 </div>

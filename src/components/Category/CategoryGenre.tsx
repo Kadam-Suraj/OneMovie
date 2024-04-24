@@ -25,7 +25,7 @@ const CategoryGenre = () => {
     }, [fetchData, origin]);
 
     return (
-        <section className="m-auto max-w-[1536px] grid gap-5 px-5 my-20">
+        <section className="m-auto max-w-[1536px] grid gap-5 px-5">
             <div className="grid lg:grid-cols-2 items-center justify-between">
                 <div className="flex flex-col gap-2">
                     <h2 className="font-bold text-2xl">Category: <span className="pl-2 capitalize text-red-500">

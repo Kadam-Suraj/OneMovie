@@ -160,7 +160,7 @@ export const GalleryListPlatform = () => {
 
     return (
         <>
-            <section className="m-auto max-w-[1536px] grid gap-5 px-5 my-20">
+            <section className="m-auto max-w-[1536px] grid gap-5 px-5">
                 <div>
                     <h2 className="font-semibold text-lg">Platform : <span className="text-red-500">{platform}</span></h2>
                 </div>
