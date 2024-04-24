@@ -19,7 +19,7 @@ const SearchComponent = () => {
 
     const overFlowHandler = () => {
         if (showInput) {
-            document.body.style.overflow = "clip"
+            document.body.style.overflow = "hidden"
             // document.body.style.height = "100svh"
         }
         else {
