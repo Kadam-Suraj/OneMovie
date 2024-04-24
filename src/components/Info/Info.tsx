@@ -32,7 +32,7 @@ const Info = () => {
         fetchData();
         data ? setisLoading(false) : setisLoading(true)
     }, [slug]);
-    
+
     return (
         <>
             <div className="elative top-0">
@@ -155,10 +155,12 @@ const Info = () => {
                                     </div>
                                 }
                             </div>
-                            : <Processing />
+                            : <div className="pt-40">
+                                <Processing />
+                            </div>
                         }
                         {!data[0] && isLoading ?
-                            <h2 className="text-center w-full font-semibold text-2xl">No Data Found</h2>
+                            <h2 className="text-center w-full font-semibold text-2xl pt-40">No Data Found</h2>
                             : null
                         }
                     </div>

@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <div className=" selection:bg-[#0000004d] dark:selection:bg-[#ffffff4d]">
+      <div className="selection:bg-[#0000004d] dark:selection:bg-[#ffffff4d]">
         <div className="fixed top-0 md:top-5 left-0 right-0 md:px-10 z-10">
           <Header />
         </div>
