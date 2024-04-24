@@ -25,7 +25,7 @@ const MoviesByGenre = ({ genre }) => {
             {
                 data.map((item, idx) => {
                     if (idx < 4) {
-                        return <img key={idx} src={urlFor(item.poster).url()} alt={item.slug.current} loading="lazy" className={`rounded-md object-top h-40 object-cover w-full`} />
+                        return item.poster && <img key={idx} src={urlFor(item.poster).url()} alt={item.slug.current} loading="lazy" className={`rounded-md object-top h-40 object-cover w-full`} />
                     }
                 })
             }

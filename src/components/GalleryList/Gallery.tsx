@@ -40,11 +40,11 @@ function CardComp({ item, isVisible }) {
     >
         <Link to={`/download/${item.slug.current}`}>
             <Card className="border hover:border-red-600 transition-colors duration-500 rounded-md relative h-full w-full">
-                <div className='p-[.12rem]'>
+                <div className='p-[.12rem] h-80 flex flex-col items-center justify-center'>
                     {item.poster ?
-                        <img rel="preload" src={urlFor(item?.poster).url()} alt={item.slug.current} className="rounded-md object-top h-80 object-cover w-full" loading="eager" />
+                        <img rel="preload" src={urlFor(item?.poster).url()} alt={item.slug.current} className="rounded-md object-top h-full object-cover w-full" loading="eager" />
                         :
-                        <span className='rounded-md h-80 w-full' >Poster Unavailable</span>
+                        <span className='rounded-md text-center w-full font-semibold' >Poster Unavailable</span>
                     }
                 </div>
                 <CardFooter className="flex flex-col items-start gap-2">

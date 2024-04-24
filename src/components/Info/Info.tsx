@@ -37,7 +37,7 @@ const Info = () => {
         <>
             <div>
                 <div className="fixed h-screen left-0 right-0 top-0 bottom-0 -z-10 object-cover">
-                    {data[0] && (data.map((item, idx) => item.cover ? < img key={idx} className="h-screen w-full object-cover" src={urlFor(item?.cover).url()} /> : null))}
+                    {data[0] && (data.map((item, idx) => item?.cover ? < img key={idx} className="h-screen w-full object-cover" src={urlFor(item?.cover).url()} /> : null))}
                     <div className="bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 absolute w-full h-full top-0 bottom-0" />
                 </div>
                 <div>
@@ -73,7 +73,7 @@ const Info = () => {
                                                                 <div className="flex flex-col items-center gap-2 justify-center order-2 md:-order-">
                                                                     <h2 className="self-start font-bold text-2xl">Watch Trailer :</h2>
                                                                     {
-                                                                        item.trailer ?
+                                                                        item?.trailer ?
                                                                             <div className="w-full flex justify-center">
                                                                                 <ReactPlayer
                                                                                     config={{
@@ -92,13 +92,13 @@ const Info = () => {
                                                                 <div className="grid grid-cols-1 gap-2">
                                                                     <Button variant="outline" className="w-fit pointer-events-none">Download</Button>
                                                                     <div className="flex flex-col gap-5 justify-center w-full">
-                                                                        <h1 className="font-bold text-3xl min-[320px]:text-5xl lg:text-8xl text-wrap sm:w-full">{item.title}</h1>
+                                                                        <h1 className="font-bold text-3xl min-[320px]:text-5xl lg:text-8xl text-wrap sm:w-full">{item?.title}</h1>
                                                                         <div className="flex gap-5 items-center">
-                                                                            <span className="border py-1 px-2">{item.type}</span>
-                                                                            <span>{item.duration}</span>
-                                                                            <span>{getYear(item.releaseDate)}</span>
+                                                                            <span className="border py-1 px-2">{item?.type}</span>
+                                                                            <span>{item?.duration}</span>
+                                                                            <span>{getYear(item?.releaseDate)}</span>
                                                                         </div>
-                                                                        <Genrestags genres={item.genres} />
+                                                                        <Genrestags genres={item?.genres} />
                                                                         {item.language ?
                                                                             <div className="flex flex-col items-cente gap-3">
                                                                                 <h3 className="text-xl">Available Languages:</h3>
@@ -113,15 +113,13 @@ const Info = () => {
                                                                     </div>
                                                                 </div>
                                                                 <div className="flex items-center -order-1 lg:order-1 justify-center">
-                                                                    {item.poster ? <img className=" w-60 lg:w-1/3 rounded-xl pointer-events-none" src={urlFor(item.poster).url()} alt={`poster ${idx}`} loading="lazy" />
-                                                                        :
-                                                                        <div className="flex flex-col items-center gap-5">
+                                                                    {
+                                                                        item?.poster ? <img className=" w-60 lg:w-1/3 rounded-xl pointer-events-none" src={urlFor(item?.poster).url()} alt={`poster ${idx}`} loading="lazy" />
+                                                                            :
                                                                             <div className="flex flex-col items-center gap-10">
-                                                                                {/* <img src={emoji} width={150} className="pointer-events-none" /> */}
                                                                                 <h2 className="text-5xl">Poster Unavailable</h2>
+                                                                                <p>sorry for inconvenience</p>
                                                                             </div>
-                                                                            <p>sorry for inconvenience</p>
-                                                                        </div>
                                                                     }
                                                                 </div>
                                                             </div>
