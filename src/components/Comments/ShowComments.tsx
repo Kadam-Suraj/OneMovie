@@ -25,8 +25,6 @@ const ShowComments = ({ slug, update }) => {
         }
     }, [data]);
 
-    console.log(data[0].comments[0].email)
-
     return (
         <div>
             <div className="flex flex-col">
