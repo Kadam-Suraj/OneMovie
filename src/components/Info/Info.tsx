@@ -1,4 +1,4 @@
-import { getMovieBySlug, getScreenshots, urlFor } from "@/api/client"
+import { getMovieBySlug, urlFor } from "@/api/client"
 import { useCallback, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
@@ -11,10 +11,10 @@ import { getYear } from "@/constants/getYear"
 import { Helmet } from 'react-helmet';
 import Processing from "../Processing"
 import CreateComment from "../Comments/CreateComment"
+import ShowScreenshots from "../ShowScreenshots"
 
 const Info = () => {
     const [data, setData] = useState([])
-    const [screenshot, setScreenshot] = useState([])
     const [param, setParam] = useState("")
     const { slug } = useParams()
     const [isLoading, setisLoading] = useState(true)
@@ -24,8 +24,6 @@ const Info = () => {
         setParam(slug)
         const data = await getMovieBySlug(slug)
         setData(data)
-        const screenshot = await getScreenshots(slug)
-        setScreenshot(screenshot)
     }, [slug]);
 
     useEffect(() => {
@@ -128,19 +126,7 @@ const Info = () => {
                                                             </div>
                                                             <div className="my-10 flex flex-col items-center gap-10">
                                                                 <h2 className="flex items-center flex-col"><span className="font-semibold text-xl">ScreenShots:</span><span>Must See Before Downloading . . .</span></h2>
-                                                                <div className="flex flex-col items-center w-10/12 md:w-[60%]">
-                                                                    {screenshot[0] ?
-                                                                        <div className="grid gap-5 lg:grid-cols-2">
-                                                                            {
-                                                                                screenshot.map((item, idx) => {
-                                                                                    return <img key={idx} src={item} alt={`screenshot${idx}`} className="pointer-events-none w-full h-full object-cover" />
-                                                                                })
-                                                                            }
-                                                                        </div>
-                                                                        :
-                                                                        <h1 key={idx}>ScreenShots Not Available</h1>
-                                                                    }
-                                                                </div>
+                                                                <ShowScreenshots />
                                                             </div>
                                                             <div>
                                                                 <Download slug={param}></Download>

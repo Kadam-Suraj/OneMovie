@@ -25,6 +25,8 @@ const ShowComments = ({ slug, update }) => {
         }
     }, [data]);
 
+    console.log(data[0].comments[0].email)
+
     return (
         <div>
             <div className="flex flex-col">
@@ -43,7 +45,7 @@ const ShowComments = ({ slug, update }) => {
                                 transition={{ duration: 0.3 }}
                                 key={idx} ref={idx === 0 ? firstCommentRef : null} className="border rounded-md p-2 flex flex-col justify-center">
                                 <h4 className="dark:text-gray-600">username: <span className="text-black dark:text-white">{comment.name ? comment.name : 'N/A'}</span></h4>
-                                {comment.email && <h3 className="dark:text-gray-600">E-mail: <span className="text-black dark:text-white">{comment.email}</span></h3>}
+                                {comment.email && <h3 className="dark:text-gray-600">E-mail: <span className="text-black dark:text-white">{`${comment.email.substring(0, 3)}*****@${comment.email.split("@")[1]}`}</span></h3>}
                                 <h4 className="dark:text-gray-600">Message: <span className="text-black dark:text-white">{comment.message ? comment.message : 'N/A'}</span></h4>
                                 {comment.date && <span className="text-gray-600 self-end text-sm">{new Date(comment.date).toLocaleString()}</span>}
                             </motion.div>
