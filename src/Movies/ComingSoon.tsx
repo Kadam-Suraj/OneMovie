@@ -1,6 +1,8 @@
 import { ComingSoon } from "@/components/GalleryList/GalleryList";
+import { Button } from "@/components/ui/button";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CategorySection = () => {
     return (
@@ -13,6 +15,7 @@ const CategorySection = () => {
 
 const Movies = () => {
     const [pageCount, setPageCount] = useState(1)
+    const navigate = useNavigate()
 
     const PrevPage = () => {
         if (pageCount !== 1) {
@@ -43,6 +46,17 @@ const Movies = () => {
             setIsVisible(false);
         }
     };
+    useEffect(() => {
+        localStorage.setItem('currentPage', JSON.stringify(pageCount));
+    }, [pageCount]);
+
+    // Page load hone par localStorage se currentPage ki value ko restore karna
+    useEffect(() => {
+        const storedPage = JSON.parse(localStorage.getItem('currentPage'));
+        if (storedPage) {
+            setPageCount(storedPage);
+        }
+    }, [])
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -53,6 +67,7 @@ const Movies = () => {
 
     return (
         <section className="m-auto max-w-[1536px] min-h-screen flex flex-col justify- gap-5 px-5">
+            <Button onClick={() => navigate(-1)} variant="default" className="mb-5 w-fit">Back</Button>
             <div className="grid lg:grid-cols-2 justify-between">
                 <CategorySection />
             </div>

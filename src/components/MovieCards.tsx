@@ -49,7 +49,7 @@ function CardComp({ item, isVisible }) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
     >
-        <Link to={`/download/${item.id}`}>
+        <Link to={`/coming-soon/${item.id}`}>
             <Card className="border hover:border-red-600 transition-colors duration-500 rounded-md relative h-full w-full">
                 <div className='p-[.12rem] h-80 flex flex-col items-center justify-center'>
                     {item.poster_path ?
@@ -101,10 +101,11 @@ function MovieCard({ data, items }) {
         };
     }, [items, data]);
 
+console.log(data)
     return (
         <div className="grid grid-cols-1 min-[300px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-2">
             <AnimatePresence>
-                {data.slice(0, itemCount).map((item, index) => (
+                {data[0] && data.slice(0, itemCount).map((item, index) => (
                     <div key={index} className='relative'>
                         < CardSkeleton isVisible={cardsLoaded.includes(index)} />
                         <CardComp item={item} isVisible={cardsLoaded.includes(index)} />

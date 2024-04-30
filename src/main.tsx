@@ -16,6 +16,7 @@ import { GalleryListPlatform } from './components/GalleryList/GalleryList.tsx'
 import HomeSection from './Home/HomeSection.tsx'
 import { OriginProvider } from './Context/OriginContext.tsx'
 import ComingSoon from './Movies/ComingSoon.tsx'
+import MovieInfo from './components/Info/MovieInfo.tsx'
 
 const router = createHashRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createHashRouter(
       <Route path="/download/:slug" element={<Info />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/coming-soon" element={<ComingSoon />} />
+      <Route path="/coming-soon/:id" element={<MovieInfo />} />
       <Route path="/series" element={<Series />} />
       <Route path="/about" element={<About />} />
     </Route>

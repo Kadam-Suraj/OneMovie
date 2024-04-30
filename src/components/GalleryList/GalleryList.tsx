@@ -189,7 +189,7 @@ export const ComingSoon = ({ column, link, page }) => {
         fetch()
         // return setData([])
     }, [storage, page])
-
+    
     return (
 
         <>
@@ -208,8 +208,8 @@ export const ComingSoon = ({ column, link, page }) => {
                         }
                     </div>
                     <div>
-                        {
-                            <MovieCard data={data} items={column} />
+                        {data[0] ?
+                            <MovieCard data={data} items={column} /> : null
                         }
                     </div>
                 </div>

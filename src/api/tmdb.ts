@@ -12,8 +12,23 @@ export const Upcoming = async (page) => {
         .then(response => response.results)
         .catch(err => console.error(err));
 }
+
 export const WatchProviders = async () => {
     return await fetch('https://api.themoviedb.org/3/movie/1072790/watch/providers', options)
+        .then(response => response.json())
+        .then(response => response.results)
+        .catch(err => console.error(err));
+}
+
+export const GetMovie = async (id) => {
+    return await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+        .then(response => response.json())
+        .then(response => response)
+        .catch(err => console.error(err));
+}
+
+export const Trailer = async (id) => {
+    return await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
         .then(response => response.json())
         .then(response => response.results)
         .catch(err => console.error(err));
