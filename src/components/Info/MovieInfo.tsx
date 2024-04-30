@@ -108,7 +108,7 @@ const MovieInfo = () => {
                                                                             <div className="flex gap-5 w-1/2 md:w-full  overflow-scroll">{trailer.map((item, idx) => {
                                                                                 if (item.type.toLowerCase() == 'trailer') {
                                                                                     return <div key={idx} className="w-[90vw] md:w-full flex justify-center">
-                                                                                        {/* <YouTube videoId={item.key} /> */}
+                                                                                        <YouTube videoId={item.key} />
                                                                                     </div>
                                                                                 }
                                                                             })}
