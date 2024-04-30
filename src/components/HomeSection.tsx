@@ -1,4 +1,4 @@
-import { ComingSoon, GalleryMovies, GallerySeries } from "@/components/GalleryList/GalleryList"
+import { GalleryMovies, GallerySeries } from "@/components/GalleryList/GalleryList"
 
 const HomeMovieSection = () => {
     const origin = localStorage.getItem('origin')
@@ -7,7 +7,7 @@ const HomeMovieSection = () => {
             <div className="grid gap-3">
                 {/* <h3 className="font-semibold text-2xl">Coming Soon</h3> */}
                 <div className="min-h-[26rem]">
-                    <ComingSoon column={6} link={true} page={1} />
+                    {/* <ComingSoon column={6} link={true} page={1} /> */}
                 </div>
 
             </div>
