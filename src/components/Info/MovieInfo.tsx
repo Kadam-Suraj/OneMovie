@@ -32,7 +32,9 @@ const MovieInfo = () => {
         <>
             <div>
                 <div className="fixed h-screen left-0 right-0 top-0 bottom-0 -z-10 object-cover">
-                    {data.map((item, idx) => item?.backdrop_path && < img key={idx} className="h-screen w-full object-cover" src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} />)}
+                    <div className="w-full h-full">
+                        {data.map((item, idx) => item?.backdrop_path && < img key={idx} className="h-screen w-full object-cover" src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} />)}
+                    </div>
                     <div className="bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 absolute w-full h-full top-0 bottom-0" />
                 </div>
                 <div>
@@ -89,7 +91,7 @@ const MovieInfo = () => {
                                                                     <p className="text-sm text-gray-900 dark:text-gray-400 text-opacity-80 w-10/12 md:w-1/2">{item.overview}</p>
                                                                 </div>
                                                             </div>
-                                                            <div className="grid md:grid-cols-2 gap-10">
+                                                            <div className="grid md:grid-cols-1 gap-10">
                                                                 <div className="flex items-center justify-center">
                                                                     {
                                                                         item?.poster_path ? <img className=" w-60 lg:w-1/2 rounded-xl pointer-events-none" src={`https://image.tmdb.org/t/p/original${item?.poster_path}`} alt={`poster ${idx}`} loading="lazy" />
@@ -100,15 +102,18 @@ const MovieInfo = () => {
                                                                             </div>
                                                                     }
                                                                 </div>
-                                                                <div className="flex flex-col items-center gap-2 justify-center order- md:-order-1">
+                                                                <div className="flex flex-col items-center gap-2 justify-center order- md:-order-">
                                                                     <h2 className="self-start font-bold text-2xl">Watch Trailer :</h2>
-
                                                                     {
                                                                         trailer[0] ?
-                                                                            <div className="flex gap-5 w-1/2 md:w-full  overflow-scroll">{trailer.map((item, idx) => {
+                                                                            <div className="flex gap-10 max-w-[90vw] md:w-full overflow-x-scroll">{trailer.map((item, idx) => {
                                                                                 if (item.type.toLowerCase() == 'trailer') {
-                                                                                    return <div key={idx} className="w-[90vw] md:w-full flex justify-center">
-                                                                                        <YouTube videoId={item.key} />
+                                                                                    const opts = {
+                                                                                        height: '280',
+                                                                                        // width: '400',
+                                                                                    }
+                                                                                    return <div key={idx} className="flex justify-center">
+                                                                                        <YouTube videoId={item.key} opts={opts} className="w-3/4 h-2/3 object-contain md:h-full" />
                                                                                     </div>
                                                                                 }
                                                                             })}
