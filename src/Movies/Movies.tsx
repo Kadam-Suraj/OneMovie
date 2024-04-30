@@ -11,11 +11,13 @@ const CategorySection = () => {
 
 const Movies = () => {
     return (
-        <section className="m-auto max-w-[1536px] flex flex-col gap-5 px-5">
+        <section className="m-auto max-w-[1536px] flex flex-col gap-8 px-5">
             <div className="grid lg:grid-cols-2 justify-between">
                 <CategorySection />
             </div>
-            <GalleryMovies column={null} link={null} />
+            <div className="border-t pt-10">
+                <GalleryMovies column={null} link={null} />
+            </div>
         </section>
     );
 };

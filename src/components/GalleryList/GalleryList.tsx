@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import Gallery from "./Gallery"
 import Processing from "../Processing"
+import { Upcoming } from "@/api/tmdb"
+import MovieCard from "../MovieCards"
 
 // Gallery Section Home
 export const GalleryMovies = ({ column, link }) => {
@@ -14,15 +16,12 @@ export const GalleryMovies = ({ column, link }) => {
     const fetch = async () => {
         const data = await getMovie(storage || 'hollywood')
         setData(data)
+        setisLoading(false)
     }
 
     useEffect(() => {
         fetch()
     }, [storage])
-
-    setTimeout(() => {
-        setisLoading(false)
-    }, 300);
 
     return (
 
@@ -30,7 +29,7 @@ export const GalleryMovies = ({ column, link }) => {
 
             {!isLoading && data ?
 
-                <div className="grid gap-10 border-t pt-10 items-start">
+                <div className="grid gap-10 border- pt0 items-start">
                     <div className="flex gap-3 justify-between">
                         <h2 className="font-semibold text-2xl text-red-500">Movies</h2>
                         {
@@ -69,19 +68,17 @@ export const GallerySeries = ({ column, link }) => {
         (async () => {
             const data = (await getSeries(storage || 'hollywood'))
             setData(data)
+            setisLoading(false)
         })()
 
-        setTimeout(() => {
-            setisLoading(false)
-        }, 300);
-    }, [storage])
+    }, [storage, isLoading])
 
     return (
 
         <>
             {!isLoading && data ?
 
-                <div className="grid gap-10 border-t pt-10">
+                <div className="grid gap-10 pt-10">
                     <div className="flex gap-3 justify-between">
                         <h2 className="font-semibold text-2xl text-red-500">Series</h2>
                         {
@@ -117,10 +114,8 @@ export const GalleryListSearch = ({ param }) => {
         (async () => {
             const data = (await search(param))
             setData(data)
-        })()
-        setTimeout(() => {
             setisLoading(false)
-        }, 100);
+        })()
     }, [param])
 
     return (
@@ -152,10 +147,8 @@ export const GalleryListPlatform = () => {
         (async () => {
             const platformRes = await searchByPlatform(platform, storage || 'hollywood')
             setData(platformRes)
-        })()
-        setTimeout(() => {
             setisLoading(false)
-        }, 300);
+        })()
     }, [platform, storage])
 
     return (
@@ -172,6 +165,61 @@ export const GalleryListPlatform = () => {
                     <Processing />
                 }
             </section>
+        </>
+    )
+}
+
+
+
+
+// Gallery Section Home
+export const ComingSoon = ({ column, link, page }) => {
+    const [data, setData] = useState([])
+    const [isLoading, setisLoading] = useState(true)
+    const storage = localStorage.getItem('origin')
+
+    const fetch = async () => {
+        const res = await Upcoming(page)
+        // const data = await getMovie(storage || 'hollywood')
+        setData(res)
+        setisLoading(false)
+    }
+
+    useEffect(() => {
+        fetch()
+        // return setData([])
+    }, [storage, page])
+
+    return (
+
+        <>
+
+            {!isLoading && data ?
+
+                <div className="grid gap-10 border-t pt-10 items-start">
+                    <div className="flex gap-3 justify-between">
+                        <h2 className="text-2xl font-semibold">Coming soon</h2>
+                        {
+                            link ?
+                                <Link to={"/coming-soon"}>
+                                    <Button>See More</Button>
+                                </Link>
+                                : null
+                        }
+                    </div>
+                    <div>
+                        {
+                            <MovieCard data={data} items={column} />
+                        }
+                    </div>
+                </div>
+                :
+                <Processing />
+            }
+            {!data[0] && !isLoading ?
+                <h2 className="text-center w-full font-semibold text-2xl">No Data Found</h2>
+                : null
+            }
         </>
     )
 }
