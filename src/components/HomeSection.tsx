@@ -6,9 +6,9 @@ const HomeMovieSection = () => {
         <section className="grid gap-10 py-10">
             <div className="grid gap-3">
                 {/* <h3 className="font-semibold text-2xl">Coming Soon</h3> */}
-                <div className="min-h-[26rem]">
-                    {/* <ComingSoon column={6} link={true} page={1} /> */}
-                </div>
+                {/* <div className="min-h-[26rem]">
+                    <ComingSoon column={6} link={true} page={1} />
+                </div> */}
 
             </div>
             <div className="border-t pt-10">
