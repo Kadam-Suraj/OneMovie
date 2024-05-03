@@ -5,7 +5,7 @@ import InfoSkeleton from "./InfoSkeleton"
 import { motion } from "framer-motion"
 import { Helmet } from 'react-helmet';
 import Processing from "../Processing"
-import { GetMovie, Trailer } from "@/api/tmdb"
+import { GetMovie } from "@/api/tmdb"
 // import YouTube from 'react-youtube';
 import Genrestags from "../genres-tags"
 
@@ -18,7 +18,7 @@ const MovieInfo = () => {
     const navigate = useNavigate()
     const fetchData = useCallback(async () => {
         const data = [await GetMovie(id)]
-        const trailer = await Trailer(id)
+        // const trailer = await Trailer(id)
         // setTrailer(trailer)
         setData(data)
     }, [id]);
