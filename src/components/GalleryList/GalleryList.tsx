@@ -173,7 +173,7 @@ export const GalleryListPlatform = () => {
 
 
 // Gallery Section Home
-export const ComingSoon = ({ column, link, page }) => {
+export const ComingSoon = ({ column, link, page }: any) => {
     const [data, setData] = useState([])
     const [isLoading, setisLoading] = useState(true)
     const storage = localStorage.getItem('origin')

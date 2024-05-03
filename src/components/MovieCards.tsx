@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FiClock } from "react-icons/fi";
 import { Skeleton } from './ui/skeleton';
 import { Card, CardFooter } from './ui/card';
+import fetchImage from './fetchImage';
 // import { WatchProviders } from '@/api/tmdb';
 
 function CardSkeleton({ isVisible }) {
@@ -53,7 +54,7 @@ function CardComp({ item, isVisible }) {
             <Card className="border hover:border-red-600 transition-colors duration-500 rounded-md relative h-full w-full">
                 <div className='p-[.12rem] h-80 flex flex-col items-center justify-center'>
                     {item.poster_path ?
-                        <img rel="preload" src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className="rounded-md object-top h-full object-cover w-full" loading="eager" alt={item.title.toLowerCase()} />
+                        <img rel="preload" src={fetchImage(item.poster_path)} className="rounded-md object-top h-full object-cover w-full" loading="eager" alt={item.title.toLowerCase()} />
                         :
                         <span className='rounded-md text-center w-full font-semibold' >Poster Unavailable</span>
                     }

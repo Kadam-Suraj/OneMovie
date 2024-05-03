@@ -45,3 +45,13 @@ export const Trailer = async (id) => {
             return [];
         });
 }
+
+export const Search = async (query) => {
+    return await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
+        .then(response => response.json())
+        .then(response => response.results)
+        .catch(err => {
+            console.error(err)
+            return [];
+        });
+}

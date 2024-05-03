@@ -74,9 +74,9 @@ const MovieInfo = () => {
                                                                 <div className="flex flex-col gap-5 justify-center w-full">
                                                                     <h1 className="font-bold text-3xl min-[320px]:text-5xl lg:text-7xl text-wrap sm:w-full">{item?.title}</h1>
                                                                     <div className="flex flex-wrap gap-5 items-center">
-                                                                        <span className="border py-1 px-2">{item?.status}</span>
-                                                                        <span>{item?.runtime}m</span>
-                                                                        <span>{new Date(item?.release_date).toDateString()}</span>
+                                                                        <span className="border py-1 px-2">Status: <span className="text-yellow-400">{item?.status}</span></span>
+                                                                        <span>Runtime: {item?.runtime}m</span>
+                                                                        <span>Release Date: {new Date(item?.release_date).toDateString()}</span>
                                                                     </div>
                                                                     <Genrestags genres={item?.genres} />
                                                                     {/* {item.language ?

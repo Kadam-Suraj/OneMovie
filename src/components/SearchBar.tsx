@@ -4,8 +4,10 @@ import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { BiSearch } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom'
-import { search, urlFor } from '@/api/client';
+// import { search, urlFor } from '@/api/client';
 import { getYear } from '@/constants/getYear';
+import { Search } from '@/api/tmdb';
+import fetchImage from './fetchImage';
 
 const SearchComponent = () => {
     const [showInput, setShowInput] = useState(false);
@@ -57,7 +59,9 @@ const SearchComponent = () => {
     }
 
     const getData = async () => {
-        const data = await search(input)
+        const data = await Search(input)
+        // const data = await search(input)
+
         setData(data)
     }
 
@@ -69,6 +73,7 @@ const SearchComponent = () => {
         //     setisLoading(false)
         // }, 100);
     }, [input])
+    console.log(data)
 
     return (
         <div className="flex w-60 lg:w-fit items-center justify-end space-x-5">
@@ -104,22 +109,23 @@ const SearchComponent = () => {
                                 className="w-fit  grid gap-2 p-2 lg:border-non max-h-[25rem] overflow-y-scroll bg-white dark:bg-black backdrop-blur bg-opacity-90 dark:bg-opacity-85"
                             >
                                 {data?.map((item, idx) => (
-                                    item.poster && item.slug ? <Link to={`/download/${item?.slug?.current ? item?.slug?.current : "/"}`} key={idx} onClick={handleButtonClick}>
+                                    <Link to={`/coming-soon/${item.id || "/"}`} key={idx} onClick={handleButtonClick}>
                                         <div className="flex items-center gap-3 w-80 border-b dark:hover:bg-gray-800 hover:bg-gray-300 transition duration-200 rounded-md">
-                                            <img
-                                                src={urlFor(item.poster).url()}
+                                            {item.poster_path ? <img
+                                                src={fetchImage(item.poster_path)}
                                                 alt={item?.slug?.current ? item?.slug?.current : "poster"}
                                                 className="h-fit w-20 object-cover rounded-md"
                                             />
+                                                :
+                                                <span className="h-32 text-center flex items-center w-20 object-cover rounded-md" >Poster N/A</span>}
                                             <div>
-                                                <h2 className="font-semibold text-lg pr-1">{item.title}</h2>
+                                                <h2 className="font-semibold text-lg pr-1">{item.title || item.name}</h2>
                                                 <span className="text-gray-400 dark:text-gray-300">
-                                                    {getYear(item.releaseDate)}
+                                                    {getYear(item?.release_date) || 'N/A'}
                                                 </span>
                                             </div>
                                         </div>
                                     </Link>
-                                        : null
                                 ))}
                             </motion.div>
                         </div>
