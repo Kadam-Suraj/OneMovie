@@ -194,11 +194,11 @@ export const ComingSoon = ({ column, link, page }) => {
 
         <>
 
-            {!isLoading && data ?
+            {!isLoading || data[0] ?
 
                 <div className="grid gap-10 border-t pt-10 items-start">
-                    <div className="flex gap-3 justify-between">
-                        <h2 className="text-2xl font-semibold">Coming soon</h2>
+                    <div className="flex gap-3 justify-end">
+                        {/* <h2 className="text-2xl font-semibold">Coming soon</h2> */}
                         {
                             link ?
                                 <Link to={"/coming-soon"}>

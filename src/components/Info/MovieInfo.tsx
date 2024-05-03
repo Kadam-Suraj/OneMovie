@@ -42,7 +42,7 @@ const MovieInfo = () => {
                         {
                             isLoading && <InfoSkeleton />
                         }
-                        {!isLoading && data ?
+                        {!isLoading && data[0] ?
                             <div className="m-auto max-w-[1536px] px-5">
                                 <Button onClick={() => navigate(-1)} variant="default" className="mb-5">Back</Button>
                                 {
