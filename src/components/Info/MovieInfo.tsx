@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import Processing from "../Processing"
 import { GetMovie, Trailer } from "@/api/tmdb"
 import YouTube from 'react-youtube';
+import Genrestags from "../genres-tags"
 
 const MovieInfo = () => {
     const [data, setData] = useState([])
@@ -27,7 +28,7 @@ const MovieInfo = () => {
         data ? setisLoading(false) : setisLoading(true)
         return setData([])
     }, [id]);
-    // console.log(trailer)
+    console.log(data)
     return (
         <>
             <div>
@@ -67,17 +68,17 @@ const MovieInfo = () => {
                                                         transition={{ duration: 0.7 }}
                                                         key={idx}
                                                         className="grid gap-10">
-                                                        <div className="flex flex-col gap-20">
-                                                            <div className="grid grid-cols-1 gap-2">
-                                                                <Button variant="outline" className="w-fit pointer-events-none">Download</Button>
+                                                        <div className="flex flex-col lg:flex-row gap-20">
+                                                            <div className="order-1 self-start lg:w-1/2">
+                                                                <p className="w-fit pointer-events-none"></p>
                                                                 <div className="flex flex-col gap-5 justify-center w-full">
-                                                                    <h1 className="font-bold text-3xl min-[320px]:text-5xl lg:text-8xl text-wrap sm:w-full">{item?.title}</h1>
-                                                                    <div className="flex gap-5 items-center">
+                                                                    <h1 className="font-bold text-3xl min-[320px]:text-5xl lg:text-7xl text-wrap sm:w-full">{item?.title}</h1>
+                                                                    <div className="flex flex-wrap gap-5 items-center">
                                                                         <span className="border py-1 px-2">{item?.status}</span>
                                                                         <span>{item?.runtime}m</span>
                                                                         <span>{new Date(item?.release_date).toDateString()}</span>
                                                                     </div>
-                                                                    {/* <Genrestags genres={item?.genres} /> */}
+                                                                    <Genrestags genres={item?.genres} />
                                                                     {/* {item.language ?
                                                                         <div className="flex flex-col items-cente gap-3">
                                                                             <h3 className="text-xl">Available Languages:</h3>
@@ -91,18 +92,17 @@ const MovieInfo = () => {
                                                                     <p className="text-sm text-gray-900 dark:text-gray-400 text-opacity-80 w-10/12 md:w-1/2">{item.overview}</p>
                                                                 </div>
                                                             </div>
-                                                            <div className="grid md:grid-cols-1 gap-10">
+                                                            <div className="grid md:grid-cols-1 gap-10 lg:w-1/2">
                                                                 <div className="flex items-center justify-center">
                                                                     {
-                                                                        item?.poster_path ? <img className=" w-60 lg:w-1/2 rounded-xl pointer-events-none" src={`https://image.tmdb.org/t/p/original${item?.poster_path}`} alt={`poster ${idx}`} loading="lazy" />
+                                                                        item?.poster_path ? <img className=" w-60 lg:w-1/2 rounded-xl pointer-events-none object-cover" src={`https://image.tmdb.org/t/p/original${item?.poster_path}`} alt={`poster ${idx}`} loading="lazy" />
                                                                             :
                                                                             <div className="flex flex-col items-center gap-10">
-                                                                                <h2 className="text-5xl">Poster Unavailable</h2>
-                                                                                <p>sorry for inconvenience</p>
+                                                                                <h2 className="text-2xl md:text-4xl text-center">Poster Unavailable</h2>
                                                                             </div>
                                                                     }
                                                                 </div>
-                                                                <div className="flex flex-col items-center gap-2 justify-center order- md:-order-">
+                                                                {/* <div className="flex flex-col items-center gap-2 justify-center order- md:-order-">
                                                                     <h2 className="self-start font-bold text-2xl">Watch Trailer :</h2>
                                                                     {
                                                                         trailer[0] ?
@@ -121,7 +121,7 @@ const MovieInfo = () => {
                                                                             :
                                                                             <h2 className="font-semibold text-2xl">Trailer Unavailable</h2>
                                                                     }
-                                                                </div>
+                                                                </div> */}
                                                             </div>
                                                         </div>
                                                         <div className="my-10 flex flex-col items-center gap-10">

@@ -101,7 +101,6 @@ function MovieCard({ data, items }) {
         };
     }, [items, data]);
 
-console.log(data)
     return (
         <div className="grid grid-cols-1 min-[300px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-2">
             <AnimatePresence>

@@ -16,15 +16,19 @@ const CategorySection = () => {
 const Movies = () => {
     const [pageCount, setPageCount] = useState(1)
     const navigate = useNavigate()
+    const [storedPage, setStoredPage] = useState(1)
 
     const PrevPage = () => {
-        if (pageCount !== 1) {
+        if (pageCount > 1 && pageCount !== 1) {
+            sessionStorage.setItem('currentPage', (pageCount - 1).toString());
             setPageCount(pageCount - 1)
             scrollToTop()
         }
     }
+
     const NextPage = () => {
         if (pageCount >= 1) {
+            sessionStorage.setItem('currentPage', (pageCount + 1).toString());
             setPageCount(pageCount + 1)
             scrollToTop()
         }
@@ -46,17 +50,19 @@ const Movies = () => {
             setIsVisible(false);
         }
     };
-    useEffect(() => {
-        localStorage.setItem('currentPage', JSON.stringify(pageCount));
-    }, [pageCount]);
 
-    // Page load hone par localStorage se currentPage ki value ko restore karna
     useEffect(() => {
-        const storedPage = JSON.parse(localStorage.getItem('currentPage'));
+        const storedPage = sessionStorage.getItem('currentPage');
         if (storedPage) {
-            setPageCount(storedPage);
+            setStoredPage(parseInt(storedPage))
         }
-    }, [])
+
+    }, [pageCount])
+
+    useEffect(() => {
+        setPageCount(storedPage)
+    }, [storedPage]);
+
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -64,7 +70,7 @@ const Movies = () => {
             behavior: 'smooth'
         });
     };
-
+    console.log(pageCount)
     return (
         <section className="m-auto max-w-[1536px] min-h-screen flex flex-col justify- gap-5 px-5">
             <Button onClick={() => navigate(-1)} variant="default" className="mb-5 w-fit">Back</Button>

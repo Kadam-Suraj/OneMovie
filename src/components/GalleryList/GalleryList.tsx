@@ -186,15 +186,20 @@ export const ComingSoon = ({ column, link, page }) => {
     }
 
     useEffect(() => {
+        setData([0])
+    }, [page])
+
+
+    useEffect(() => {
         fetch()
         // return setData([])
     }, [storage, page])
-    
+
     return (
 
         <>
 
-            {!isLoading || data[0] ?
+            {!isLoading && data[0] ?
 
                 <div className="grid gap-10 border-t pt-10 items-start">
                     <div className="flex gap-3 justify-end">
@@ -216,7 +221,7 @@ export const ComingSoon = ({ column, link, page }) => {
                 :
                 <Processing />
             }
-            {!data[0] && !isLoading ?
+            {!data && !isLoading ?
                 <h2 className="text-center w-full font-semibold text-2xl">No Data Found</h2>
                 : null
             }

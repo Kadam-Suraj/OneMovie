@@ -11,7 +11,7 @@ const CategoryGenre = () => {
     const { origin } = useOrigin()
 
     const fetchData = useCallback(async () => {
-        const data = await getMovieByGenre(genre, origin);
+        const data = await getMovieByGenre(genre.toLowerCase(), origin);
         setData(data);
     }, [origin]);
 
