@@ -73,7 +73,6 @@ const SearchComponent = () => {
         //     setisLoading(false)
         // }, 100);
     }, [input])
-    console.log(data)
 
     return (
         <div className="flex w-60 lg:w-fit items-center justify-end space-x-5">

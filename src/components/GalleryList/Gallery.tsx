@@ -73,7 +73,7 @@ function CardComp({ item, isVisible }) {
     );
 }
 
-function Gallery({ data, items }) {
+function Gallery({ data, items }: any) {
     const [cardsLoaded, setCardsLoaded] = useState([]);
     const itemCount = items ? Math.min(data.length, items) : data.length;
 

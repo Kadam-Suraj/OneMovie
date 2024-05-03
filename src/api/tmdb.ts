@@ -55,3 +55,13 @@ export const Search = async (query) => {
             return [];
         });
 }
+
+export const Recommendations = async (id) => {
+    return await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations`, options)
+        .then(response => response.json())
+        .then(response => response.results)
+        .catch(err => {
+            console.error(err)
+            return [];
+        });
+}

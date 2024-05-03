@@ -5,12 +5,14 @@ import InfoSkeleton from "./InfoSkeleton"
 import { motion } from "framer-motion"
 import { Helmet } from 'react-helmet';
 import Processing from "../Processing"
-import { GetMovie } from "@/api/tmdb"
+import { GetMovie, Recommendations } from "@/api/tmdb"
 // import YouTube from 'react-youtube';
 import Genrestags from "../genres-tags"
+import MovieCard from "../MovieCards"
 
 const MovieInfo = () => {
     const [data, setData] = useState([])
+    const [recommendations, setRecommendations] = useState([])
     // const [trailer, setTrailer] = useState([])
     const { id } = useParams()
     const [isLoading, setisLoading] = useState(true)
@@ -18,9 +20,11 @@ const MovieInfo = () => {
     const navigate = useNavigate()
     const fetchData = useCallback(async () => {
         const data = [await GetMovie(id)]
+        setData(data)
+        const recomended = await Recommendations(id)
+        setRecommendations(recomended)
         // const trailer = await Trailer(id)
         // setTrailer(trailer)
-        setData(data)
     }, [id]);
 
     useEffect(() => {
@@ -28,7 +32,7 @@ const MovieInfo = () => {
         data ? setisLoading(false) : setisLoading(true)
         return setData([])
     }, [id]);
-    console.log(data)
+    console.log(recommendations)
     return (
         <>
             <div>
@@ -140,6 +144,12 @@ const MovieInfo = () => {
                                         }
                                     </div>
                                 }
+                                <div>
+                                    {recommendations[0] && <div className="grid gap-16">
+                                        <h3 className="font-semibold text-2xl">Recommendations:</h3>
+                                        <MovieCard  data={recommendations}></MovieCard>
+                                    </div>}
+                                </div>
                             </div>
                             : <div className="pt-40">
                                 <Processing />

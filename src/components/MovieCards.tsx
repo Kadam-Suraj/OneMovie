@@ -85,7 +85,7 @@ function CardComp({ item, isVisible }) {
     );
 }
 
-function MovieCard({ data, items }) {
+function MovieCard({ data, items }: any) {
     const [cardsLoaded, setCardsLoaded] = useState([]);
     const itemCount = items ? Math.min(data.length, items) : data.length;
 
