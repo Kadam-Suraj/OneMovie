@@ -6,12 +6,12 @@ import { motion } from "framer-motion"
 import { Helmet } from 'react-helmet';
 import Processing from "../Processing"
 import { GetMovie, Trailer } from "@/api/tmdb"
-import YouTube from 'react-youtube';
+// import YouTube from 'react-youtube';
 import Genrestags from "../genres-tags"
 
 const MovieInfo = () => {
     const [data, setData] = useState([])
-    const [trailer, setTrailer] = useState([])
+    // const [trailer, setTrailer] = useState([])
     const { id } = useParams()
     const [isLoading, setisLoading] = useState(true)
 
@@ -19,7 +19,7 @@ const MovieInfo = () => {
     const fetchData = useCallback(async () => {
         const data = [await GetMovie(id)]
         const trailer = await Trailer(id)
-        setTrailer(trailer)
+        // setTrailer(trailer)
         setData(data)
     }, [id]);
 
