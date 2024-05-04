@@ -38,9 +38,13 @@ const MovieInfo = () => {
             <div>
                 <div className="fixed h-screen left-0 right-0 top-0 bottom-0 -z-10 object-cover">
                     <div className="w-full h-full">
-                        {data.map((item, idx) => item?.backdrop_path && < img key={idx} className="h-screen w-full object-cover" src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} />)}
+                        {data.map((item, idx) => item?.backdrop_path && < motion.img
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                            key={idx} className="h-screen w-full object-cover" src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} loading="lazy" />)}
                     </div>
-                    <div className="bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 absolute w-full h-full top-0 bottom-0" />
+                    <div className="bg-white dar    k:bg-black bg-opacity-70 dark:bg-opacity-70 absolute w-full h-full top-0 bottom-0" />
                 </div>
                 <div>
                     <div>
@@ -147,7 +151,7 @@ const MovieInfo = () => {
                                 <div>
                                     {recommendations[0] && <div className="grid gap-16">
                                         <h3 className="font-semibold text-2xl">Recommendations:</h3>
-                                        <MovieCard  data={recommendations}></MovieCard>
+                                        <MovieCard data={recommendations}></MovieCard>
                                     </div>}
                                 </div>
                             </div>

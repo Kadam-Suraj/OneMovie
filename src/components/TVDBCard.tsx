@@ -89,7 +89,7 @@ function CardComp({ item, isVisible, idx }: any) {
     );
 }
 
-function MovieCard({ data, items }: any) {
+function TVDBMovieCard({ data, items }: any) {
     const [cardsLoaded, setCardsLoaded] = useState([]);
     const itemCount = items ? Math.min(data.length, items) : data.length;
 
@@ -120,4 +120,4 @@ function MovieCard({ data, items }: any) {
     );
 }
 
-export default MovieCard;
+export default TVDBMovieCard;

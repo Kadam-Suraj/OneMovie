@@ -3,6 +3,7 @@ import HomeMovieSection from "@/components/HomeSection";
 import ByOrigin from "@/components/MoviesFilter/ByOrigin";
 import MoviesFilter from "@/components/MoviesFilter/MoviesFilter";
 import { useOrigin } from "@/Context/OriginContext";
+import TVDBMovie from "@/Movies/TVDBMovie";
 
 const HomeSection = () => {
     const { setOrigin } = useOrigin()
@@ -25,6 +26,7 @@ const HomeSection = () => {
                 </div>
                 <MoviesFilter />
                 <HomeMovieSection />
+                <TVDBMovie></TVDBMovie>
             </section >
         </>
     )
