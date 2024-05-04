@@ -44,7 +44,7 @@ const MovieInfo = () => {
                             transition={{ duration: 1 }}
                             key={idx} className="h-screen w-full object-cover" src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} loading="lazy" />)}
                     </div>
-                    <div className="bg-white dar    k:bg-black bg-opacity-70 dark:bg-opacity-70 absolute w-full h-full top-0 bottom-0" />
+                    <div className="bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 absolute w-full h-full top-0 bottom-0" />
                 </div>
                 <div>
                     <div>
