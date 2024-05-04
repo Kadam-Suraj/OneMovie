@@ -1,5 +1,5 @@
 // Example code to make a request to your proxy server
-fetch('http://www.rapidflix.online:5000/proxy/tmdb')
+fetch('https://www.rapidflix.online:5000/proxy/tmdb')
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');

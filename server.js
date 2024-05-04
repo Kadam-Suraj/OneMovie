@@ -23,7 +23,7 @@ const server = http.createServer(async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
 
         // Use cors middleware
-        cors({ origin: 'http://www.rapidflix.online:3000' })(req, res, () => {
+        cors({ origin: 'https://www.rapidflix.online:3000' })(req, res, () => {
             // Send TMDB data as response
             res.end(JSON.stringify(tmdbData));
         });
